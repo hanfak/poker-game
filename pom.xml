@@ -11,6 +11,8 @@
     <properties>
         <java.language.level>1.8</java.language.level>
         <commons.lang.version>3.4</commons.lang.version>
+        <maven.surefire.version>2.20.1</maven.surefire.version>
+        <acceptance.tests>acceptancetests/**/*.java</acceptance.tests>
     </properties>
 
     <build>
@@ -24,7 +26,45 @@
                     <target>${java.language.level}</target>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+                <version>2.20.1</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven.surefire.version}</version>
+                <configuration>
+                    <runOrder>failedfirst</runOrder>
+                    <trimStackTrace>false</trimStackTrace>
+                    <systemPropertyVariables>
+                        <yatspec.output.dir>${project.build.directory}/surefire-reports/yatspec</yatspec.output.dir>
+                    </systemPropertyVariables>
+                    <environmentVariables>
+                        <NAMESPACE>surefireunittests</NAMESPACE>
+                    </environmentVariables>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>default-test</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                        <configuration>
+                            <includes>
+                                <exclude>${acceptance.tests}</exclude>
+                            </includes>
+                            <!--<excludes>-->
+                                <!--<exclude>${acceptance.tests}</exclude>-->
+                            <!--</excludes>-->
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
+
     </build>
     <dependencies>
         <dependency>
