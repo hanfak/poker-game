@@ -1,4 +1,7 @@
-package com.hanfak.domain;
+package com.hanfak.domain.game.evaluators;
+
+import com.hanfak.domain.game.Hand;
+import com.hanfak.domain.game.WinningHand;
 
 public class HandEvaluator {
     public Hand scoreHand(Hand hand) {
@@ -14,7 +17,8 @@ public class HandEvaluator {
 * Look for each type of hand in Winning hand, start from best to worst
 * if match return that winningHand
 *
-* Could inject list of evaluators for each hand, flush evaluator, straight evaluator, all implementing evaluator interface
+* Could inject list of evaluators for each hand, flush evaluator, straight evaluator,
+* all implementing evaluator interface, to allow for different impl but this logic should never change
 *
 *
 * */

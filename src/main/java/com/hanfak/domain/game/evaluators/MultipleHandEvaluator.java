@@ -1,4 +1,6 @@
-package com.hanfak.domain;
+package com.hanfak.domain.game.evaluators;
+
+import com.hanfak.domain.game.Player;
 
 import java.util.List;
 import java.util.stream.Collectors;

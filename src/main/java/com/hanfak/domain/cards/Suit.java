@@ -1,4 +1,4 @@
-package com.hanfak.domain;
+package com.hanfak.domain.cards;
 
 public enum Suit {
     HEART,

@@ -48,6 +48,7 @@ MVP:
 * wiring class
 * Travis
 * Value type for domain objects
+* Add Logs
 
 ### Useful
 https://github.com/belgoros/hello-javafx-maven

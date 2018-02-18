@@ -1,4 +1,4 @@
-package com.hanfak.domain;
+package com.hanfak.domain.game;
 
 // TODO Rethink this
 public enum WinningHand {

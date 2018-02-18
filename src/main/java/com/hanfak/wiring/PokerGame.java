@@ -1,12 +1,16 @@
 package com.hanfak.wiring;
 
-import com.hanfak.domain.*;
+import com.hanfak.domain.cards.Deck;
+import com.hanfak.domain.game.Player;
+import com.hanfak.domain.game.PlayerResult;
+import com.hanfak.domain.game.evaluators.HandEvaluator;
+import com.hanfak.domain.game.evaluators.MultipleHandEvaluator;
 import com.hanfak.usecases.VersionOneGame;
 
 import java.util.List;
 import java.util.Scanner;
 
-import static com.hanfak.domain.Player.player;
+import static com.hanfak.domain.game.Player.player;
 
 public class PokerGame {
     private final String version;
@@ -24,7 +28,7 @@ public class PokerGame {
         PokerGame pokerGame = new PokerGame(args[0]);
 
         // TODO for multple games have a do while loop, with exit on typing exit
-        List<PlayerResult> results = pokerGame.play(player(playerOneName, null),
+        List<PlayerResult> results = pokerGame.play(new Deck(), player(playerOneName, null),
                 player(playerTwoName,null));
 
         // TODO output of results
@@ -37,8 +41,7 @@ public class PokerGame {
 
     // TODO change to hashmap better for multiple players???
     // TODO Wiring
-    public List<PlayerResult> play(Player... player) {
-        Deck deck = new Deck();
+    public List<PlayerResult> play(Deck deck, Player... player) {
         HandEvaluator handEvaluator = new HandEvaluator();
         MultipleHandEvaluator multipleHandEvaluator = new MultipleHandEvaluator();
         VersionOneGame versionOneGame = new VersionOneGame(deck, handEvaluator, multipleHandEvaluator);

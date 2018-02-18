@@ -1,16 +1,20 @@
 package learning;
 
-import com.hanfak.domain.*;
+import com.hanfak.domain.cards.Card;
+import com.hanfak.domain.game.Hand;
+import com.hanfak.domain.game.Player;
+import com.hanfak.domain.game.evaluators.HandEvaluator;
+import com.hanfak.domain.game.evaluators.MultipleHandEvaluator;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.hanfak.domain.Card.card;
-import static com.hanfak.domain.Player.player;
-import static com.hanfak.domain.Rank.*;
-import static com.hanfak.domain.Suit.DIAMOND;
-import static com.hanfak.domain.Suit.SPADE;
+import static com.hanfak.domain.cards.Card.card;
+import static com.hanfak.domain.cards.Rank.*;
+import static com.hanfak.domain.cards.Suit.DIAMOND;
+import static com.hanfak.domain.cards.Suit.SPADE;
+import static com.hanfak.domain.game.Player.player;
 
 public class MulitpleHandEvaluatorLearning {
     private static final Card THREE_OF_SPADES = card(THREE, SPADE);

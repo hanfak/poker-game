@@ -1,4 +1,6 @@
-package com.hanfak.domain;
+package com.hanfak.domain.game;
+
+import com.hanfak.domain.cards.Card;
 
 import java.util.Comparator;
 import java.util.List;

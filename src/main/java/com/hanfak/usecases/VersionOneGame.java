@@ -1,14 +1,20 @@
 package com.hanfak.usecases;
 
-import com.hanfak.domain.*;
+import com.hanfak.domain.cards.Deck;
+import com.hanfak.domain.game.Hand;
+import com.hanfak.domain.game.Player;
+import com.hanfak.domain.game.PlayerResult;
+import com.hanfak.domain.game.Result;
+import com.hanfak.domain.game.evaluators.HandEvaluator;
+import com.hanfak.domain.game.evaluators.MultipleHandEvaluator;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static com.hanfak.domain.Player.player;
-import static com.hanfak.domain.PlayerResult.playerResult;
+import static com.hanfak.domain.game.Player.player;
+import static com.hanfak.domain.game.PlayerResult.playerResult;
 import static java.util.stream.IntStream.range;
 
 public class VersionOneGame {
@@ -33,7 +39,7 @@ public class VersionOneGame {
     }
 
     private Player dealHand(Player player) {
-        Hand hand = deck.dealHand();
+        Hand hand = deck.dealHand(5);
         return player(player.playerName, hand);
     }
 
@@ -51,7 +57,7 @@ public class VersionOneGame {
         List<Player> playersInOrderOfBestHand = multipleHandEvaluator.compareAllPlayersHands(players);
         Player winner = playersInOrderOfBestHand.get(0);
         PlayerResult winnersPlayerResult = playerResult(winner.playerName, Result.WIN, winner.hand);
-        List<PlayerResult> losersPlayerResults = range(1, players.size() - 1)
+        List<PlayerResult> losersPlayerResults = range(1, players.size() )
                 .mapToObj(players::get)
                 .map(loser -> playerResult(loser.playerName, Result.LOSS, loser.hand))
                 .collect(Collectors.toList());

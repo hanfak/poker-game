@@ -1,4 +1,4 @@
-package com.hanfak.domain;
+package com.hanfak.domain.cards;
 
 // TODO check Rank has ordering
 public enum Rank {
