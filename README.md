@@ -47,6 +47,7 @@ MVP:
 * Store results in database???
 * wiring class
 * Travis
+* Value type for domain objects
 
 ### Useful
 https://github.com/belgoros/hello-javafx-maven

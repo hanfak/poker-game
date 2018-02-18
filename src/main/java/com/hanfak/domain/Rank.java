@@ -2,19 +2,20 @@ package com.hanfak.domain;
 
 // TODO check Rank has ordering
 public enum Rank {
-    TWO(2),
-    THREE(3),
-    FOUR(4),
-    FIVE(5),
-    SIX(6),
-    SEVEN(7),
+    // TODO reverse order for easier comparison
+    TWO(14),
+    THREE(13),
+    FOUR(12),
+    FIVE(11),
+    SIX(10),
+    SEVEN(9),
     EIGHT(8),
-    NINE(9),
-    TEN(10),
-    JACK(11),
-    QUEEN(12),
-    KING(13),
-    ACE(14);
+    NINE(7),
+    TEN(6),
+    JACK(5),
+    QUEEN(4),
+    KING(3),
+    ACE(2);
 
     // TODO Change name
     private final int levelCode;
@@ -26,5 +27,4 @@ public enum Rank {
     public int getLevelCode() {
         return this.levelCode;
     }
-
 }

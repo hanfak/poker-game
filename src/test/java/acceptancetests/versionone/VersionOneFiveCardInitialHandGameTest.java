@@ -8,7 +8,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.hanfak.domain.Card.card;
 import static com.hanfak.domain.Player.player;
@@ -21,6 +23,8 @@ public class VersionOneFiveCardInitialHandGameTest implements WithAssertions {
 
     @Test
     public void playerWinsOneRoundGame() throws Exception {
+        // TODO Given to mock the deck.dealHand to give exactly the cards needed
+
         whenAGameOfOneHandWithFiveCardsIsPlayedBetweenTwoPlayers();
 
         thenPlayerOneHasAHandOf(ACE_OF_SPADES, FOUR_OF_DIAMONDS, THREE_OF_SPADES, FOUR_OF_SPADES, FIVE_OF_SPADES);
@@ -31,10 +35,13 @@ public class VersionOneFiveCardInitialHandGameTest implements WithAssertions {
 
     // TODO test draw
 
-    // TODO test multiple players
+    // TODO test multiple players, record place
+
+    // TODO test multiple games, keep track of scores
 
     private void whenAGameOfOneHandWithFiveCardsIsPlayedBetweenTwoPlayers() {
-        play = pokerGame.play();
+        play = pokerGame.play(playerOne, playerTwo);
+        System.out.println("play = " + play.get(0).hand.cards);
     }
 
     private void andPlayerTwoHasAHandOf(Card... cards) {
@@ -45,12 +52,16 @@ public class VersionOneFiveCardInitialHandGameTest implements WithAssertions {
 
     private void thenPlayerOneHasAHandOf(Card... cards) {
         Hand hand = play.get(0).hand;
-
+        System.out.println("hand = " + hand.cards);
         thenPlayerHasTheseCards(cards, hand);
     }
 
     private void thenPlayerHasTheseCards(Card[] cards, Hand actual) {
-        assertThat(actual.cards).containsExactlyInAnyOrder(cards);
+        List<String> expected = Arrays.stream(cards).map(Card::toString).collect(Collectors.toList());
+        String[] myArray = expected.toArray(new String[expected.size()]);
+
+        assertThat(actual.cards.stream().map(Card::toString).collect(Collectors.toList()))
+                .containsExactlyInAnyOrder(myArray);
     }
 
     private void andPlayerOneHasWon() {
@@ -75,8 +86,8 @@ public class VersionOneFiveCardInitialHandGameTest implements WithAssertions {
     private static final Card KING_OF_SPADES = card(KING, SPADE);
     private static final  String VERSION = "1.0";
 
-    private static final Player playerTwo = player("Player Two");
-    private static final Player playerOne = player("Player One");
+    private static final Player playerTwo = player("Player Two", null);
+    private static final Player playerOne = player("Player One", null);
 
     private List<PlayerResult> play;
 
@@ -84,6 +95,6 @@ public class VersionOneFiveCardInitialHandGameTest implements WithAssertions {
 
     @Before
     public void setUp() throws Exception {
-        pokerGame = new PokerGame(VERSION, playerOne, playerTwo);
+        pokerGame = new PokerGame(VERSION);
     }
 }

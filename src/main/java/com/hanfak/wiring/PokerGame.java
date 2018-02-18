@@ -1,7 +1,7 @@
 package com.hanfak.wiring;
 
-import com.hanfak.domain.Player;
-import com.hanfak.domain.PlayerResult;
+import com.hanfak.domain.*;
+import com.hanfak.usecases.VersionOneGame;
 
 import java.util.List;
 import java.util.Scanner;
@@ -10,8 +10,6 @@ import static com.hanfak.domain.Player.player;
 
 public class PokerGame {
     private final String version;
-    private final Player playerOne;
-    private final Player playerTwo;
 
     public static void main(String[] args) {
         // TODO extract method
@@ -23,21 +21,27 @@ public class PokerGame {
         String playerTwoName = reader.next();
         System.out.println(playerTwoName);
 
-        PokerGame pokerGame = new PokerGame(args[0], player(playerOneName), player(playerTwoName));
+        PokerGame pokerGame = new PokerGame(args[0]);
 
-        List<PlayerResult> play = pokerGame.play();
+        // TODO for multple games have a do while loop, with exit on typing exit
+        List<PlayerResult> results = pokerGame.play(player(playerOneName, null),
+                player(playerTwoName,null));
 
         // TODO output of results
+        System.out.println(results);
     }
 
-    public PokerGame(String version, Player playerOne, Player playerTwo) {
+    public PokerGame(String version) {
         this.version = version;
-        this.playerOne = playerOne;
-        this.playerTwo = playerTwo;
     }
 
-    // TODO change to hashmap better for multiple players
-    public List<PlayerResult> play() {
-        return null;
+    // TODO change to hashmap better for multiple players???
+    // TODO Wiring
+    public List<PlayerResult> play(Player... player) {
+        Deck deck = new Deck();
+        HandEvaluator handEvaluator = new HandEvaluator();
+        MultipleHandEvaluator multipleHandEvaluator = new MultipleHandEvaluator();
+        VersionOneGame versionOneGame = new VersionOneGame(deck, handEvaluator, multipleHandEvaluator);
+        return versionOneGame.playGame(player);
     }
 }
