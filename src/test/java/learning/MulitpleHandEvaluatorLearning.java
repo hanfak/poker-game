@@ -1,20 +1,11 @@
 package learning;
 
 import com.hanfak.domain.cards.Card;
-import com.hanfak.domain.game.Hand;
-import com.hanfak.domain.game.Player;
-import com.hanfak.domain.game.evaluators.HandEvaluator;
-import com.hanfak.domain.game.evaluators.MultipleHandEvaluator;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import static com.hanfak.domain.cards.Card.card;
 import static com.hanfak.domain.cards.Rank.*;
 import static com.hanfak.domain.cards.Suit.DIAMOND;
 import static com.hanfak.domain.cards.Suit.SPADE;
-import static com.hanfak.domain.game.Player.player;
 
 public class MulitpleHandEvaluatorLearning {
     private static final Card THREE_OF_SPADES = card(THREE, SPADE);
@@ -33,21 +24,21 @@ public class MulitpleHandEvaluatorLearning {
 
 
     public static void main(String[] args) {
-        MultipleHandEvaluator multipleHandEvaluator = new MultipleHandEvaluator();
-        HandEvaluator handEvaluator = new HandEvaluator();
-        Hand playersOneHand = Hand.hand(Arrays.asList(TEN_OF_SPADES, FOUR_OF_DIAMONDS, THREE_OF_SPADES, FOUR_OF_SPADES, FIVE_OF_SPADES), null);
-        Hand playersTwoHand = Hand.hand(Arrays.asList(EIGHT_OF_SPADES, THREE_OF_DIAMONDS, QUEEN_OF_SPADES, NINE_OF_DIAMONDS, JACK_OF_DIAMONDS), null);
-        Player playerone = player("one", playersOneHand);
-        Player playertwo = player("two", playersTwoHand);
-
-        List<Player> players = Arrays.asList(playerone, playertwo);
-        List<Player> playersWithHandEvaluated = players.stream()
-                .map(x -> player(x.playerName, handEvaluator.scoreHand(x.hand)))
-                .collect(Collectors.toList());
-
-        List<Player> players1 = multipleHandEvaluator.compareAllPlayersHands(playersWithHandEvaluated);
-
-        System.out.println("players1 = " + players1.stream().map(x -> x.playerName).collect(Collectors.joining(",")));
+//        MultipleHandEvaluator multipleHandEvaluator = new MultipleHandEvaluator();
+//        HandEvaluator handEvaluator = new HandEvaluator();
+//        Hand playersOneHand = Hand.hand(Arrays.asList(TEN_OF_SPADES, FOUR_OF_DIAMONDS, THREE_OF_SPADES, FOUR_OF_SPADES, FIVE_OF_SPADES), null);
+//        Hand playersTwoHand = Hand.hand(Arrays.asList(EIGHT_OF_SPADES, THREE_OF_DIAMONDS, QUEEN_OF_SPADES, NINE_OF_DIAMONDS, JACK_OF_DIAMONDS), null);
+//        Player playerone = player("one", playersOneHand);
+//        Player playertwo = player("two", playersTwoHand);
+//
+//        List<Player> players = Arrays.asList(playerone, playertwo);
+//        List<Player> playersWithHandEvaluated = players.stream()
+//                .map(x -> player(x.playerName, handEvaluator.scoreHand(x.hand)))
+//                .collect(Collectors.toList());
+//
+//        List<Player> players1 = multipleHandEvaluator.compareAllPlayersHands(playersWithHandEvaluated);
+//
+//        System.out.println("players1 = " + players1.stream().map(x -> x.playerName).collect(Collectors.joining(",")));
 
     }
 }

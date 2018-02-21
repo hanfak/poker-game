@@ -2,7 +2,7 @@ package com.hanfak.domain.game;
 
 public class PlayerResult {
 
-    private final String playerName;
+    public final String playerName;
     public final Result result;
     public final Hand hand;
 

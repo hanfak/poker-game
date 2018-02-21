@@ -4,18 +4,14 @@ import com.hanfak.domain.cards.Deck;
 import com.hanfak.domain.game.Hand;
 import com.hanfak.domain.game.Player;
 import com.hanfak.domain.game.PlayerResult;
-import com.hanfak.domain.game.Result;
 import com.hanfak.domain.game.evaluators.HandEvaluator;
 import com.hanfak.domain.game.evaluators.MultipleHandEvaluator;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import static com.hanfak.domain.game.Player.player;
-import static com.hanfak.domain.game.PlayerResult.playerResult;
-import static java.util.stream.IntStream.range;
 
 public class VersionOneGame {
     private final Deck deck;
@@ -52,17 +48,7 @@ public class VersionOneGame {
         return player(player.playerName, hand);
     }
 
-    //TODO Refactor
     private List<PlayerResult> evaluateGame(List<Player> players) {
-        List<Player> playersInOrderOfBestHand = multipleHandEvaluator.compareAllPlayersHands(players);
-        Player winner = playersInOrderOfBestHand.get(0);
-        PlayerResult winnersPlayerResult = playerResult(winner.playerName, Result.WIN, winner.hand);
-        List<PlayerResult> losersPlayerResults = range(1, players.size() )
-                .mapToObj(players::get)
-                .map(loser -> playerResult(loser.playerName, Result.LOSS, loser.hand))
-                .collect(Collectors.toList());
-
-        return Stream.concat(Stream.of(winnersPlayerResult), losersPlayerResults.stream())
-                .collect(Collectors.toList());
+        return multipleHandEvaluator.compareAllPlayersHands(players);
     }
 }
