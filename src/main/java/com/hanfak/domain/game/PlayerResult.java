@@ -15,4 +15,13 @@ public class PlayerResult {
     public static PlayerResult playerResult(String playerName, Result result, Hand hand) {
         return new PlayerResult(playerName, result, hand);
     }
+
+    @Override
+    public String toString() {
+        return "PlayerResult{" +
+                "playerName='" + playerName + '\'' +
+                ", result=" + result +
+                ", hand=" + hand.cards +
+                '}';
+    }
 }

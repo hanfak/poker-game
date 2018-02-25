@@ -17,6 +17,7 @@ import org.mockito.Mockito;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static com.hanfak.domain.cards.Card.card;
@@ -65,6 +66,8 @@ public class VersionOneFiveCardInitialHandGameTest extends TestState implements 
         thenPlayerOneHasDrawn();
         andPlayerTwoHasDrawn();
     }
+
+    // TODO test cards with different best hands ie pair over highcard
 
     // TODO test multiple players, record place - 1 - won, 2 to x - loss OR 1 - Draw, 1 - Draw, 3 to x - loss
     // who won or drew only if at the top, everyone else loses
@@ -144,8 +147,8 @@ public class VersionOneFiveCardInitialHandGameTest extends TestState implements 
     }
 
     private void andPlayerOneHasLost() {
-        Result result = play.get(0).result;
-        assertThat(result).isEqualTo(Result.LOSS);
+        Optional<PlayerResult> first = play.stream().filter(playerResult -> "Player One".equals(playerResult.playerName)).findFirst();
+        assertThat(first.get().result).isEqualTo(Result.LOSS);
     }
 
     private void andPlayerTwoHasLost() {
@@ -154,8 +157,8 @@ public class VersionOneFiveCardInitialHandGameTest extends TestState implements 
     }
 
     private void andPlayerTwoHasWon() {
-        Result result = play.get(1).result;
-        assertThat(result).isEqualTo(Result.WIN);
+        Optional<PlayerResult> first = play.stream().filter(playerResult -> "Player Two".equals(playerResult.playerName)).findFirst();
+        assertThat(first.get().result).isEqualTo(Result.WIN);
     }
 
     //  TODO: Mover to utility class or extend from a super class ie AcceptanceTest

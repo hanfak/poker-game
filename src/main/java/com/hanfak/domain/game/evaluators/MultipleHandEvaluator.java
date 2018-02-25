@@ -1,67 +1,105 @@
 package com.hanfak.domain.game.evaluators;
 
+import com.hanfak.domain.cards.Rank;
 import com.hanfak.domain.game.Player;
 import com.hanfak.domain.game.PlayerResult;
 import com.hanfak.domain.game.Result;
 
-import java.util.Arrays;
+import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
-import java.util.Optional;
+import java.util.function.IntUnaryOperator;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import static com.hanfak.domain.game.PlayerResult.playerResult;
 
 // TODO need to unit test
 public class MultipleHandEvaluator {
+
     public List<PlayerResult> compareAllPlayersHands(List<Player> players) {
-        List<PlayerResult> undeterminedPlayerResults = players.stream().
+        List<PlayerResult> undeterminedPlayerResults = initializePlayerResults(players);
+        List<Integer> cardsWhichMatch = determineCardsThatAreTheSameOrDifferent(undeterminedPlayerResults);
+
+        if (!cardsWhichMatch.isEmpty()) {
+            // TODO extract sameBestHandEvaluator dependeny
+            return determineWinOrLossForEachPlayer(undeterminedPlayerResults, cardsWhichMatch);
+        } else {
+            //tODO extract DrawEvaluator dependeny
+            return setDrawForPlayers(undeterminedPlayerResults); //
+        }
+    }
+
+    private List<PlayerResult> initializePlayerResults(List<Player> players) {
+        return players.stream().
                 map(player -> playerResult(player.playerName, null, player.hand)).
                 collect(Collectors.toList());
+    }
 
-        // Get array that matches PlayerResults, and turns unequal cards into indexes, and equal cards into 0
-        List<Integer> collect = IntStream.range(0, 5).
-                map(index -> {
-                    if (undeterminedPlayerResults.get(0).hand.cards.get(index).rank.equals(undeterminedPlayerResults.get(1).hand.cards.get(index).rank)) {
-                        return 0;
-                    } else {
-                        return index + 1;
-                    }
-                }).boxed().collect(Collectors.toList());
-        System.out.println("collect = " + collect);
+    private List<Integer> determineCardsThatAreTheSameOrDifferent(List<PlayerResult> undeterminedPlayerResults) {
+        return IntStream.range(0, 5).
+                map(changeCardToComparisonNumber(undeterminedPlayerResults))
+                .boxed()
+                .filter(checkedIndex -> checkedIndex != 0)
+                .collect(Collectors.toList());
+    }
 
-        // Remove all the 0
-        List<Integer> collect1 = collect.stream().
-                filter(checkedIndex -> checkedIndex != 0).collect(Collectors.toList());
-        System.out.println("collect1 = " + collect1);
+    private List<PlayerResult> setDrawForPlayers(List<PlayerResult> undeterminedPlayerResults) {
+        List<PlayerResult> playerResultsDetermined = undeterminedPlayerResults.stream().map(playerResult -> PlayerResult.playerResult(playerResult.playerName, Result.DRAW, playerResult.hand)).collect(Collectors.toList());
+        System.out.println("draw" + playerResultsDetermined);
 
-        // GEt first element, which is index which will be have the first different element in both Players hand
-        Optional<Integer> first = collect1.stream().findFirst();
-        System.out.println("first = " + first);
+        return playerResultsDetermined;
+    }
 
-        // If there is a non 0 entry, then compare that card at the index in the players hand
-        if (first.isPresent()) {
-            Integer indexOFDifferentCard = first.get() - 1;
-            if (undeterminedPlayerResults.get(0).hand.cards.get(indexOFDifferentCard).rank.getLevelCode() < (undeterminedPlayerResults.get(1).hand.cards.get(indexOFDifferentCard).rank).getLevelCode()) {
-                // PLAYER ONE NON SAME HIGH CARD IS GREATER THAN PLAYER TWO
-                PlayerResult playerTwoResult = PlayerResult.playerResult(undeterminedPlayerResults.get(1).playerName, Result.LOSS, undeterminedPlayerResults.get(1).hand);
-                PlayerResult playerOneResult = PlayerResult.playerResult(undeterminedPlayerResults.get(0).playerName, Result.WIN, undeterminedPlayerResults.get(0).hand);
-                System.out.println("a" + Arrays.asList(playerOneResult, playerTwoResult));
-                return Arrays.asList(playerOneResult, playerTwoResult);
+    //    TODO Should I return a list of [[win],[loss]], [[draw,draw]]???
+    private List<PlayerResult> determineWinOrLossForEachPlayer(List<PlayerResult> undeterminedPlayerResults, List<Integer> cardsWhichMatch) {
+
+        List<PlayerResult> collect = undeterminedPlayerResults.stream()
+                .sorted(compareCardRanksOf(cardsWhichMatch))
+                .collect(Collectors.toList());
+
+        List<PlayerResult> playersResults = Stream.of(setPlayerResultOfWinner(collect), setPlayerResultsOfLosers(collect))
+                .flatMap(Collection::stream)
+                .collect(Collectors.toList());
+
+        System.out.println("player results : " + playersResults);
+
+        return playersResults;
+    }
+
+    private Comparator<PlayerResult> compareCardRanksOf(List<Integer> cardsWhichMatch) {
+        return (x, y) -> {
+            Integer levelCodeOfX = x.hand.cards.get(cardsWhichMatch.get(0) - 1).rank.getLevelCode();
+            Integer levelCodeOfY = y.hand.cards.get(cardsWhichMatch.get(0) - 1).rank.getLevelCode();
+            return levelCodeOfX.compareTo(levelCodeOfY);
+        };
+    }
+
+    private List<PlayerResult> setPlayerResultOfWinner(List<PlayerResult> collect) {
+        return collect.subList(0, 1).stream()
+                .map(x -> PlayerResult.playerResult(x.playerName, Result.WIN, x.hand))
+                .collect(Collectors.toList());
+    }
+
+    private List<PlayerResult> setPlayerResultsOfLosers(List<PlayerResult> collect) {
+        return collect.subList(1, collect.size()).stream()
+                .map(x -> PlayerResult.playerResult(x.playerName, Result.LOSS, x.hand))
+                .collect(Collectors.toList());
+    }
+
+    private IntUnaryOperator changeCardToComparisonNumber(List<PlayerResult> undeterminedPlayerResults) {
+        return index -> {
+            if (areAllCardsInEachHandInThisPositionEqual(undeterminedPlayerResults, index)) {
+                return 0;
             } else {
-                // PLAYER ONE NON SAME HIGH CARD IS LESS THAN PLAYER TWO
-                PlayerResult playerTwoResult = PlayerResult.playerResult(undeterminedPlayerResults.get(1).playerName, Result.WIN, undeterminedPlayerResults.get(1).hand);
-                PlayerResult playerOneResult = PlayerResult.playerResult(undeterminedPlayerResults.get(0).playerName, Result.LOSS, undeterminedPlayerResults.get(0).hand);
-                System.out.println("b" + Arrays.asList(playerOneResult, playerTwoResult));
-
-                return Arrays.asList(playerOneResult, playerTwoResult);
+                return index + 1;
             }
-        } else { // If no elements, then all cards are the same
-            PlayerResult playerTwoResult = PlayerResult.playerResult(undeterminedPlayerResults.get(1).playerName, Result.DRAW, undeterminedPlayerResults.get(1).hand);
-            PlayerResult playerOneResult = PlayerResult.playerResult(undeterminedPlayerResults.get(0).playerName, Result.DRAW, undeterminedPlayerResults.get(0).hand);
-            System.out.println("draw" +Arrays.asList(playerOneResult, playerTwoResult));
+        };
+    }
 
-            return Arrays.asList(playerOneResult, playerTwoResult);
-        }
+    private boolean areAllCardsInEachHandInThisPositionEqual(List<PlayerResult> undeterminedPlayerResults, int index) {
+        List<Rank> cardsInPosition = undeterminedPlayerResults.stream().map(playerResult -> playerResult.hand.cards.get(index).rank).distinct().collect(Collectors.toList());
+        return 1 == cardsInPosition.size();
     }
 }

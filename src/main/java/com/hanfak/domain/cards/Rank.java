@@ -20,11 +20,11 @@ public enum Rank {
     // TODO Change name
     private final int levelCode;
 
-    Rank(int levelCode) {
+    Rank(Integer levelCode) {
         this.levelCode = levelCode;
     }
 
-    public int getLevelCode() {
+    public Integer getLevelCode() {
         return this.levelCode;
     }
 }

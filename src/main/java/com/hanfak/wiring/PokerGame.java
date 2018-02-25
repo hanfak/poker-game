@@ -8,7 +8,6 @@ import com.hanfak.domain.game.evaluators.MultipleHandEvaluator;
 import com.hanfak.usecases.VersionOneGame;
 
 import java.util.List;
-import java.util.Scanner;
 
 import static com.hanfak.domain.game.Player.player;
 
@@ -17,20 +16,24 @@ public class PokerGame {
 
     public static void main(String[] args) {
         // TODO extract method
-        Scanner reader = new Scanner(System.in);
-        System.out.println("Enter player one name: ");
-        String playerOneName = reader.next();
-        System.out.println(playerOneName);
-        System.out.println("Enter player two name: ");
-        String playerTwoName = reader.next();
-        System.out.println(playerTwoName);
-
-        PokerGame pokerGame = new PokerGame(args[0]);
+//        Scanner reader = new Scanner(System.in);
+//        System.out.println("Enter player one name: ");
+//        String playerOneName = reader.next();
+//        System.out.println(playerOneName);
+//        System.out.println("Enter player two name: ");
+//        String playerTwoName = reader.next();
+//        System.out.println(playerTwoName);
+//
+//        PokerGame pokerGame = new PokerGame(args[0]);
+        PokerGame pokerGame = new PokerGame("one");
 
         // TODO for multple games have a do while loop, with exit on typing exit
-        List<PlayerResult> results = pokerGame.play(new Deck(), player(playerOneName, null),
-                player(playerTwoName,null));
+//        List<PlayerResult> results = pokerGame.play(new Deck(), player(playerOneName, null),
+//                player(playerTwoName,null));
 
+
+        List<PlayerResult> results = pokerGame.play(new Deck(), player("one", null),
+                player("two",null));
         // TODO output of results
         System.out.println(results);
     }
@@ -46,5 +49,6 @@ public class PokerGame {
         MultipleHandEvaluator multipleHandEvaluator = new MultipleHandEvaluator();
         VersionOneGame versionOneGame = new VersionOneGame(deck, handEvaluator, multipleHandEvaluator);
         return versionOneGame.playGame(player);
+        // TODO formatter
     }
 }
