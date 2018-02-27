@@ -2,7 +2,7 @@ package com.hanfak.domain.cards;
 
 public class Card {
     public final Rank rank;
-    private final Suit suit;
+    public final Suit suit;
 
     private Card(Rank rank, Suit suit) {
         this.rank = rank;
@@ -20,8 +20,7 @@ public class Card {
 
         Card card = (Card) o;
 
-        if (rank != card.rank) return false;
-        return suit == card.suit;
+        return this.rank == card.rank && this.suit == card.suit;
     }
 
     @Override

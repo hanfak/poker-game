@@ -1,10 +1,12 @@
 package com.hanfak.wiring;
 
-import com.hanfak.domain.cards.Deck;
+import com.hanfak.domain.deck.CardDealer;
+import com.hanfak.domain.deck.Deck;
 import com.hanfak.domain.game.Player;
 import com.hanfak.domain.game.PlayerResult;
 import com.hanfak.domain.game.evaluators.HandEvaluator;
 import com.hanfak.domain.game.evaluators.MultipleHandEvaluator;
+import com.hanfak.infrastructure.CollectionsCardShuffler;
 import com.hanfak.usecases.VersionOneGame;
 
 import java.util.List;
@@ -32,8 +34,8 @@ public class PokerGame {
 //                player(playerTwoName,null));
 
 
-        List<PlayerResult> results = pokerGame.play(new Deck(), player("one", null),
-                player("two",null));
+        List<PlayerResult> results = pokerGame.play(new CardDealer(new Deck(), new CollectionsCardShuffler()), player("one"),
+                player("two"));
         // TODO output of results
         System.out.println(results);
     }
@@ -44,10 +46,10 @@ public class PokerGame {
 
     // TODO change to hashmap better for multiple players???
     // TODO Wiring
-    public List<PlayerResult> play(Deck deck, Player... player) {
+    public List<PlayerResult> play(CardDealer cardDealer, Player... player) {
         HandEvaluator handEvaluator = new HandEvaluator();
         MultipleHandEvaluator multipleHandEvaluator = new MultipleHandEvaluator();
-        VersionOneGame versionOneGame = new VersionOneGame(deck, handEvaluator, multipleHandEvaluator);
+        VersionOneGame versionOneGame = new VersionOneGame(cardDealer, handEvaluator, multipleHandEvaluator);
         return versionOneGame.playGame(player);
         // TODO formatter
     }

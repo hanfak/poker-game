@@ -1,14 +1,13 @@
 package com.hanfak.domain.game.evaluators;
 
-import com.hanfak.domain.game.Hand;
-import com.hanfak.domain.game.WinningHand;
+import com.hanfak.domain.game.playershand.Hand;
+import com.hanfak.domain.game.playershand.WinningHand;
 
 public class HandEvaluator {
     public Hand scoreHand(Hand hand) {
         System.out.println(hand.cards);
-        System.out.println(hand.cards.get(0));
         // TODO Game logic, for first test can check for uniqueness of all cards and no 5 adjacent cards
-        return Hand.hand(hand.cards, WinningHand.HIGHCARD);
+        return Hand.hand(hand.cards, WinningHand.HIGH_CARD);
     }
 }
 

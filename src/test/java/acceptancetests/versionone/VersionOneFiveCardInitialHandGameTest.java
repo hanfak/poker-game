@@ -3,11 +3,11 @@ package acceptancetests.versionone;
 import com.googlecode.yatspec.junit.SpecRunner;
 import com.googlecode.yatspec.state.givenwhenthen.TestState;
 import com.hanfak.domain.cards.Card;
-import com.hanfak.domain.cards.Deck;
-import com.hanfak.domain.game.Hand;
+import com.hanfak.domain.deck.CardDealer;
 import com.hanfak.domain.game.Player;
 import com.hanfak.domain.game.PlayerResult;
 import com.hanfak.domain.game.Result;
+import com.hanfak.domain.game.playershand.Hand;
 import com.hanfak.wiring.PokerGame;
 import org.assertj.core.api.WithAssertions;
 import org.junit.Before;
@@ -32,7 +32,6 @@ import static com.hanfak.domain.game.Player.player;
 public class VersionOneFiveCardInitialHandGameTest extends TestState implements WithAssertions {
 
     // NOTE no need to test the cards exists as we have provided it in the givens
-    // TODO test that number of cards is 5???
     @Test
     public void playerOneWinsOneRoundGame() throws Exception {
         givenADeckDealsOutASetOfRandomCardsToPlayerOne();
@@ -68,35 +67,37 @@ public class VersionOneFiveCardInitialHandGameTest extends TestState implements 
     }
 
     // TODO test cards with different best hands ie pair over highcard
+    // TODO test cards for opp player
 
     // TODO test multiple players, record place - 1 - won, 2 to x - loss OR 1 - Draw, 1 - Draw, 3 to x - loss
     // who won or drew only if at the top, everyone else loses
+    // Who will win money
 
     // TODO test multiple games, keep track of scores
 
     private void andADeckDealsOutASetOfRandomCardsToPlayerTwo() {
-        testState().interestingGivens.add("Player One Hand", PLAYER_ONE_CARDS.stream().map(card -> card.toString()).collect(Collectors.joining(", ")));
-        testState().interestingGivens.add("Player Two Hand",PLAYER_TWO_CARDS.stream().map(card -> card.toString()).collect(Collectors.joining(", ")));
+        testState().interestingGivens.add("Player One Hand", PLAYER_ONE_CARDS.stream().map(Card::toString).collect(Collectors.joining(", ")));
+        testState().interestingGivens.add("Player Two Hand",PLAYER_TWO_CARDS.stream().map(Card::toString).collect(Collectors.joining(", ")));
         // For readability
     }
 
     private void andADeckDealsOutASetOfRandomCardsToPlayerTwoBlah() {
-        testState().interestingGivens.add("Player One Hand", PLAYER_ONE_OTHER_CARDS.stream().map(card -> card.toString()).collect(Collectors.joining(", ")));
-        testState().interestingGivens.add("Player Two Hand",PLAYER_TWO_OTHER_CARDS.stream().map(card -> card.toString()).collect(Collectors.joining(", ")));
+        testState().interestingGivens.add("Player One Hand", PLAYER_ONE_OTHER_CARDS.stream().map(Card::toString).collect(Collectors.joining(", ")));
+        testState().interestingGivens.add("Player Two Hand",PLAYER_TWO_OTHER_CARDS.stream().map(Card::toString).collect(Collectors.joining(", ")));
         // For readability
     }
 
     private void givenADeckDealsOutASetOfRandomCardsToPlayerOne() {
         Hand firstHandDealt = Hand.hand(PLAYER_ONE_CARDS, null);
         Hand secondHandDealt = Hand.hand(PLAYER_TWO_CARDS, null);
-        org.mockito.Mockito.when(deck.dealHand(5)).thenReturn(firstHandDealt).thenReturn(secondHandDealt);
+        org.mockito.Mockito.when(cardDealer.dealHand(5)).thenReturn(firstHandDealt).thenReturn(secondHandDealt);
 
     }
 
     private void givenADeckDealsOutASetOfRandomCardsToPlayerOneblah() {
         Hand firstHandDealt = Hand.hand(PLAYER_ONE_OTHER_CARDS, null);
         Hand secondHandDealt = Hand.hand(PLAYER_TWO_OTHER_CARDS, null);
-        org.mockito.Mockito.when(deck.dealHand(5)).thenReturn(firstHandDealt).thenReturn(secondHandDealt);
+        org.mockito.Mockito.when(cardDealer.dealHand(5)).thenReturn(firstHandDealt).thenReturn(secondHandDealt);
     }
 
     private void andPlayerTwoHasDrawn() {
@@ -112,13 +113,13 @@ public class VersionOneFiveCardInitialHandGameTest extends TestState implements 
     private void givenBothPlayersAreDealtAHand() {
         Hand firstHandDealt = Hand.hand(PLAYER_ONE_DRAW_CARDS, null);
         Hand secondHandDealt = Hand.hand(PLAYER_TWO_DRAW_CARDS, null);
-        org.mockito.Mockito.when(deck.dealHand(5)).thenReturn(firstHandDealt).thenReturn(secondHandDealt);
-        testState().interestingGivens.add("Player One Hand", PLAYER_ONE_DRAW_CARDS.stream().map(card -> card.toString()).collect(Collectors.joining(", ")));
-        testState().interestingGivens.add("Player Two Hand",PLAYER_TWO_DRAW_CARDS.stream().map(card -> card.toString()).collect(Collectors.joining(", ")));
+        org.mockito.Mockito.when(cardDealer.dealHand(5)).thenReturn(firstHandDealt).thenReturn(secondHandDealt);
+        testState().interestingGivens.add("Player One Hand", PLAYER_ONE_DRAW_CARDS.stream().map(Card::toString).collect(Collectors.joining(", ")));
+        testState().interestingGivens.add("Player Two Hand",PLAYER_TWO_DRAW_CARDS.stream().map(Card::toString).collect(Collectors.joining(", ")));
     }
 
     private void whenAGameOfOneHandWithFiveCardsIsPlayedBetweenTwoPlayers() {
-        play = pokerGame.play(deck, playerOne, playerTwo);
+        play = pokerGame.play(cardDealer, playerOne, playerTwo);
     }
 
     private void andPlayerTwoHasAHandOf(Card... cards) {
@@ -146,6 +147,7 @@ public class VersionOneFiveCardInitialHandGameTest extends TestState implements 
         assertThat(result).isEqualTo(Result.WIN);
     }
 
+    @SuppressWarnings("ConstantConditions")
     private void andPlayerOneHasLost() {
         Optional<PlayerResult> first = play.stream().filter(playerResult -> "Player One".equals(playerResult.playerName)).findFirst();
         assertThat(first.get().result).isEqualTo(Result.LOSS);
@@ -156,6 +158,7 @@ public class VersionOneFiveCardInitialHandGameTest extends TestState implements 
         assertThat(result).isEqualTo(Result.LOSS);
     }
 
+    @SuppressWarnings("ConstantConditions")
     private void andPlayerTwoHasWon() {
         Optional<PlayerResult> first = play.stream().filter(playerResult -> "Player Two".equals(playerResult.playerName)).findFirst();
         assertThat(first.get().result).isEqualTo(Result.WIN);
@@ -185,9 +188,9 @@ public class VersionOneFiveCardInitialHandGameTest extends TestState implements 
     private static final List<Card> PLAYER_TWO_DRAW_CARDS = Arrays.asList(ACE_OF_HEARTS, FIVE_OF_HEARTS, TWO_OF_HEARTS, FOUR_OF_CLUBS, THREE_OF_DIAMONDS);
     private static final  String VERSION = "1.0";
 
-    private static final Player playerTwo = player("Player Two", null);
-    private static final Player playerOne = player("Player One", null);
-    private final Deck deck = Mockito.mock(Deck.class); // TODO use a stub
+    private static final Player playerTwo = player("Player Two");
+    private static final Player playerOne = player("Player One");
+    private final CardDealer cardDealer = Mockito.mock(CardDealer.class); // TODO use a stub
 
     private List<PlayerResult> play;
 

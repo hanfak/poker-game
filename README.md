@@ -49,6 +49,7 @@ MVP:
 * Travis
 * Value type for domain objects
 * Add Logs
+* Avoid mutating the deckofcards in Deck class
 
 ### Useful
 https://github.com/belgoros/hello-javafx-maven

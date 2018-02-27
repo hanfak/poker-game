@@ -1,11 +1,11 @@
 package com.hanfak.usecases;
 
-import com.hanfak.domain.cards.Deck;
-import com.hanfak.domain.game.Hand;
+import com.hanfak.domain.deck.CardDealer;
 import com.hanfak.domain.game.Player;
 import com.hanfak.domain.game.PlayerResult;
 import com.hanfak.domain.game.evaluators.HandEvaluator;
 import com.hanfak.domain.game.evaluators.MultipleHandEvaluator;
+import com.hanfak.domain.game.playershand.Hand;
 
 import java.util.Arrays;
 import java.util.List;
@@ -14,12 +14,12 @@ import java.util.stream.Collectors;
 import static com.hanfak.domain.game.Player.player;
 
 public class VersionOneGame {
-    private final Deck deck;
+    private final CardDealer cardDealer;
     private final HandEvaluator handEvaluator;
     private final MultipleHandEvaluator multipleHandEvaluator;
 
-    public VersionOneGame(Deck deck, HandEvaluator handEvaluator, MultipleHandEvaluator multipleHandEvaluator) {
-        this.deck = deck;
+    public VersionOneGame(CardDealer cardDealer, HandEvaluator handEvaluator, MultipleHandEvaluator multipleHandEvaluator) {
+        this.cardDealer = cardDealer;
         this.handEvaluator = handEvaluator;
         this.multipleHandEvaluator = multipleHandEvaluator;
     }
@@ -35,7 +35,7 @@ public class VersionOneGame {
     }
 
     private Player dealHand(Player player) {
-        Hand hand = deck.dealHand(5);
+        Hand hand = cardDealer.dealHand(5);
         return player(player.playerName, hand);
     }
 
@@ -44,8 +44,8 @@ public class VersionOneGame {
     }
 
     private Player evaluateHand(Player player) {
-        Hand hand = handEvaluator.scoreHand(player.hand);
-        return player(player.playerName, hand);
+        Hand hand = handEvaluator.scoreHand(player.hand); //TODO return best hand
+        return player(player.playerName, hand); // TODO create new hand
     }
 
     private List<PlayerResult> evaluateGame(List<Player> players) {

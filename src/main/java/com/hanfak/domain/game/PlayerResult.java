@@ -1,11 +1,14 @@
 package com.hanfak.domain.game;
 
+import com.hanfak.domain.game.playershand.Hand;
+
 public class PlayerResult {
 
     public final String playerName;
     public final Result result;
     public final Hand hand;
 
+    // TODO add what hand won
     private PlayerResult(String playerName, Result result, Hand hand) {
         this.playerName = playerName;
         this.result = result;

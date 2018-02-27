@@ -46,7 +46,7 @@ public class MultipleHandEvaluator {
     }
 
     private List<PlayerResult> setDrawForPlayers(List<PlayerResult> undeterminedPlayerResults) {
-        List<PlayerResult> playerResultsDetermined = undeterminedPlayerResults.stream().map(playerResult -> PlayerResult.playerResult(playerResult.playerName, Result.DRAW, playerResult.hand)).collect(Collectors.toList());
+        List<PlayerResult> playerResultsDetermined = undeterminedPlayerResults.stream().map(playerResult -> playerResult(playerResult.playerName, Result.DRAW, playerResult.hand)).collect(Collectors.toList());
         System.out.println("draw" + playerResultsDetermined);
 
         return playerResultsDetermined;
@@ -75,16 +75,16 @@ public class MultipleHandEvaluator {
             return levelCodeOfX.compareTo(levelCodeOfY);
         };
     }
-
+// TODO rename x and y to proper names
     private List<PlayerResult> setPlayerResultOfWinner(List<PlayerResult> collect) {
         return collect.subList(0, 1).stream()
-                .map(x -> PlayerResult.playerResult(x.playerName, Result.WIN, x.hand))
+                .map(x -> playerResult(x.playerName, Result.WIN, x.hand))
                 .collect(Collectors.toList());
     }
 
     private List<PlayerResult> setPlayerResultsOfLosers(List<PlayerResult> collect) {
         return collect.subList(1, collect.size()).stream()
-                .map(x -> PlayerResult.playerResult(x.playerName, Result.LOSS, x.hand))
+                .map(x -> playerResult(x.playerName, Result.LOSS, x.hand))
                 .collect(Collectors.toList());
     }
 

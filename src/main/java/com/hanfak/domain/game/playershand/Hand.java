@@ -1,4 +1,4 @@
-package com.hanfak.domain.game;
+package com.hanfak.domain.game.playershand;
 
 import com.hanfak.domain.cards.Card;
 
@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 public class Hand {
     public final List<Card> cards;
-    public final WinningHand winningHand; // TODO instead of passing null have WinningHand.EMPTY
+    private final WinningHand winningHand; // TODO instead of passing null have WinningHand.EMPTY
 
     private Hand(List<Card> cards, WinningHand winningHand) {
         this.cards = orderCards(cards);
@@ -16,11 +16,12 @@ public class Hand {
     }
 
     private List<Card> orderCards(List<Card> cards) {
-        List<Card> orderedHand = cards.stream()
+        return cards.stream()
                 .sorted(Comparator.comparingInt((Card card) -> card.rank.getLevelCode()))
                 .collect(Collectors.toList());
-        return orderedHand;
     }
+
+    // TODO If cards.size() > 4 then find winning hand???
 
     public static Hand hand(List<Card> cards, WinningHand winningHand) {
         return new Hand(cards, winningHand);
