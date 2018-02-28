@@ -24,7 +24,7 @@ public class CardDealer {
 
         deck.removeCards(dealtCards);
 
-        return hand(dealtCards,null);
+        return hand(dealtCards,null, null);
     }
 
     private List<Card> getHand(List<Card> deck, int numberOfCards) {

@@ -78,17 +78,39 @@ public class VersionOneFiveCardInitialHandGameTest extends TestState implements 
         andPlayerTwoHasWon();
     }
 
+    // TODO test best hand, but different pair
+    @Test
+    public void highestPairWins() throws Exception {
+        givenADeckDealsOutASetOfRandomCardsWithALowestPairToPlayerOne();
+        andADeckDealsOutASetOfRandomCardsWithAHighestPairToPlayerTwo();
+
+        whenAGameOfOneHandWithFiveCardsIsPlayedBetweenTwoPlayers();
+
+        andPlayerOneHasLost();
+        andPlayerTwoHasWon();
+    }
+
     private void andADeckDealsOutASetOfRandomCardsWithAHighCardToPlayerTwo() {
 
     }
-
     private void givenADeckDealsOutASetOfRandomCardsWithAPairToPlayerOne() {
-        Hand firstHandDealt = Hand.hand(PLAYER_WITH_OTHER_CARDS_TWO, null);
-        Hand secondHandDealt = Hand.hand(PLAYER_WITH_PAIR_CARDS, null);
+        Hand firstHandDealt = Hand.hand(PLAYER_WITH_OTHER_CARDS_TWO, null, null);
+        Hand secondHandDealt = Hand.hand(PLAYER_WITH_PAIR_CARDS, null, null);
         org.mockito.Mockito.when(cardDealer.dealHand(5)).thenReturn(firstHandDealt).thenReturn(secondHandDealt);
     }
-    // TODO test cards for opp player
-    // TODO test best hand, but different pair
+
+    // TODO test cards for opp player // unit test
+
+    private void givenADeckDealsOutASetOfRandomCardsWithALowestPairToPlayerOne() {
+        Hand firstHandDealt = Hand.hand(PLAYER_WITH_PAIR_CARDS_TWO, null, null);
+        Hand secondHandDealt = Hand.hand(PLAYER_WITH_PAIR_CARDS_THREE, null,null);
+        org.mockito.Mockito.when(cardDealer.dealHand(5)).thenReturn(firstHandDealt).thenReturn(secondHandDealt);
+    }
+
+    private void andADeckDealsOutASetOfRandomCardsWithAHighestPairToPlayerTwo() {
+
+    }
+
     // TODO test for same pair but draw
     // TODO test for same pair but different high card
 
@@ -111,15 +133,15 @@ public class VersionOneFiveCardInitialHandGameTest extends TestState implements 
     }
 
     private void givenADeckDealsOutASetOfRandomCardsToPlayerOne() {
-        Hand firstHandDealt = Hand.hand(PLAYER_ONE_CARDS, null);
-        Hand secondHandDealt = Hand.hand(PLAYER_TWO_CARDS, null);
+        Hand firstHandDealt = Hand.hand(PLAYER_ONE_CARDS, null, null);
+        Hand secondHandDealt = Hand.hand(PLAYER_TWO_CARDS, null, null);
         org.mockito.Mockito.when(cardDealer.dealHand(5)).thenReturn(firstHandDealt).thenReturn(secondHandDealt);
 
     }
 
     private void givenADeckDealsOutASetOfRandomCardsToPlayerOneblah() {
-        Hand firstHandDealt = Hand.hand(PLAYER_ONE_OTHER_CARDS, null);
-        Hand secondHandDealt = Hand.hand(PLAYER_TWO_OTHER_CARDS, null);
+        Hand firstHandDealt = Hand.hand(PLAYER_ONE_OTHER_CARDS, null, null);
+        Hand secondHandDealt = Hand.hand(PLAYER_TWO_OTHER_CARDS, null, null);
         org.mockito.Mockito.when(cardDealer.dealHand(5)).thenReturn(firstHandDealt).thenReturn(secondHandDealt);
     }
 
@@ -134,8 +156,8 @@ public class VersionOneFiveCardInitialHandGameTest extends TestState implements 
     }
 
     private void givenBothPlayersAreDealtAHand() {
-        Hand firstHandDealt = Hand.hand(PLAYER_ONE_DRAW_CARDS, null);
-        Hand secondHandDealt = Hand.hand(PLAYER_TWO_DRAW_CARDS, null);
+        Hand firstHandDealt = Hand.hand(PLAYER_ONE_DRAW_CARDS, null, null);
+        Hand secondHandDealt = Hand.hand(PLAYER_TWO_DRAW_CARDS, null,null);
         org.mockito.Mockito.when(cardDealer.dealHand(5)).thenReturn(firstHandDealt).thenReturn(secondHandDealt);
         testState().interestingGivens.add("Player One Hand", PLAYER_ONE_DRAW_CARDS.stream().map(Card::toString).collect(Collectors.joining(", ")));
         testState().interestingGivens.add("Player Two Hand",PLAYER_TWO_DRAW_CARDS.stream().map(Card::toString).collect(Collectors.joining(", ")));
@@ -197,6 +219,8 @@ public class VersionOneFiveCardInitialHandGameTest extends TestState implements 
     private static final Card FIVE_OF_SPADES = card(FIVE, SPADE);
     private static final Card FIVE_OF_HEARTS = card(FIVE, HEART);
     private static final Card EIGHT_OF_SPADES = card(EIGHT, SPADE);
+    private static final Card EIGHT_OF_DIAMONDS = card(EIGHT, DIAMOND);
+    private static final Card SEVEN_OF_DIAMONDS = card(SEVEN, DIAMOND);
     private static final Card THREE_OF_DIAMONDS = card(THREE, DIAMOND);
     private static final Card NINE_OF_DIAMONDS = card(NINE, DIAMOND);
     private static final Card JACK_OF_DIAMONDS = card(JACK, DIAMOND);
@@ -207,6 +231,8 @@ public class VersionOneFiveCardInitialHandGameTest extends TestState implements 
     private static final List<Card> PLAYER_ONE_CARDS = Arrays.asList(ACE_OF_SPADES, FIVE_OF_SPADES, TWO_OF_SPADES, FOUR_OF_DIAMONDS, THREE_OF_SPADES);
     private static final List<Card> PLAYER_WITH_OTHER_CARDS_TWO = Arrays.asList(ACE_OF_SPADES, EIGHT_OF_SPADES, TWO_OF_SPADES, FOUR_OF_DIAMONDS, THREE_OF_SPADES);
     private static final List<Card> PLAYER_WITH_PAIR_CARDS = Arrays.asList(KING_OF_SPADES, FIVE_OF_SPADES, FIVE_OF_HEARTS, FOUR_OF_CLUBS, THREE_OF_SPADES);
+    private static final List<Card> PLAYER_WITH_PAIR_CARDS_TWO = Arrays.asList(KING_OF_SPADES, FIVE_OF_SPADES, FIVE_OF_HEARTS, NINE_OF_DIAMONDS, THREE_OF_SPADES);
+    private static final List<Card> PLAYER_WITH_PAIR_CARDS_THREE = Arrays.asList(KING_OF_HEARTS, EIGHT_OF_SPADES, TWO_OF_SPADES, FOUR_OF_DIAMONDS, EIGHT_OF_DIAMONDS);
     private static final List<Card> PLAYER_TWO_CARDS = Arrays.asList(KING_OF_SPADES, JACK_OF_DIAMONDS, NINE_OF_DIAMONDS, EIGHT_OF_SPADES, THREE_OF_DIAMONDS);
     private static final List<Card> PLAYER_ONE_OTHER_CARDS = Arrays.asList(ACE_OF_HEARTS, FIVE_OF_SPADES, FOUR_OF_DIAMONDS, TWO_OF_SPADES, THREE_OF_SPADES);
     private static final List<Card> PLAYER_TWO_OTHER_CARDS = Arrays.asList(ACE_OF_SPADES, JACK_OF_DIAMONDS, FOUR_OF_CLUBS, TWO_OF_HEARTS, THREE_OF_DIAMONDS);

@@ -6,6 +6,7 @@ import com.hanfak.domain.game.PlayerResult;
 import com.hanfak.domain.game.evaluators.HandEvaluator;
 import com.hanfak.domain.game.evaluators.MultipleHandEvaluator;
 import com.hanfak.domain.game.playershand.Hand;
+import com.hanfak.domain.game.playershand.WinningHand;
 
 import java.util.Arrays;
 import java.util.List;
@@ -27,7 +28,12 @@ public class VersionOneGame {
     public List<PlayerResult> playGame(Player... players) {
         List<Player> playersWithAHandOfCards = dealHandToAllPlayers(players);
         List<Player> playersWithHandsScored = evaluatePlayersHandsOfCards(playersWithAHandOfCards);
-        return evaluateGame(playersWithHandsScored);
+        List<WinningHand> winninghands = playersWithHandsScored.stream().map(x -> x.hand.winningHand).collect(Collectors.toList());
+        System.out.println("winninghands = " + winninghands);
+        List<PlayerResult> playerResults = evaluateGame(playersWithHandsScored);
+        System.out.println(playerResults);
+
+        return playerResults;
     }
 
     private List<Player> dealHandToAllPlayers(Player[] players) {

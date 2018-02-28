@@ -8,12 +8,13 @@ import java.util.stream.Collectors;
 
 public class Hand {
     public final List<Card> cards;
-    // tODO make object fields winninghand, list of cards that won
-    public final WinningHand winningHand; // TODO instead of passing null have WinningHand.EMPTY
+    public final WinningHand winningHand; // TODO remove this
+    public final CardsOfWinningHand cardsOfWinningHand;
 
-    private Hand(List<Card> cards, WinningHand winningHand) {
+    private Hand(List<Card> cards, WinningHand winningHand, CardsOfWinningHand cardsOfWinningHand) {
         this.cards = orderCards(cards);
         this.winningHand = winningHand;
+        this.cardsOfWinningHand = cardsOfWinningHand;
     }
 
     private List<Card> orderCards(List<Card> cards) {
@@ -24,7 +25,7 @@ public class Hand {
 
     // TODO If cards.size() > 4 then find winning hand???
 
-    public static Hand hand(List<Card> cards, WinningHand winningHand) {
-        return new Hand(cards, winningHand);
+    public static Hand hand(List<Card> cards, WinningHand winningHand, CardsOfWinningHand cardsOfWinningHand) {
+        return new Hand(cards, winningHand, cardsOfWinningHand);
     }
 }
