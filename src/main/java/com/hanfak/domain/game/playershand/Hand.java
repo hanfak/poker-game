@@ -8,7 +8,8 @@ import java.util.stream.Collectors;
 
 public class Hand {
     public final List<Card> cards;
-    private final WinningHand winningHand; // TODO instead of passing null have WinningHand.EMPTY
+    // tODO make object fields winninghand, list of cards that won
+    public final WinningHand winningHand; // TODO instead of passing null have WinningHand.EMPTY
 
     private Hand(List<Card> cards, WinningHand winningHand) {
         this.cards = orderCards(cards);

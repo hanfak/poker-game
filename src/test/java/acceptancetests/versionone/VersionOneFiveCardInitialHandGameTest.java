@@ -33,7 +33,7 @@ public class VersionOneFiveCardInitialHandGameTest extends TestState implements 
 
     // NOTE no need to test the cards exists as we have provided it in the givens
     @Test
-    public void playerOneWinsOneRoundGame() throws Exception {
+    public void playerOneWinsOneRoundGameWithTheSameBestHand() throws Exception {
         givenADeckDealsOutASetOfRandomCardsToPlayerOne();
         andADeckDealsOutASetOfRandomCardsToPlayerTwo();
 
@@ -67,7 +67,30 @@ public class VersionOneFiveCardInitialHandGameTest extends TestState implements 
     }
 
     // TODO test cards with different best hands ie pair over highcard
+    @Test
+    public void playerWinsWithABetterHand() throws Exception {
+        givenADeckDealsOutASetOfRandomCardsWithAPairToPlayerOne();
+        andADeckDealsOutASetOfRandomCardsWithAHighCardToPlayerTwo();
+
+        whenAGameOfOneHandWithFiveCardsIsPlayedBetweenTwoPlayers();
+
+        andPlayerOneHasLost();
+        andPlayerTwoHasWon();
+    }
+
+    private void andADeckDealsOutASetOfRandomCardsWithAHighCardToPlayerTwo() {
+
+    }
+
+    private void givenADeckDealsOutASetOfRandomCardsWithAPairToPlayerOne() {
+        Hand firstHandDealt = Hand.hand(PLAYER_WITH_OTHER_CARDS_TWO, null);
+        Hand secondHandDealt = Hand.hand(PLAYER_WITH_PAIR_CARDS, null);
+        org.mockito.Mockito.when(cardDealer.dealHand(5)).thenReturn(firstHandDealt).thenReturn(secondHandDealt);
+    }
     // TODO test cards for opp player
+    // TODO test best hand, but different pair
+    // TODO test for same pair but draw
+    // TODO test for same pair but different high card
 
     // TODO test multiple players, record place - 1 - won, 2 to x - loss OR 1 - Draw, 1 - Draw, 3 to x - loss
     // who won or drew only if at the top, everyone else loses
@@ -178,9 +201,12 @@ public class VersionOneFiveCardInitialHandGameTest extends TestState implements 
     private static final Card NINE_OF_DIAMONDS = card(NINE, DIAMOND);
     private static final Card JACK_OF_DIAMONDS = card(JACK, DIAMOND);
     private static final Card KING_OF_SPADES = card(KING, SPADE);
+    private static final Card KING_OF_HEARTS = card(KING, HEART);
     private static final Card TWO_OF_SPADES = card(TWO, SPADE);
 
     private static final List<Card> PLAYER_ONE_CARDS = Arrays.asList(ACE_OF_SPADES, FIVE_OF_SPADES, TWO_OF_SPADES, FOUR_OF_DIAMONDS, THREE_OF_SPADES);
+    private static final List<Card> PLAYER_WITH_OTHER_CARDS_TWO = Arrays.asList(ACE_OF_SPADES, EIGHT_OF_SPADES, TWO_OF_SPADES, FOUR_OF_DIAMONDS, THREE_OF_SPADES);
+    private static final List<Card> PLAYER_WITH_PAIR_CARDS = Arrays.asList(KING_OF_SPADES, FIVE_OF_SPADES, FIVE_OF_HEARTS, FOUR_OF_CLUBS, THREE_OF_SPADES);
     private static final List<Card> PLAYER_TWO_CARDS = Arrays.asList(KING_OF_SPADES, JACK_OF_DIAMONDS, NINE_OF_DIAMONDS, EIGHT_OF_SPADES, THREE_OF_DIAMONDS);
     private static final List<Card> PLAYER_ONE_OTHER_CARDS = Arrays.asList(ACE_OF_HEARTS, FIVE_OF_SPADES, FOUR_OF_DIAMONDS, TWO_OF_SPADES, THREE_OF_SPADES);
     private static final List<Card> PLAYER_TWO_OTHER_CARDS = Arrays.asList(ACE_OF_SPADES, JACK_OF_DIAMONDS, FOUR_OF_CLUBS, TWO_OF_HEARTS, THREE_OF_DIAMONDS);

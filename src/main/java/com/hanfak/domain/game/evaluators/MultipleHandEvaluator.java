@@ -20,8 +20,17 @@ public class MultipleHandEvaluator {
 
     public List<PlayerResult> compareAllPlayersHands(List<Player> players) {
         List<PlayerResult> undeterminedPlayerResults = initializePlayerResults(players);
+
+        if(playerTwoHasBetterBestHandThanPlayerOne(undeterminedPlayerResults)) {
+            return setPlayerTwoAsWinner(undeterminedPlayerResults);
+        }
+
         List<Integer> cardsWhichMatch = determineCardsThatAreTheSameOrDifferent(undeterminedPlayerResults);
 
+        return determineResultOfPlayersWithSameBestHand(undeterminedPlayerResults, cardsWhichMatch);
+    }
+
+    private List<PlayerResult> determineResultOfPlayersWithSameBestHand(List<PlayerResult> undeterminedPlayerResults, List<Integer> cardsWhichMatch) {
         if (!cardsWhichMatch.isEmpty()) {
             // TODO extract sameBestHandEvaluator dependeny
             return determineWinOrLossForEachPlayer(undeterminedPlayerResults, cardsWhichMatch);
@@ -29,6 +38,28 @@ public class MultipleHandEvaluator {
             //tODO extract DrawEvaluator dependeny
             return setDrawForPlayers(undeterminedPlayerResults); //
         }
+    }
+
+    private List<PlayerResult> setPlayerTwoAsWinner(List<PlayerResult> undeterminedPlayerResults) {
+        PlayerResult playerResultForWinner = PlayerResult.playerResult(undeterminedPlayerResults.get(1).playerName, Result.WIN, undeterminedPlayerResults.get(1).hand);
+        PlayerResult playerResultForLoser = PlayerResult.playerResult(undeterminedPlayerResults.get(0).playerName, Result.LOSS, undeterminedPlayerResults.get(0).hand);
+        return Stream.of(playerResultForWinner, playerResultForLoser)
+                .collect(Collectors.toList());
+    }
+
+    private List<PlayerResult> setPlayerOneAsWinner(List<PlayerResult> undeterminedPlayerResults) {
+        PlayerResult playerResultForWinner = PlayerResult.playerResult(undeterminedPlayerResults.get(0).playerName, Result.WIN, undeterminedPlayerResults.get(0).hand);
+        PlayerResult playerResultForLoser = PlayerResult.playerResult(undeterminedPlayerResults.get(1).playerName, Result.LOSS, undeterminedPlayerResults.get(1).hand);
+        return Stream.of(playerResultForWinner, playerResultForLoser)
+                .collect(Collectors.toList());
+    }
+
+    private boolean playerTwoHasBetterBestHandThanPlayerOne(List<PlayerResult> undeterminedPlayerResults) {
+        return undeterminedPlayerResults.get(0).hand.winningHand.ordinal() < undeterminedPlayerResults.get(1).hand.winningHand.ordinal();
+    }
+
+    private boolean playerOneHasBetterBestHandThanPlayerTwo(List<PlayerResult> undeterminedPlayerResults) {
+        return undeterminedPlayerResults.get(0).hand.winningHand.ordinal() > undeterminedPlayerResults.get(1).hand.winningHand.ordinal();
     }
 
     private List<PlayerResult> initializePlayerResults(List<Player> players) {
