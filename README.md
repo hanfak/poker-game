@@ -13,30 +13,71 @@ To be added
 3. To see acceptance test result, open file in ```target/surefire-reports/yatspec/acceptancetests/```
 4. For test report ```mvn surefire-report:report``` and open file ```target/site/surefire-report.html```
 
-MVP:
-* Play a hand of 5 cards against an opponent
-    * Deal a hand of 5 random cards  
-    * Evaluate the hand
-    * Score by hands won
-    * Save score and hands in json on file
+
+<details>
+<summary>MVP/Requirements</summary>
+
+### Version One
+
+* Evaluate 2 hands of 5 randomly assigned cards to determine the winner
+    * display in gui
+* Have multiple players player
+* Have multiple games played, and determine overall winner based on games won
+
+
+### VERSION TWO
+
 * Play the flop, turn and river
     * Best 5 card hand from 5,6,7 cards
-* Play with fold
-* Play with raise once and check
-* Play with raise multiple times
-* All in
-* Big and small blinds
+* Display in gui
+* Multiple player
+* Multiple games
+
+### VERSION THREE
+
+* 2 Players can bet (1 coin)/check/fold on
+    * Before the flop
+    * Before the River
+    * Before the turn
+    * After
+* Multiple raises
+* After money has gone game over
+* 
+
+### VERSION FOUR
+
+* Mulitple players
+* Other features
+    * Varying amounts of bets
+    * All in
+    * Big and small blinds
+    * Raise upto three times
+* Record order of winners by money made/lost
+
+### VERSION FIVE
+
 * Evaluate by odds of starting hand
     * use odds checker table to offer advice on what to do
 * Evaluate odds after flop, turn, river
-* get bot to play opponent use odds
-* Have multiple bot play as multiple opponents using odds
-* Add personality to bot (use different odds/chance of using odds)
-* Have multiple players play
+* Offer advise on the hand, flop, turn, river using stats
 
-* Add gui
+### VERSION SIX
+
+* get bot to play opponent use odds for its own cards
+
+### OTHER
+
+* Have multiple bots play as multiple opponents using odds
+* Add personality to bot (use different odds/chance of using odds)
+* Record data of hands, cards on table,actions, money bet etc to build big data for machine learning
+
+</details>
+
 
 ### Other TODOs
+
+<details>
+<summary>Other TODOs</summary>
 
 * Dockerise, play via docker
     * Use fabric to build image as part of build
@@ -50,6 +91,7 @@ MVP:
 * Value type for domain objects
 * Add Logs
 * Avoid mutating the deckofcards in Deck class
+</details>
 
 ### Useful
 https://github.com/belgoros/hello-javafx-maven
