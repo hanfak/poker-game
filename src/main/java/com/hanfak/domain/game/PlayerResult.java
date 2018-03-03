@@ -4,7 +4,7 @@ import com.hanfak.domain.game.playershand.Hand;
 
 public class PlayerResult {
 
-    public final String playerName;
+    public final String playerName; //TODO Should this be Player object?
     public final Result result;
     public final Hand hand;
 

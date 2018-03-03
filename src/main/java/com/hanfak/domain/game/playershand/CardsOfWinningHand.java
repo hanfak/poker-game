@@ -5,7 +5,7 @@ import com.hanfak.domain.cards.Card;
 import java.util.List;
 
 public class CardsOfWinningHand {
-    private final WinningHand winningHand;
+    public final WinningHand winningHand;
     public final List<Card> cardsInBestHand;
 
     public CardsOfWinningHand(WinningHand winningHand, List<Card> cardsInBestHand) {
@@ -16,7 +16,7 @@ public class CardsOfWinningHand {
 
 /*
 * Cards
-* High card ... all cards
+* High card ... one cards
 * Pair.. the two cards of the pair
 * 2 pair ... the four cards
 * 3 of kind ... the three cards

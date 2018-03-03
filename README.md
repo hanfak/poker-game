@@ -13,9 +13,10 @@ To be added
 3. To see acceptance test result, open file in ```target/surefire-reports/yatspec/acceptancetests/```
 4. For test report ```mvn surefire-report:report``` and open file ```target/site/surefire-report.html```
 
+### MVP/Requirements 
 
 <details>
-<summary>MVP/Requirements</summary>
+<summary>Show details</summary>
 
 ### Version One
 
@@ -23,7 +24,6 @@ To be added
     * display in gui
 * Have multiple players player
 * Have multiple games played, and determine overall winner based on games won
-
 
 ### VERSION TWO
 
@@ -77,7 +77,7 @@ To be added
 ### Other TODOs
 
 <details>
-<summary>Other TODOs</summary>
+<summary>Show details</summary>
 
 * Dockerise, play via docker
     * Use fabric to build image as part of build
@@ -91,7 +91,12 @@ To be added
 * Value type for domain objects
 * Add Logs
 * Avoid mutating the deckofcards in Deck class
+* Use java fx for gui
 </details>
 
-### Useful
-https://github.com/belgoros/hello-javafx-maven
+### Useful Stuff
+
+<details>
+<summary>Show details</summary>
+* https://github.com/belgoros/hello-javafx-maven
+</details>

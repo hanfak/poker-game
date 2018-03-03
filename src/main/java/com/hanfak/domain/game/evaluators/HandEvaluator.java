@@ -7,12 +7,13 @@ import com.hanfak.domain.game.playershand.Hand;
 import com.hanfak.domain.game.playershand.WinningHand;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 public class HandEvaluator {
-    public Hand scoreHand(Hand hand) {
+    public CardsOfWinningHand scoreHand(Hand hand) {
         System.out.println(hand.cards);
         Map<Rank, List<Card>> cardsGroupedByRank = hand.cards.stream().collect(Collectors.groupingBy(x -> x.rank));
         List<List<Card>> numberOfPairs = cardsGroupedByRank.values().stream().filter(x -> x.size() == 2).collect(Collectors.toList());
@@ -20,10 +21,12 @@ public class HandEvaluator {
             List<Card> pairOfCards = numberOfPairs.stream().flatMap(Collection::stream)
                     .collect(Collectors.toList());
             System.out.println("Pair " + pairOfCards);
-            return Hand.hand(hand.cards, WinningHand.PAIR, new CardsOfWinningHand(WinningHand.PAIR, pairOfCards));
+            return new CardsOfWinningHand(WinningHand.PAIR, pairOfCards);
+//            return Hand.hand(hand.cards, new CardsOfWinningHand(WinningHand.PAIR, pairOfCards));
         }
         // TODO Game logic, for first test can check for uniqueness of all cards and no 5 adjacent cards
-        return Hand.hand(hand.cards, WinningHand.HIGH_CARD, new CardsOfWinningHand(WinningHand.HIGH_CARD, hand.cards));
+//        return Hand.hand(hand.cards, new CardsOfWinningHand(WinningHand.HIGH_CARD, hand.cards));
+        return new CardsOfWinningHand(WinningHand.HIGH_CARD, Collections.singletonList(hand.cards.get(0)));
     }
 
     private boolean thereExistsOnePairOfCardsOfSameRank(List<List<Card>> numberOfPairs) {

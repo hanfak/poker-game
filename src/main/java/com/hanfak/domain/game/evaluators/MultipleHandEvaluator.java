@@ -1,9 +1,11 @@
 package com.hanfak.domain.game.evaluators;
 
+import com.hanfak.domain.cards.Card;
 import com.hanfak.domain.cards.Rank;
 import com.hanfak.domain.game.Player;
 import com.hanfak.domain.game.PlayerResult;
 import com.hanfak.domain.game.Result;
+import com.hanfak.domain.game.playershand.WinningHand;
 
 import java.util.Collection;
 import java.util.Comparator;
@@ -21,6 +23,7 @@ public class MultipleHandEvaluator {
     public List<PlayerResult> compareAllPlayersHands(List<Player> players) {
         List<PlayerResult> undeterminedPlayerResults = initializePlayerResults(players);
 
+        // TODO can be combined to say player wiht best hand
         if (playerOneHasBetterBestHandThanPlayerTwo(undeterminedPlayerResults)) {
             return setPlayerOneAsWinner(undeterminedPlayerResults);
         }
@@ -29,30 +32,40 @@ public class MultipleHandEvaluator {
             return setPlayerTwoAsWinner(undeterminedPlayerResults);
         }
 
-        List<Integer> cardsWhichMatch = determineCardsThatAreTheSameOrDifferent(undeterminedPlayerResults);
-
-        if (playersHaveTheSameBestHand(undeterminedPlayerResults)) {
-            return determineResult(undeterminedPlayerResults, cardsWhichMatch);
+        // TODO Something complex about logic, try and simplify it
+        if (allHandsHaveSamePair(undeterminedPlayerResults) || allHandsHaveABestHandOfAHighCard(players)) {
+            List<List<Card>> collect = undeterminedPlayerResults.stream().map(x -> x.hand.cardsOfWinningHand.cardsInBestHand).collect(Collectors.toList());
+            System.out.println("collect = " + collect);
+            return determineResultOfPlayersWithSameBestHand(undeterminedPlayerResults);
+        } else {
+            return determineResultOfPlayersWithDifferentCardsInSameBestHands(undeterminedPlayerResults);
         }
-        return determineResultOfPlayersWithSameBestHand(undeterminedPlayerResults, cardsWhichMatch);
     }
 
-    private List<PlayerResult> determineResult(List<PlayerResult> undeterminedPlayerResults, List<Integer> cardsWhichMatch) {
-        List<PlayerResult> playerResultsOrderedHighestPair = undeterminedPlayerResults.stream().sorted((x, y) -> x.hand.cardsOfWinningHand.cardsInBestHand.get(0).rank.getLevelCode().compareTo(y.hand.cardsOfWinningHand.cardsInBestHand.get(1).rank.getLevelCode())).
+    private boolean allHandsHaveABestHandOfAHighCard(List<Player> players) {
+        return players.stream().filter(player -> player.hand.cardsOfWinningHand.winningHand.equals(WinningHand.HIGH_CARD)).map(player -> player.hand.cardsOfWinningHand.winningHand).distinct().count() == 1;
+    }
+
+    private boolean allHandsHaveSamePair(List<PlayerResult> undeterminedPlayerResults) {
+        List<List<Card>> collect = undeterminedPlayerResults.stream().map(playerResult -> playerResult.hand.cardsOfWinningHand.cardsInBestHand).collect(Collectors.toList());
+        List<Rank> rank = collect.stream().flatMap(Collection::stream).map(card -> card.rank).distinct().collect(Collectors.toList());
+        return rank.size() == 1;
+    }
+
+    private List<PlayerResult> determineResultOfPlayersWithDifferentCardsInSameBestHands(List<PlayerResult> undeterminedPlayerResults) {
+        List<PlayerResult> playerResultsOrderedByHighestPair = undeterminedPlayerResults.stream().sorted(Comparator.comparing(x -> x.hand.cardsOfWinningHand.cardsInBestHand.get(0).rank.getLevelCode())).
                 collect(Collectors.toList());
-        System.out.println("players result in order of pairs " + playerResultsOrderedHighestPair);
-        List<PlayerResult> playerResultsWithWinLossRecorded = Stream.of(setPlayerResultOfWinner(playerResultsOrderedHighestPair), setPlayerResultsOfLosers(playerResultsOrderedHighestPair))
+        System.out.println("players result in order of pairs " + playerResultsOrderedByHighestPair);
+        List<PlayerResult> playerResultsWithWinLossRecorded = Stream.of(setPlayerResultOfWinner(playerResultsOrderedByHighestPair), setPlayerResultsOfLosers(playerResultsOrderedByHighestPair))
                 .flatMap(Collection::stream)
                 .collect(Collectors.toList());
         System.out.println("Players with results " + playerResultsWithWinLossRecorded);
         return playerResultsWithWinLossRecorded;
     }
 
-    private boolean playersHaveTheSameBestHand(List<PlayerResult> undeterminedPlayerResults) {
-        return undeterminedPlayerResults.get(0).hand.winningHand.ordinal() == undeterminedPlayerResults.get(1).hand.winningHand.ordinal();
-    }
 
-    private List<PlayerResult> determineResultOfPlayersWithSameBestHand(List<PlayerResult> undeterminedPlayerResults, List<Integer> cardsWhichMatch) {
+    private List<PlayerResult> determineResultOfPlayersWithSameBestHand(List<PlayerResult> undeterminedPlayerResults) {
+        List<Integer> cardsWhichMatch = determineCardsThatAreTheSameOrDifferent(undeterminedPlayerResults);
         if (!cardsWhichMatch.isEmpty()) {
             // TODO extract sameBestHandEvaluator dependeny
             return determineWinOrLossForEachPlayer(undeterminedPlayerResults, cardsWhichMatch);
@@ -77,11 +90,11 @@ public class MultipleHandEvaluator {
     }
 
     private boolean playerTwoHasBetterBestHandThanPlayerOne(List<PlayerResult> undeterminedPlayerResults) {
-        return undeterminedPlayerResults.get(0).hand.winningHand.ordinal() < undeterminedPlayerResults.get(1).hand.winningHand.ordinal();
+        return undeterminedPlayerResults.get(0).hand.cardsOfWinningHand.winningHand.ordinal() < undeterminedPlayerResults.get(1).hand.cardsOfWinningHand.winningHand.ordinal();
     }
 
     private boolean playerOneHasBetterBestHandThanPlayerTwo(List<PlayerResult> undeterminedPlayerResults) {
-        return undeterminedPlayerResults.get(0).hand.winningHand.ordinal() > undeterminedPlayerResults.get(1).hand.winningHand.ordinal();
+        return undeterminedPlayerResults.get(0).hand.cardsOfWinningHand.winningHand.ordinal() > undeterminedPlayerResults.get(1).hand.cardsOfWinningHand.winningHand.ordinal();
     }
 
     private List<PlayerResult> initializePlayerResults(List<Player> players) {
