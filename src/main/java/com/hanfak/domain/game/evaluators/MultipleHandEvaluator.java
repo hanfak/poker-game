@@ -21,36 +21,35 @@ import static com.hanfak.domain.game.PlayerResult.playerResult;
 public class MultipleHandEvaluator {
 
     public List<PlayerResult> compareAllPlayersHands(List<Player> players) {
+        // TODO instead of creating it here, pass players to rest and then create it a tthe end
         List<PlayerResult> undeterminedPlayerResults = initializePlayerResults(players);
 
-        // TODO can be combined to say player wiht best hand
-        if (playerOneHasBetterBestHandThanPlayerTwo(undeterminedPlayerResults)) {
-            return setPlayerOneAsWinner(undeterminedPlayerResults);
+        if(playersHaveDifferentBestHands(undeterminedPlayerResults)) {
+            return determineResultsOfPlayersWithUniqueBestHands(undeterminedPlayerResults);
         }
 
-        if (playerTwoHasBetterBestHandThanPlayerOne(undeterminedPlayerResults)) {
-            return setPlayerTwoAsWinner(undeterminedPlayerResults);
-        }
-
-        // TODO Something complex about logic, try and simplify it
-        if (allHandsHaveSamePair(undeterminedPlayerResults) || allHandsHaveABestHandOfAHighCard(players)) {
+        if (allHandsHaveTheSameBestHand(undeterminedPlayerResults) ) {
             List<List<Card>> collect = undeterminedPlayerResults.stream().map(x -> x.hand.cardsOfWinningHand.cardsInBestHand).collect(Collectors.toList());
             System.out.println("collect = " + collect);
-            return determineResultOfPlayersWithSameBestHand(undeterminedPlayerResults);
+            return determineResultOfPlayersWithSameCardsInSameBestHand(undeterminedPlayerResults);
         } else {
             return determineResultOfPlayersWithDifferentCardsInSameBestHands(undeterminedPlayerResults);
         }
     }
 
-    private boolean allHandsHaveABestHandOfAHighCard(List<Player> players) {
-        return players.stream().filter(player -> player.hand.cardsOfWinningHand.winningHand.equals(WinningHand.HIGH_CARD)).map(player -> player.hand.cardsOfWinningHand.winningHand).distinct().count() == 1;
+    private boolean playersHaveDifferentBestHands(List<PlayerResult> undeterminedPlayerResults) {
+        List<WinningHand> diffPair = undeterminedPlayerResults.stream().map(playerResult -> playerResult.hand.cardsOfWinningHand.winningHand).distinct().collect(Collectors.toList());
+        System.out.println("diffPair = " + diffPair);
+        return diffPair.size() > 1;
     }
 
-    private boolean allHandsHaveSamePair(List<PlayerResult> undeterminedPlayerResults) {
-        List<List<Card>> collect = undeterminedPlayerResults.stream().map(playerResult -> playerResult.hand.cardsOfWinningHand.cardsInBestHand).collect(Collectors.toList());
-        List<Rank> rank = collect.stream().flatMap(Collection::stream).map(card -> card.rank).distinct().collect(Collectors.toList());
+    private boolean allHandsHaveTheSameBestHand(List<PlayerResult> undeterminedPlayerResults) {
+        List<List<Card>> samwPair = undeterminedPlayerResults.stream().map(playerResult -> playerResult.hand.cardsOfWinningHand.cardsInBestHand).collect(Collectors.toList());
+        System.out.println("samwPair = " + samwPair);
+        List<Rank> rank = samwPair.stream().flatMap(Collection::stream).map(card -> card.rank).distinct().collect(Collectors.toList());
         return rank.size() == 1;
     }
+
 
     private List<PlayerResult> determineResultOfPlayersWithDifferentCardsInSameBestHands(List<PlayerResult> undeterminedPlayerResults) {
         List<PlayerResult> playerResultsOrderedByHighestPair = undeterminedPlayerResults.stream().sorted(Comparator.comparing(x -> x.hand.cardsOfWinningHand.cardsInBestHand.get(0).rank.getLevelCode())).
@@ -63,8 +62,7 @@ public class MultipleHandEvaluator {
         return playerResultsWithWinLossRecorded;
     }
 
-
-    private List<PlayerResult> determineResultOfPlayersWithSameBestHand(List<PlayerResult> undeterminedPlayerResults) {
+    private List<PlayerResult> determineResultOfPlayersWithSameCardsInSameBestHand(List<PlayerResult> undeterminedPlayerResults) {
         List<Integer> cardsWhichMatch = determineCardsThatAreTheSameOrDifferent(undeterminedPlayerResults);
         if (!cardsWhichMatch.isEmpty()) {
             // TODO extract sameBestHandEvaluator dependeny
@@ -75,26 +73,20 @@ public class MultipleHandEvaluator {
         }
     }
 
-    private List<PlayerResult> setPlayerTwoAsWinner(List<PlayerResult> undeterminedPlayerResults) {
-        PlayerResult playerResultForWinner = PlayerResult.playerResult(undeterminedPlayerResults.get(1).playerName, Result.WIN, undeterminedPlayerResults.get(1).hand);
-        PlayerResult playerResultForLoser = PlayerResult.playerResult(undeterminedPlayerResults.get(0).playerName, Result.LOSS, undeterminedPlayerResults.get(0).hand);
-        return Stream.of(playerResultForWinner, playerResultForLoser)
+    private List<PlayerResult> determineResultsOfPlayersWithUniqueBestHands(List<PlayerResult> undeterminedPlayerResults) {
+        List<PlayerResult> orderedPlayersByBestHand = undeterminedPlayerResults.stream().sorted(winningHandsOfPlayers()).collect(Collectors.toList());
+        System.out.println("orderedPlayersByBestHand = " + orderedPlayersByBestHand);
+        return Stream.of(setPlayerResultOfWinner(orderedPlayersByBestHand), setPlayerResultsOfLosers(orderedPlayersByBestHand))
+                .flatMap(Collection::stream)
                 .collect(Collectors.toList());
     }
 
-    private List<PlayerResult> setPlayerOneAsWinner(List<PlayerResult> undeterminedPlayerResults) {
-        PlayerResult playerResultForWinner = PlayerResult.playerResult(undeterminedPlayerResults.get(0).playerName, Result.WIN, undeterminedPlayerResults.get(0).hand);
-        PlayerResult playerResultForLoser = PlayerResult.playerResult(undeterminedPlayerResults.get(1).playerName, Result.LOSS, undeterminedPlayerResults.get(1).hand);
-        return Stream.of(playerResultForWinner, playerResultForLoser)
-                .collect(Collectors.toList());
-    }
-
-    private boolean playerTwoHasBetterBestHandThanPlayerOne(List<PlayerResult> undeterminedPlayerResults) {
-        return undeterminedPlayerResults.get(0).hand.cardsOfWinningHand.winningHand.ordinal() < undeterminedPlayerResults.get(1).hand.cardsOfWinningHand.winningHand.ordinal();
-    }
-
-    private boolean playerOneHasBetterBestHandThanPlayerTwo(List<PlayerResult> undeterminedPlayerResults) {
-        return undeterminedPlayerResults.get(0).hand.cardsOfWinningHand.winningHand.ordinal() > undeterminedPlayerResults.get(1).hand.cardsOfWinningHand.winningHand.ordinal();
+    private Comparator<PlayerResult> winningHandsOfPlayers() {
+        return (player1, player2) -> {
+            Integer player2WinningHand = player2.hand.cardsOfWinningHand.winningHand.ordinal();
+            Integer player1WinningHand = player1.hand.cardsOfWinningHand.winningHand.ordinal();
+            return player2WinningHand.compareTo(player1WinningHand);
+        };
     }
 
     private List<PlayerResult> initializePlayerResults(List<Player> players) {
@@ -104,8 +96,8 @@ public class MultipleHandEvaluator {
     }
 
     private List<Integer> determineCardsThatAreTheSameOrDifferent(List<PlayerResult> undeterminedPlayerResults) {
-        return IntStream.range(0, 5).
-                map(changeCardToComparisonNumber(undeterminedPlayerResults))
+        return IntStream.range(0, 5)
+                .map(changeCardToComparisonNumber(undeterminedPlayerResults))
                 .boxed()
                 .filter(checkedIndex -> checkedIndex != 0)
                 .collect(Collectors.toList());
@@ -120,12 +112,11 @@ public class MultipleHandEvaluator {
 
     //    TODO Should I return a list of [[win],[loss]], [[draw,draw]]???
     private List<PlayerResult> determineWinOrLossForEachPlayer(List<PlayerResult> undeterminedPlayerResults, List<Integer> cardsWhichMatch) {
-
-        List<PlayerResult> collect = undeterminedPlayerResults.stream()
+        List<PlayerResult> sortedPlayersResultsByComparingEachCardInHand = undeterminedPlayerResults.stream()
                 .sorted(compareCardRanksOf(cardsWhichMatch))
                 .collect(Collectors.toList());
 
-        List<PlayerResult> playersResults = Stream.of(setPlayerResultOfWinner(collect), setPlayerResultsOfLosers(collect))
+        List<PlayerResult> playersResults = Stream.of(setPlayerResultOfWinner(sortedPlayersResultsByComparingEachCardInHand), setPlayerResultsOfLosers(sortedPlayersResultsByComparingEachCardInHand))
                 .flatMap(Collection::stream)
                 .collect(Collectors.toList());
 
@@ -142,27 +133,22 @@ public class MultipleHandEvaluator {
         };
     }
 
-    // TODO rename x and y to proper names
-    private List<PlayerResult> setPlayerResultOfWinner(List<PlayerResult> collect) {
-        return collect.subList(0, 1).stream()
-                .map(x -> playerResult(x.playerName, Result.WIN, x.hand))
+    private List<PlayerResult> setPlayerResultOfWinner(List<PlayerResult> undeterminedPlayerResults) {
+        return undeterminedPlayerResults.subList(0, 1).stream()
+                .map(winningPlayerResult -> playerResult(winningPlayerResult.playerName, Result.WIN, winningPlayerResult.hand))
                 .collect(Collectors.toList());
     }
 
-    private List<PlayerResult> setPlayerResultsOfLosers(List<PlayerResult> collect) {
-        return collect.subList(1, collect.size()).stream()
-                .map(x -> playerResult(x.playerName, Result.LOSS, x.hand))
+    private List<PlayerResult> setPlayerResultsOfLosers(List<PlayerResult> undeterminedPlayerResults) {
+        return undeterminedPlayerResults.subList(1, undeterminedPlayerResults.size()).stream()
+                .map(losingPlayerResult -> playerResult(losingPlayerResult.playerName, Result.LOSS, losingPlayerResult.hand))
                 .collect(Collectors.toList());
     }
 
     private IntUnaryOperator changeCardToComparisonNumber(List<PlayerResult> undeterminedPlayerResults) {
-        return index -> {
-            if (areAllCardsInEachHandInThisPositionEqual(undeterminedPlayerResults, index)) {
-                return 0;
-            } else {
-                return index + 1;
-            }
-        };
+        return positionOfCardInHand ->
+             areAllCardsInEachHandInThisPositionEqual(undeterminedPlayerResults, positionOfCardInHand) ?
+                     0 : positionOfCardInHand + 1;
     }
 
     private boolean areAllCardsInEachHandInThisPositionEqual(List<PlayerResult> undeterminedPlayerResults, int index) {
