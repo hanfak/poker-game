@@ -82,10 +82,19 @@ public class MultipleHandEvaluator {
     }
 
     private boolean allPlayersHandsHaveTheSameBestHand(List<Player> players) {
-        List<List<Card>> samwPair = players.stream().map(playerResult -> playerResult.hand.cardsOfWinningHand.cardsInBestHand).collect(Collectors.toList());
+        // BEtter logic
+
+        List<List<Card>> samwPair = players.stream()
+                .map(playerResult -> playerResult.hand.cardsOfWinningHand.cardsInBestHand)
+                .collect(Collectors.toList());
         System.out.println("samwPair = " + samwPair);
-        List<Rank> rank = samwPair.stream().flatMap(Collection::stream).map(card -> card.rank).distinct().collect(Collectors.toList());
-        return rank.size() == 1;
+        List<List<Rank>> handsWithDistinctRanks = samwPair.stream()
+                .map(x -> x.stream()
+                        .map(y -> y.rank)
+                        .collect(Collectors.toList()))
+                .distinct().collect(Collectors.toList());
+//        System.out.println("handsWithDistinctRanks = " + handsWithDistinctRanks);
+        return handsWithDistinctRanks.size() == 1;
     }
 
     private List<PlayerResult> determineResultOfPlayersWithSameCardsInSameBestHand(List<Player> players) {
