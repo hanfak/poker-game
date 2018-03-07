@@ -121,7 +121,74 @@ public class VersionOneFiveCardInitialHandGameTest extends TestState implements 
     }
 
 
+    // TODO move to separate class
     // TODo test for 2 pair
+    @Test
+    public void playerWinsWithABetterHandOfTwoPair() throws Exception {
+        givenADeckDealsOutASetOfRandomCardsWithAPairToPlayerOne();
+        andADeckDealsOutASetOfRandomCardsWithATwoPairToPlayerTwo();
+
+        whenAGameOfOneHandWithFiveCardsIsPlayedBetweenTwoPlayers();
+
+        andPlayerOneHasLost();
+        andPlayerTwoHasWon();
+    }
+
+    private void andADeckDealsOutASetOfRandomCardsWithATwoPairToPlayerTwo() {
+        Hand firstHandDealt = Hand.hand(PLAYER_WITH_PAIR_CARDS);
+        Hand secondHandDealt = Hand.hand(PLAYER_WITH_TWO_PAIR_CARDS);
+        org.mockito.Mockito.when(cardDealer.dealHand(5)).thenReturn(firstHandDealt).thenReturn(secondHandDealt);
+
+    }
+
+    @Test
+    public void playerWinsWithBetterTwoPairWhereHighestPairIsBigger() throws Exception {
+        givenADeckDealsOutASetOfRandomCardsWithAHigherTwoPairToPlayerOne();
+        andADeckDealsOutASetOfRandomCardsWithALowerTwoPairToPlayerTwo();
+
+        whenAGameOfOneHandWithFiveCardsIsPlayedBetweenTwoPlayers();
+
+        andPlayerOneHasWon();
+        andPlayerTwoHasLost();
+    }
+
+    private void givenADeckDealsOutASetOfRandomCardsWithAHigherTwoPairToPlayerOne() {
+        Hand firstHandDealt = Hand.hand(PLAYER_WITH_TWO_PAIR_CARDS_TWO);
+        Hand secondHandDealt = Hand.hand(PLAYER_WITH_TWO_PAIR_CARDS);
+        org.mockito.Mockito.when(cardDealer.dealHand(5)).thenReturn(firstHandDealt).thenReturn(secondHandDealt);
+    }
+
+    private void andADeckDealsOutASetOfRandomCardsWithALowerTwoPairToPlayerTwo() {
+
+    }
+
+
+    @Test
+    public void playerWinsWithBetterTwoPairWhereLowestPairIsBigger() throws Exception {
+        givenADeckDealsOutASetOfRandomCardsWithAHigherTwoPairAndLowestPairIsHigherToPlayerOne();
+        andADeckDealsOutASetOfRandomCardsWithALowerTwoPairAndLowestPairIsLowerToPlayerTwo();
+
+        whenAGameOfOneHandWithFiveCardsIsPlayedBetweenTwoPlayers();
+
+        andPlayerOneHasWon();
+        andPlayerTwoHasLost();
+    }
+
+    private void andADeckDealsOutASetOfRandomCardsWithALowerTwoPairAndLowestPairIsLowerToPlayerTwo() {
+
+    }
+
+    private void givenADeckDealsOutASetOfRandomCardsWithAHigherTwoPairAndLowestPairIsHigherToPlayerOne() {
+        Hand firstHandDealt = Hand.hand(PLAYER_WITH_TWO_PAIR_CARDS_FOUR);
+        Hand secondHandDealt = Hand.hand(PLAYER_WITH_TWO_PAIR_CARDS_TWO);
+        org.mockito.Mockito.when(cardDealer.dealHand(5)).thenReturn(firstHandDealt).thenReturn(secondHandDealt);
+
+    }
+
+    // TODO: test same 2 pairs, higher pair is same lower pair is different
+    // TODO: test same 2 spairs, hight and lower pair are same, 5th card is different
+    // TODO: test 2 pairs draw
+
     // TODo test for full house
     // TODo test for straight
     // TODo test for flush
@@ -261,6 +328,10 @@ public class VersionOneFiveCardInitialHandGameTest extends TestState implements 
     private static final List<Card> PLAYER_ONE_CARDS = Arrays.asList(ACE_OF_SPADES, FIVE_OF_SPADES, TWO_OF_SPADES, FOUR_OF_DIAMONDS, THREE_OF_SPADES);
     private static final List<Card> PLAYER_WITH_OTHER_CARDS_TWO = Arrays.asList(ACE_OF_SPADES, EIGHT_OF_SPADES, TWO_OF_SPADES, FOUR_OF_DIAMONDS, THREE_OF_SPADES);
     private static final List<Card> PLAYER_WITH_PAIR_CARDS = Arrays.asList(KING_OF_SPADES, FIVE_OF_SPADES, FIVE_OF_HEARTS, FOUR_OF_CLUBS, THREE_OF_SPADES);
+    private static final List<Card> PLAYER_WITH_TWO_PAIR_CARDS = Arrays.asList(FOUR_OF_DIAMONDS, FIVE_OF_SPADES, FIVE_OF_HEARTS, FOUR_OF_CLUBS, THREE_OF_SPADES);
+    private static final List<Card> PLAYER_WITH_TWO_PAIR_CARDS_TWO = Arrays.asList(KING_OF_SPADES, EIGHT_OF_CLUBS, EIGHT_OF_DIAMONDS, FOUR_OF_CLUBS, FOUR_OF_DIAMONDS);
+    private static final List<Card> PLAYER_WITH_TWO_PAIR_CARDS_THREE = Arrays.asList(TWO_OF_HEARTS, EIGHT_OF_HEARTS, EIGHT_OF_SPADES, FOUR_OF_CLUBS, THREE_OF_SPADES);
+    private static final List<Card> PLAYER_WITH_TWO_PAIR_CARDS_FOUR = Arrays.asList(THREE_OF_SPADES, EIGHT_OF_HEARTS, EIGHT_OF_SPADES, FIVE_OF_SPADES, FIVE_OF_HEARTS);
     private static final List<Card> PLAYER_WITH_PAIR_CARDS_TWO = Arrays.asList(KING_OF_SPADES, FIVE_OF_SPADES, FIVE_OF_HEARTS, NINE_OF_DIAMONDS, THREE_OF_SPADES);
     private static final List<Card> PLAYER_WITH_PAIR_CARDS_THREE = Arrays.asList(KING_OF_HEARTS, EIGHT_OF_SPADES, TWO_OF_SPADES, FOUR_OF_DIAMONDS, EIGHT_OF_DIAMONDS);
     private static final List<Card> PLAYER_WITH_PAIR_CARDS_FOUR = Arrays.asList(KING_OF_DIAMONDS, EIGHT_OF_CLUBS, TWO_OF_HEARTS, FOUR_OF_CLUBS, EIGHT_OF_HEARTS);

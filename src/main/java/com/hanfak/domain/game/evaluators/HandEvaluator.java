@@ -18,6 +18,12 @@ public class HandEvaluator {
         System.out.println(hand.cards);
         Map<Rank, List<Card>> cardsGroupedByRank = hand.cards.stream().collect(Collectors.groupingBy(x -> x.rank));
         List<List<Card>> numberOfPairs = cardsGroupedByRank.values().stream().filter(x -> x.size() == 2).collect(Collectors.toList());
+        if(thereExistsTwoPairOfCardsOfSameRank(numberOfPairs)) {
+            List<Card> pairOfCards = numberOfPairs.stream().flatMap(Collection::stream)
+                    .collect(Collectors.toList());
+            System.out.println("2 Pair " + pairOfCards);
+            return new CardsOfWinningHand(WinningHand.TWO_PAIR, pairOfCards);
+        }
         if (thereExistsOnePairOfCardsOfSameRank(numberOfPairs)) {
             List<Card> pairOfCards = numberOfPairs.stream().flatMap(Collection::stream)
                     .collect(Collectors.toList());
@@ -32,6 +38,10 @@ public class HandEvaluator {
 
     private boolean thereExistsOnePairOfCardsOfSameRank(List<List<Card>> numberOfPairs) {
         return numberOfPairs.size() == 1;
+    }
+
+    private boolean thereExistsTwoPairOfCardsOfSameRank(List<List<Card>> numberOfPairs) {
+        return numberOfPairs.size() == 2;
     }
 }
 
