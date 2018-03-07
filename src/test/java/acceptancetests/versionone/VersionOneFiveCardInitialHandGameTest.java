@@ -99,7 +99,7 @@ public class VersionOneFiveCardInitialHandGameTest extends TestState implements 
     // TODO test for same pair but different high card
 
     private void andADeckDealsOutASetOfRandomCardsWithAHighCardToPlayerTwo() {
-
+        // TODO add interesting givens
     }
 
     private void givenADeckDealsOutASetOfRandomCardsWithAPairToPlayerOne() {
@@ -121,11 +121,18 @@ public class VersionOneFiveCardInitialHandGameTest extends TestState implements 
     }
 
 
-    // TODO test multiple players, record place - 1 - won, 2 to x - loss OR 1 - Draw, 1 - Draw, 3 to x - loss
+    // TODo test for 2 pair
+    // TODo test for full house
+    // TODo test for straight
+    // TODo test for flush
+    // TODo test for straight flush vs straight vs flush
+
+
+    // TODO (new class) test multiple players, record place - 1 - won, 2 to x - loss OR 1 - Draw, 1 - Draw, 3 to x - loss
     // who won or drew only if at the top, everyone else loses
     // Who will win money
 
-    // TODO test multiple games, keep track of scores
+    // TODO (new class) test multiple games, keep track of scores
 
     private void andADeckDealsOutASetOfRandomCardsToPlayerTwo() {
         testState().interestingGivens.add("Player One Hand", PLAYER_ONE_CARDS.stream().map(Card::toString).collect(Collectors.joining(", ")));

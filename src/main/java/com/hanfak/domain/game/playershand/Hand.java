@@ -17,7 +17,7 @@ public class Hand {
 
     private List<Card> orderCards(List<Card> cards) {
         return cards.stream()
-                .sorted(Comparator.comparingInt((Card card) -> card.rank.getLevelCode()))
+                .sorted(Comparator.comparingInt(card -> card.rank.getLevelCode()))
                 .collect(Collectors.toList());
     }
 

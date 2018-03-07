@@ -38,6 +38,7 @@ public class PokerGame {
                 player("two"));
         // TODO output of results
         System.out.println(results);
+        // TODO when run, start gui and
     }
 
     public PokerGame(String version) {

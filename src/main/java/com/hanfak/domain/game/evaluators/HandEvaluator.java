@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+// TODO Unit test for each type of hand
 public class HandEvaluator {
     public CardsOfWinningHand scoreHand(Hand hand) {
         System.out.println(hand.cards);
