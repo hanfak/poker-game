@@ -209,7 +209,22 @@ public class VersionOneFiveCardInitialHandGameTest extends TestState implements 
 
 
     // TODO: test 2 pairs draw
+    @Test
+    public void playersDrawIfBothHaveTheSameHandWithATwoPair() throws Exception {
+        givenBothPlayersAreDealtAHandWithMatchingTwoPair();
 
+        whenAGameOfOneHandWithFiveCardsIsPlayedBetweenTwoPlayers();
+
+        thenPlayerOneHasDrawn();
+        andPlayerTwoHasDrawn();
+    }
+
+    private void givenBothPlayersAreDealtAHandWithMatchingTwoPair() {
+        Hand firstHandDealt = Hand.hand(PLAYER_WITH_TWO_PAIR_CARDS_TWO);
+        Hand secondHandDealt = Hand.hand(PLAYER_WITH_TWO_PAIR_CARDS_FIVE);
+        org.mockito.Mockito.when(cardDealer.dealHand(5)).thenReturn(firstHandDealt).thenReturn(secondHandDealt);
+
+    }
     // TODo test for full house
     // TODo test for straight
     // TODo test for flush
@@ -354,6 +369,7 @@ public class VersionOneFiveCardInitialHandGameTest extends TestState implements 
     private static final List<Card> PLAYER_WITH_TWO_PAIR_CARDS = Arrays.asList(FOUR_OF_DIAMONDS, FIVE_OF_SPADES, FIVE_OF_HEARTS, FOUR_OF_CLUBS, THREE_OF_SPADES);
     private static final List<Card> PLAYER_WITH_TWO_PAIR_CARDS_TWO = Arrays.asList(KING_OF_SPADES, EIGHT_OF_CLUBS, EIGHT_OF_DIAMONDS, FOUR_OF_CLUBS, FOUR_OF_DIAMONDS);
     private static final List<Card> PLAYER_WITH_TWO_PAIR_CARDS_THREE = Arrays.asList(TWO_OF_HEARTS, EIGHT_OF_HEARTS, EIGHT_OF_SPADES, FOUR_OF_HEARTS, FOUR_OF_SPADES);
+    private static final List<Card> PLAYER_WITH_TWO_PAIR_CARDS_FIVE = Arrays.asList(KING_OF_HEARTS, EIGHT_OF_HEARTS, EIGHT_OF_SPADES, FOUR_OF_HEARTS, FOUR_OF_SPADES);
     private static final List<Card> PLAYER_WITH_TWO_PAIR_CARDS_FOUR = Arrays.asList(THREE_OF_SPADES, EIGHT_OF_HEARTS, EIGHT_OF_SPADES, FIVE_OF_SPADES, FIVE_OF_HEARTS);
     private static final List<Card> PLAYER_WITH_PAIR_CARDS_TWO = Arrays.asList(KING_OF_SPADES, FIVE_OF_SPADES, FIVE_OF_HEARTS, NINE_OF_DIAMONDS, THREE_OF_SPADES);
     private static final List<Card> PLAYER_WITH_PAIR_CARDS_THREE = Arrays.asList(KING_OF_HEARTS, EIGHT_OF_SPADES, TWO_OF_SPADES, FOUR_OF_DIAMONDS, EIGHT_OF_DIAMONDS);
