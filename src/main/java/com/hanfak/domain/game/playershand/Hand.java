@@ -31,4 +31,6 @@ public class Hand {
     public static Hand hand(List<Card> cards) {
         return new Hand(cards, null);
     }
+
+    //comparable on list<card>
 }

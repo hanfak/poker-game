@@ -1,6 +1,9 @@
 package com.hanfak.domain.game.playershand;
 
 // TODO Rethink this
+
+// abstract class
+// each type extends then implement comparable and equals, field of rank/order
 public enum BestHand {
     HIGH_CARD,
     PAIR,

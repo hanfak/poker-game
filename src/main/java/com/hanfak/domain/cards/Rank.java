@@ -1,6 +1,8 @@
 package com.hanfak.domain.cards;
 
 // TODO check Rank has ordering
+
+// Comparable
 public enum Rank {
     // TODO reverse order for easier comparison
     TWO(14),
