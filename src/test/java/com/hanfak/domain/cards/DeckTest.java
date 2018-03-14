@@ -7,11 +7,9 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.hanfak.domain.cards.Card.card;
-import static com.hanfak.domain.cards.Rank.ACE;
-import static com.hanfak.domain.cards.Rank.THREE;
-import static com.hanfak.domain.cards.Suit.SPADE;
 import static java.util.Collections.singletonList;
+import static testinfrastructure.CardsExamples.ACE_OF_SPADES;
+import static testinfrastructure.CardsExamples.THREE_OF_SPADES;
 
 public class DeckTest implements WithAssertions {
 
@@ -83,6 +81,4 @@ public class DeckTest implements WithAssertions {
         assertThat(count).isEqualTo(13);
     }
 
-    private static final Card THREE_OF_SPADES = card(THREE, SPADE);
-    private static final Card ACE_OF_SPADES = card(ACE, SPADE);
 }

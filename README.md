@@ -92,6 +92,12 @@ To be added
 * Add Logs
 * Avoid mutating the deckofcards in Deck class
 * Use java fx for gui
+* Extract tests for different Best Hands into separate classes
+* Version One - 5 cards
+    * test multiple games, keep track of scores
+    * test multiple players, keep track of games won
+* ~~Extract example cards and hands into help classes~~
+* Extract hand evaluator logic for each hand into dependencye
 </details>
 
 ### Useful Stuff
@@ -99,4 +105,6 @@ To be added
 <details>
 <summary>Show details</summary>
 * https://github.com/belgoros/hello-javafx-maven
+
+* https://dzone.com/articles/about-immutability-in-object-oriented-programming
 </details>

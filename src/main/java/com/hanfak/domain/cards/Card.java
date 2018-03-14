@@ -32,8 +32,24 @@ public class Card {
 
     @Override
     public String toString() {
+        // TODO move to Suit enum
+        String suitSymbol = "";
+
+        switch (suit) {
+            case SPADE:
+                suitSymbol = "\u2660";
+                break;
+            case DIAMOND:
+                suitSymbol = "\u2666";
+                break;
+            case CLUB:
+                suitSymbol = "\u2663";
+                break;
+            case HEART:
+                suitSymbol = "\u2764";
+                break;
+        }
         return rank.name().charAt(0) + rank.name().substring(1).toLowerCase() +
-                " Of " +
-                suit.name().charAt(0) + suit.name().substring(1).toLowerCase() + "s";
+                suitSymbol;
     }
 }

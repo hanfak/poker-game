@@ -5,11 +5,11 @@ import com.hanfak.domain.cards.Card;
 import java.util.List;
 
 public class CardsOfWinningHand {
-    public final WinningHand winningHand;
-    public final List<Card> cardsInBestHand;
+    public final BestHand bestHand;
+    public final List<Card> cardsInBestHand; // TODO Avoid list for immutablity
 
-    public CardsOfWinningHand(WinningHand winningHand, List<Card> cardsInBestHand) {
-        this.winningHand = winningHand;
+    public CardsOfWinningHand(BestHand bestHand, List<Card> cardsInBestHand) {
+        this.bestHand = bestHand;
         this.cardsInBestHand = cardsInBestHand;
     }
 }

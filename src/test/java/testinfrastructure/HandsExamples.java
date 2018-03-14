@@ -1,0 +1,32 @@
+package testinfrastructure;
+
+import com.hanfak.domain.cards.Card;
+
+import java.util.Arrays;
+import java.util.List;
+
+import static testinfrastructure.CardsExamples.*;
+
+// TODO use interface???
+// TODO better names and separate into groups of best hands
+public class HandsExamples {
+    public static final List<Card> PLAYER_ONE_HIGH_CARD_CARDS_ONE = Arrays.asList(ACE_OF_SPADES, FIVE_OF_SPADES, TWO_OF_SPADES, FOUR_OF_DIAMONDS, THREE_OF_SPADES);
+    public static final List<Card> PLAYER_WITH_HIGH_CARD_CARDS_TWO = Arrays.asList(KING_OF_SPADES, JACK_OF_DIAMONDS, NINE_OF_DIAMONDS, EIGHT_OF_SPADES, THREE_OF_DIAMONDS);
+    public static final List<Card> PLAYER_WITH_HIGH_CARD_CARDS_THREE = Arrays.asList(ACE_OF_HEARTS, FIVE_OF_SPADES, FOUR_OF_DIAMONDS, TWO_OF_SPADES, THREE_OF_SPADES);
+    public static final List<Card> PLAYER_TWO_WITH_HIGH_CARD_CARDS_FOUR = Arrays.asList(ACE_OF_SPADES, JACK_OF_DIAMONDS, FOUR_OF_CLUBS, TWO_OF_HEARTS, THREE_OF_DIAMONDS);
+
+    public static final List<Card> PLAYER_WITH_OTHER_CARDS_TWO = Arrays.asList(ACE_OF_SPADES, EIGHT_OF_SPADES, TWO_OF_SPADES, FOUR_OF_DIAMONDS, THREE_OF_SPADES);
+    public static final List<Card> PLAYER_WITH_PAIR_CARDS = Arrays.asList(KING_OF_SPADES, FIVE_OF_SPADES, FIVE_OF_HEARTS, FOUR_OF_CLUBS, THREE_OF_SPADES);
+    public static final List<Card> PLAYER_WITH_THREE_OF_A_KIND_CARDS = Arrays.asList(TWO_OF_HEARTS, FIVE_OF_SPADES, FIVE_OF_HEARTS, FOUR_OF_CLUBS, FIVE_OF_DIAMONDS);
+    public static final List<Card> PLAYER_WITH_TWO_PAIR_CARDS = Arrays.asList(FOUR_OF_DIAMONDS, FIVE_OF_SPADES, FIVE_OF_HEARTS, FOUR_OF_CLUBS, THREE_OF_SPADES);
+    public static final List<Card> PLAYER_WITH_TWO_PAIR_CARDS_TWO = Arrays.asList(KING_OF_SPADES, EIGHT_OF_CLUBS, EIGHT_OF_DIAMONDS, FOUR_OF_CLUBS, FOUR_OF_DIAMONDS);
+    public static final List<Card> PLAYER_WITH_TWO_PAIR_CARDS_THREE = Arrays.asList(TWO_OF_HEARTS, EIGHT_OF_HEARTS, EIGHT_OF_SPADES, FOUR_OF_HEARTS, FOUR_OF_SPADES);
+    public static final List<Card> PLAYER_WITH_TWO_PAIR_CARDS_FIVE = Arrays.asList(KING_OF_HEARTS, EIGHT_OF_HEARTS, EIGHT_OF_SPADES, FOUR_OF_HEARTS, FOUR_OF_SPADES);
+    public static final List<Card> PLAYER_WITH_TWO_PAIR_CARDS_FOUR = Arrays.asList(THREE_OF_SPADES, EIGHT_OF_HEARTS, EIGHT_OF_SPADES, FIVE_OF_SPADES, FIVE_OF_HEARTS);
+    public static final List<Card> PLAYER_WITH_PAIR_CARDS_TWO = Arrays.asList(KING_OF_SPADES, FIVE_OF_SPADES, FIVE_OF_HEARTS, NINE_OF_DIAMONDS, THREE_OF_SPADES);
+    public static final List<Card> PLAYER_WITH_PAIR_CARDS_THREE = Arrays.asList(KING_OF_HEARTS, EIGHT_OF_SPADES, TWO_OF_SPADES, FOUR_OF_DIAMONDS, EIGHT_OF_DIAMONDS);
+    public static final List<Card> PLAYER_WITH_PAIR_CARDS_FOUR = Arrays.asList(KING_OF_DIAMONDS, EIGHT_OF_CLUBS, TWO_OF_HEARTS, FOUR_OF_CLUBS, EIGHT_OF_HEARTS);
+    public static final List<Card> PLAYER_ONE_DRAW_CARDS = Arrays.asList(ACE_OF_SPADES, FIVE_OF_SPADES, TWO_OF_SPADES, FOUR_OF_DIAMONDS, THREE_OF_SPADES);
+    public static final List<Card> PLAYER_TWO_DRAW_CARDS = Arrays.asList(ACE_OF_HEARTS, FIVE_OF_HEARTS, TWO_OF_HEARTS, FOUR_OF_CLUBS, THREE_OF_DIAMONDS);
+
+}

@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Hand {
+    // TODO cards can be mutated, use getters or look at ideas.md for possible solution
     public final List<Card> cards;
     public final CardsOfWinningHand cardsOfWinningHand;
 

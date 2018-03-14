@@ -10,16 +10,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.hanfak.domain.cards.Card.card;
-
+// TODO refactor to stop immutability
 public class Deck {
 
     public List<Card> cardsInDeck = createDeck();
 
     public void removeCards(List<Card> dealtCards) {
-        cardsInDeck = getCardsNotDealt(dealtCards);
+        cardsInDeck = removeCardsDealtFromDeck(dealtCards);
     }
 
-    private List<Card> getCardsNotDealt(List<Card> dealtCards) {
+    private List<Card> removeCardsDealtFromDeck(List<Card> dealtCards) {
         return cardsInDeck.stream()
                 .filter(card -> !dealtCards.contains(card))
                 .collect(Collectors.toList());

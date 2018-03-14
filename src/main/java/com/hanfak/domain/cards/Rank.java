@@ -27,4 +27,7 @@ public enum Rank {
     public Integer getLevelCode() {
         return this.levelCode;
     }
+
+
+    // TODO turn worded numbers into ints, and face cards into first capitalised first letter
 }

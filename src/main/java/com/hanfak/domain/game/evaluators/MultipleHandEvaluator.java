@@ -5,7 +5,7 @@ import com.hanfak.domain.cards.Rank;
 import com.hanfak.domain.game.Player;
 import com.hanfak.domain.game.PlayerResult;
 import com.hanfak.domain.game.Result;
-import com.hanfak.domain.game.playershand.WinningHand;
+import com.hanfak.domain.game.playershand.BestHand;
 
 import java.util.Collection;
 import java.util.Comparator;
@@ -37,23 +37,23 @@ public class MultipleHandEvaluator {
     }
 
     private boolean playersHaveDifferentBestHands(List<Player> players) {
-        List<WinningHand> diffPair = players.stream().map(player -> player.hand.cardsOfWinningHand.winningHand).distinct().collect(Collectors.toList());
+        List<BestHand> diffPair = players.stream().map(player -> player.hand.cardsOfWinningHand.bestHand).distinct().collect(Collectors.toList());
         System.out.println("diffPair = " + diffPair);
         return diffPair.size() > 1;
     }
 
     private List<PlayerResult> determineResultsOfPlayersWithUniqueBestHands(List<Player> players) {
-        List<Player> orderedPlayersByBestHand = players.stream().sorted(winningHandsOfPlayers()).collect(Collectors.toList());
+        List<Player> orderedPlayersByBestHand = players.stream()
+                .sorted(winningHandsOfPlayers()).collect(Collectors.toList());
         System.out.println("orderedPlayersByBestHand = " + orderedPlayersByBestHand);
         return Stream.of(setPlayerResultOfWinner(orderedPlayersByBestHand), setPlayerResultsOfLosers(orderedPlayersByBestHand))
-                .flatMap(Collection::stream)
-                .collect(Collectors.toList());
+                .flatMap(Collection::stream).collect(Collectors.toList());
     }
 
     private Comparator<Player> winningHandsOfPlayers() {
         return (player1, player2) -> {
-            Integer player2WinningHand = player2.hand.cardsOfWinningHand.winningHand.ordinal();
-            Integer player1WinningHand = player1.hand.cardsOfWinningHand.winningHand.ordinal();
+            Integer player2WinningHand = player2.hand.cardsOfWinningHand.bestHand.ordinal();
+            Integer player1WinningHand = player1.hand.cardsOfWinningHand.bestHand.ordinal();
             return player2WinningHand.compareTo(player1WinningHand);
         };
     }
@@ -82,19 +82,21 @@ public class MultipleHandEvaluator {
     }
 
     private boolean allPlayersHandsHaveTheSameBestHand(List<Player> players) {
-        // BEtter logic
+        // Better logic
 
-        List<List<Card>> samwPair = players.stream()
+        List<List<Card>> sameBestHand = players.stream()
                 .map(playerResult -> playerResult.hand.cardsOfWinningHand.cardsInBestHand)
                 .collect(Collectors.toList());
-        System.out.println("samwPair = " + samwPair);
-        List<List<Rank>> handsWithDistinctRanks = samwPair.stream()
+        System.out.println("sameBestHand = " + sameBestHand);
+
+        List<List<Rank>> handsWithDistinctRanks = sameBestHand.stream()
                 .map(x -> x.stream()
                         .map(y -> y.rank)
                         .collect(Collectors.toList()))
                 .distinct().collect(Collectors.toList());
-//        System.out.println("handsWithDistinctRanks = " + handsWithDistinctRanks);
-        return handsWithDistinctRanks.size() == 1;
+        System.out.println("handsWithDistinctRanks = " + handsWithDistinctRanks);
+
+        return 1 == handsWithDistinctRanks.size();
     }
 
     private List<PlayerResult> determineResultOfPlayersWithSameCardsInSameBestHand(List<Player> players) {

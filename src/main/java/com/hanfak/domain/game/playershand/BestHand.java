@@ -1,7 +1,7 @@
 package com.hanfak.domain.game.playershand;
 
 // TODO Rethink this
-public enum WinningHand  {
+public enum BestHand {
     HIGH_CARD,
     PAIR,
     TWO_PAIR,
@@ -12,7 +12,4 @@ public enum WinningHand  {
     FOUR_OF_A_KIND,
     STRAIGHT_FLUSH,
     ROYAL_FLUSH
-
-
-    // tODO add comparable
 }

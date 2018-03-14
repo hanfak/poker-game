@@ -8,7 +8,7 @@ public class PlayerResult {
     public final Result result;
     public final Hand hand;
 
-    // TODO add what hand won
+    // TODO add what hand won ie the enum WinningHand
     private PlayerResult(String playerName, Result result, Hand hand) {
         this.playerName = playerName;
         this.result = result;
