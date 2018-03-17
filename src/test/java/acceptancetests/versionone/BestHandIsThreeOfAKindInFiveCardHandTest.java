@@ -5,7 +5,6 @@ import com.hanfak.domain.deck.CardDealer;
 import com.hanfak.domain.game.Player;
 import com.hanfak.domain.game.PlayerResult;
 import com.hanfak.domain.game.Result;
-import com.hanfak.domain.game.playershand.Hand;
 import com.hanfak.wiring.PokerGame;
 import org.assertj.core.api.WithAssertions;
 import org.junit.Before;
@@ -37,9 +36,7 @@ public class BestHandIsThreeOfAKindInFiveCardHandTest extends TestState implemen
 
 
     private void givenADeckDealsOutASetOfRandomCardsWithAThreeOfAKindToPlayerOne() {
-        Hand firstHandDealt = Hand.hand(PLAYER_WITH_THREE_OF_A_KIND_CARDS);
-        Hand secondHandDealt = Hand.hand(PLAYER_WITH_PAIR_CARDS);
-        org.mockito.Mockito.when(cardDealer.dealHand(5)).thenReturn(firstHandDealt).thenReturn(secondHandDealt);
+        org.mockito.Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_THREE_OF_A_KIND_CARDS).thenReturn(PLAYER_WITH_PAIR_CARDS);
     }
 
     private void andADeckDealsOutASetOfRandomCardsWithAHighCardToPlayerTwo() {

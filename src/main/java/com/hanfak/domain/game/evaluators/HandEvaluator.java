@@ -2,9 +2,13 @@ package com.hanfak.domain.game.evaluators;
 
 import com.hanfak.domain.cards.Card;
 import com.hanfak.domain.cards.Rank;
-import com.hanfak.domain.game.playershand.BestHand;
-import com.hanfak.domain.game.playershand.CardsOfWinningHand;
-import com.hanfak.domain.game.playershand.Hand;
+import com.hanfak.domain.game.playershand.KickerCards;
+import com.hanfak.domain.game.playershand.PokerHand;
+import com.hanfak.domain.game.playershand.PokerHandsCards;
+import com.hanfak.domain.game.playershand.pokerhands.HighCard;
+import com.hanfak.domain.game.playershand.pokerhands.Pair;
+import com.hanfak.domain.game.playershand.pokerhands.ThreeOfAKind;
+import com.hanfak.domain.game.playershand.pokerhands.TwoPair;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -15,35 +19,37 @@ import java.util.stream.Collectors;
 
 // TODO Unit test for each type of hand
 // TODO extract to class the evaluator for each bestHand
+// MOve most of the logic to classes represnting the type of hand
 public class HandEvaluator {
 
-    public CardsOfWinningHand scoreHand(Hand hand) {
-        System.out.println(hand.cards);
+    public PokerHand scoreHand(List<Card> dealtCards) {
+        System.out.println(dealtCards);
 
-        Map<Rank, List<Card>> cardsGroupedByRank = hand.cards.stream()
+        Map<Rank, List<Card>> cardsGroupedByRank = dealtCards.stream()
                 .collect(Collectors.groupingBy(x -> x.rank));
 
         List<List<Card>> numberOfPairs = listWinningBestHand(cardsGroupedByRank, 2);
         List<Card> cardsInWinningHand = setCardsInWinningHand(numberOfPairs);
-        System.out.println("Pair(s) " + cardsInWinningHand);
 
         List<List<Card>> winningBestHand = listWinningBestHand(cardsGroupedByRank, 3);
         List<Card> cardsInWinningHand1 = setCardsInWinningHand(winningBestHand);
-        System.out.println("3 of Kind " + cardsInWinningHand);
 
         if (thereExistsThreeOfAKindOfSameRank(winningBestHand)) {
-            return new CardsOfWinningHand(BestHand.THREE_OF_A_KIND, cardsInWinningHand1);
+            List<Card> kickers = dealtCards.stream().filter(card -> !cardsInWinningHand1.contains(card)).collect(Collectors.toList());
+            return new ThreeOfAKind(new PokerHandsCards(cardsInWinningHand1), new KickerCards(kickers));
         }
 
         if (thereExistsTwoPairOfCardsOfSameRank(numberOfPairs)) {
-            return new CardsOfWinningHand(BestHand.TWO_PAIR, cardsInWinningHand);
+            List<Card> kickers = dealtCards.stream().filter(card -> !cardsInWinningHand.contains(card)).collect(Collectors.toList());
+            return new TwoPair(new PokerHandsCards(cardsInWinningHand), new KickerCards(kickers));
         }
 
         if (thereExistsOnePairOfCardsOfSameRank(numberOfPairs)) {
-            return new CardsOfWinningHand(BestHand.PAIR, cardsInWinningHand);
+            List<Card> kickers = dealtCards.stream().filter(card -> !cardsInWinningHand.contains(card)).collect(Collectors.toList());
+            return new Pair(new PokerHandsCards(cardsInWinningHand), new KickerCards(kickers));
         }
 
-        return new CardsOfWinningHand(BestHand.HIGH_CARD, Collections.singletonList(hand.cards.get(0)));
+        return new HighCard(new PokerHandsCards(Collections.singletonList(dealtCards.get(0))), new KickerCards(dealtCards.subList(1, dealtCards.size())));
     }
 
     private List<List<Card>> listWinningBestHand(Map<Rank, List<Card>> cardsGroupedByRank, int numberOfGroups) {

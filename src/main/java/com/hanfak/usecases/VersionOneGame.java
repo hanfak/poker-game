@@ -1,13 +1,12 @@
 package com.hanfak.usecases;
 
+import com.hanfak.domain.cards.Card;
 import com.hanfak.domain.deck.CardDealer;
 import com.hanfak.domain.game.Player;
 import com.hanfak.domain.game.PlayerResult;
 import com.hanfak.domain.game.evaluators.HandEvaluator;
 import com.hanfak.domain.game.evaluators.MultipleHandEvaluator;
-import com.hanfak.domain.game.playershand.BestHand;
-import com.hanfak.domain.game.playershand.CardsOfWinningHand;
-import com.hanfak.domain.game.playershand.Hand;
+import com.hanfak.domain.game.playershand.PokerHand;
 
 import java.util.Arrays;
 import java.util.List;
@@ -29,13 +28,7 @@ public class VersionOneGame {
 
     public List<PlayerResult> playGame(Player... players) {
         List<Player> playersWithAHandOfCards = dealHandToAllPlayers(players);
-
-        List<Player> playersWithHandsScored = evaluatePlayersHandsOfCards(playersWithAHandOfCards);
-
-        List<BestHand> winninghands = playersWithHandsScored.stream().map(x -> x.hand.cardsOfWinningHand.bestHand).collect(Collectors.toList());
-        System.out.println("winninghands = " + winninghands);
-
-        List<PlayerResult> playerResults = evaluateGame(playersWithHandsScored);
+        List<PlayerResult> playerResults = evaluateGame(playersWithAHandOfCards);
         System.out.println(playerResults);
 
         return playerResults;
@@ -46,18 +39,9 @@ public class VersionOneGame {
     }
 
     private Player dealHand(Player player) {
-        Hand hand = cardDealer.dealHand(5);
-        return player(player.playerName, hand);
-    }
-
-    private List<Player> evaluatePlayersHandsOfCards(List<Player> players) {
-        return players.stream().map(this::evaluateHand).collect(Collectors.toList());
-    }
-
-    private Player evaluateHand(Player player) {
-        CardsOfWinningHand cardsOfWinningHand = handEvaluator.scoreHand(player.hand);
-        Hand hand = Hand.hand(player.hand.cards, cardsOfWinningHand);
-        return player(player.playerName, hand);
+        List<Card> dealtCards = cardDealer.dealHand(5);
+        PokerHand pokerHand = handEvaluator.scoreHand(dealtCards);
+        return player(player.playerName, dealtCards, pokerHand);
     }
 
     private List<PlayerResult> evaluateGame(List<Player> players) {

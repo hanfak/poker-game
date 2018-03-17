@@ -4,15 +4,13 @@ import com.hanfak.domain.cards.Card;
 
 import java.util.List;
 
-public class CardsOfWinningHand {
-    public final BestHand bestHand;
-    public final List<Card> cardsInBestHand; // TODO Avoid list for immutablity
-
-    public CardsOfWinningHand(BestHand bestHand, List<Card> cardsInBestHand) {
-        this.bestHand = bestHand;
-        this.cardsInBestHand = cardsInBestHand;
-    }
+// TODO comparable
+public interface PokerHand {
+    Integer ranking();
+    List<Card> getPokerHandsCards();
+    List<Card> getKickerCards();
 }
+
 
 /*
 * Cards

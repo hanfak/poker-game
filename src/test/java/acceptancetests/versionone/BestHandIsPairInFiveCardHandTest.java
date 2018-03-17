@@ -6,7 +6,6 @@ import com.hanfak.domain.deck.CardDealer;
 import com.hanfak.domain.game.Player;
 import com.hanfak.domain.game.PlayerResult;
 import com.hanfak.domain.game.Result;
-import com.hanfak.domain.game.playershand.Hand;
 import com.hanfak.wiring.PokerGame;
 import org.assertj.core.api.WithAssertions;
 import org.junit.Before;
@@ -57,9 +56,7 @@ public class BestHandIsPairInFiveCardHandTest extends TestState implements WithA
     // TODO test both pairs with same rank, but next or second next card is different
 
     private void givenADeckDealsOutASetOfRandomCardsWithAHighCardToPlayerOne() {
-        Hand firstHandDealt = Hand.hand(PLAYER_WITH_OTHER_CARDS_TWO);
-        Hand secondHandDealt = Hand.hand(PLAYER_WITH_PAIR_CARDS);
-        org.mockito.Mockito.when(cardDealer.dealHand(5)).thenReturn(firstHandDealt).thenReturn(secondHandDealt);
+        org.mockito.Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_OTHER_CARDS_TWO).thenReturn(PLAYER_WITH_PAIR_CARDS);
     }
 
     private void andPlayerOneHasWon() {
@@ -69,9 +66,7 @@ public class BestHandIsPairInFiveCardHandTest extends TestState implements WithA
     }
 
     private void givenADeckDealsOutASetOfRandomCardsWithALowestPairToPlayerOne() {
-        Hand firstHandDealt = Hand.hand(PLAYER_WITH_PAIR_CARDS_TWO);
-        Hand secondHandDealt = Hand.hand(PLAYER_WITH_PAIR_CARDS_THREE);
-        org.mockito.Mockito.when(cardDealer.dealHand(5)).thenReturn(firstHandDealt).thenReturn(secondHandDealt);
+        org.mockito.Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_PAIR_CARDS_TWO).thenReturn(PLAYER_WITH_PAIR_CARDS_THREE);
     }
 
     private void andADeckDealsOutASetOfRandomCardsWithAHighestPairToPlayerTwo() {
@@ -79,9 +74,7 @@ public class BestHandIsPairInFiveCardHandTest extends TestState implements WithA
     }
 
     private void givenBothPlayersAreDealtAHandWithMatchingPair() {
-        Hand firstHandDealt = Hand.hand(PLAYER_WITH_PAIR_CARDS_THREE );
-        Hand secondHandDealt = Hand.hand(PLAYER_WITH_PAIR_CARDS_FOUR);
-        org.mockito.Mockito.when(cardDealer.dealHand(5)).thenReturn(firstHandDealt).thenReturn(secondHandDealt);
+        org.mockito.Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_PAIR_CARDS_THREE).thenReturn(PLAYER_WITH_PAIR_CARDS_FOUR);
         testState().interestingGivens.add("Player One Hand", PLAYER_ONE_DRAW_CARDS.stream().map(Card::toString).collect(Collectors.joining(", ")));
         testState().interestingGivens.add("Player Two Hand",PLAYER_TWO_DRAW_CARDS.stream().map(Card::toString).collect(Collectors.joining(", ")));
     }

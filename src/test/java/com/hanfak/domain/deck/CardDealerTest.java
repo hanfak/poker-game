@@ -1,11 +1,11 @@
 package com.hanfak.domain.deck;
 
 import com.hanfak.domain.cards.Card;
-import com.hanfak.domain.game.playershand.Hand;
 import com.hanfak.infrastructure.CollectionsCardShuffler;
 import org.assertj.core.api.WithAssertions;
 import org.junit.Test;
 
+import java.util.List;
 import java.util.stream.IntStream;
 
 public class CardDealerTest implements WithAssertions {
@@ -18,10 +18,10 @@ public class CardDealerTest implements WithAssertions {
         CollectionsCardShuffler collectionsCardShuffler = new CollectionsCardShuffler();
         CardDealer cardDealer = new CardDealer(deck, collectionsCardShuffler);
 
-        Hand hand = cardDealer.dealHand(4);
+        List<Card> hand = cardDealer.dealHand(4);
 
-        assertThat(hand.cards.size()).isEqualTo(4);
-        assertThat(hand.cards.stream().distinct().count()).isEqualTo(4);
+        assertThat(hand.size()).isEqualTo(4);
+        assertThat(hand.stream().distinct().count()).isEqualTo(4);
     }
 
     @Test
@@ -30,10 +30,10 @@ public class CardDealerTest implements WithAssertions {
         CollectionsCardShuffler collectionsCardShuffler = new CollectionsCardShuffler();
         CardDealer cardDealer = new CardDealer(deck, collectionsCardShuffler);
 
-        Hand handOne = cardDealer.dealHand(4);
-        Hand handTwo = cardDealer.dealHand(4);
+        List<Card> handOne = cardDealer.dealHand(4);
+        List<Card> handTwo = cardDealer.dealHand(4);
 
-        assertThat(handOne.cards).doesNotContain(handTwo.cards.toArray(new Card[4]));
+        assertThat(handOne).doesNotContain(handTwo.toArray(new Card[4]));
     }
 
     @Test
