@@ -7,11 +7,11 @@ import com.hanfak.domain.game.playershand.PokerHandsCards;
 
 import java.util.List;
 
-public class FourOfAKind implements PokerHand {
+public class FullHouse implements PokerHand {
     private final PokerHandsCards pokerHandCards; // ORdered list and make it a type with comparable on rank
     private final KickerCards kickers; // Ordered
     // TODO for full house have another field for three and pair
-    public FourOfAKind(PokerHandsCards pokerHandCards, KickerCards kickers) {
+    public FullHouse(PokerHandsCards pokerHandCards, KickerCards kickers) {
         this.pokerHandCards = pokerHandCards;
         this.kickers = kickers;
     }
@@ -19,7 +19,7 @@ public class FourOfAKind implements PokerHand {
     // TODO use enum valuation instead
     @Override
     public Integer ranking() {
-        return 8;
+        return 7;
     }
 
     @Override

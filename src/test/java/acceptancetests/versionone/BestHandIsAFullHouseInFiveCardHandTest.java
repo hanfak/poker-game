@@ -1,7 +1,6 @@
 package acceptancetests.versionone;
 
 import com.googlecode.yatspec.state.givenwhenthen.TestState;
-import com.hanfak.domain.cards.Card;
 import com.hanfak.domain.deck.CardDealer;
 import com.hanfak.domain.game.Player;
 import com.hanfak.domain.game.PlayerResult;
@@ -11,39 +10,36 @@ import org.assertj.core.api.WithAssertions;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
-import org.mockito.stubbing.OngoingStubbing;
 
 import java.util.List;
 import java.util.Optional;
 
 import static com.hanfak.domain.game.Player.player;
-import static testinfrastructure.HandsExamples.PLAYER_WITH_FLUSH_ONE;
-import static testinfrastructure.HandsExamples.PLAYER_WITH_TWO_PAIR_CARDS_TWO;
+import static testinfrastructure.HandsExamples.PLAYER_WITH_FULL_HOUSE_CARDS_ONE;
+import static testinfrastructure.HandsExamples.PLAYER_WITH_THREE_OF_A_KIND_CARDS_ONE;
 
-public class BestHandIsAFlushInFiveCardHandTest extends TestState implements WithAssertions {
+public class BestHandIsAFullHouseInFiveCardHandTest extends TestState implements WithAssertions {
     @Test
     public void playerWinsWithABetterHand() throws Exception {
-        givenADeckDealsOutASetOfRandomCardsWithATwoPairToPlayerOne();
-        andADeckDealsOutASetOfRandomCardsWithAFLushToPlayerTwo();
+        givenADeckDealsOutASetOfRandomCardsWithAThreeOfAKindToPlayerOne();
+        andADeckDealsOutASetOfRandomCardsWithAFullHouseToPlayerTwo();
 
         whenAGameOfOneHandWithFiveCardsIsPlayedBetweenTwoPlayers();
 
         andPlayerOneHasLost();
         andPlayerTwoHasWon();
     }
-    // TODO test player two wins with three vs two
-    // TODO test same bestHand, but better rank wins
+    // TODO test player one wins
+    // TODO test with better three
+    // TODO test with same three better pair
     // TODO test Draw case
-    // TODO test same bestHand with same rank, but next highest card is different
 
 
-    private void givenADeckDealsOutASetOfRandomCardsWithATwoPairToPlayerOne() {
-        // tODO make field
-        OngoingStubbing<List<Card>> listOngoingStubbing = Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_TWO_PAIR_CARDS_TWO);
-        listOngoingStubbing.thenReturn(PLAYER_WITH_FLUSH_ONE);
+    private void givenADeckDealsOutASetOfRandomCardsWithAThreeOfAKindToPlayerOne() {
+        Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_THREE_OF_A_KIND_CARDS_ONE).thenReturn(PLAYER_WITH_FULL_HOUSE_CARDS_ONE);
     }
 
-    private void andADeckDealsOutASetOfRandomCardsWithAFLushToPlayerTwo() {
+    private void andADeckDealsOutASetOfRandomCardsWithAFullHouseToPlayerTwo() {
         // TODO add interesting givens
     }
 

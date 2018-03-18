@@ -25,7 +25,7 @@ public class VersionOneFiveCardInitialHandGameTest extends TestState implements 
 
 
     private void givenADeckDealsOutASetOfRandomCardsWithAPairToPlayerOne() {
-        org.mockito.Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_OTHER_CARDS_TWO).thenReturn(PLAYER_WITH_PAIR_CARDS);
+        org.mockito.Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_HIGH_CARD_CARDS_FIVE).thenReturn(PLAYER_WITH_PAIR_CARDS_ONE);
     }
 
     // TODO test cards for opp player // unit test
@@ -47,7 +47,7 @@ public class VersionOneFiveCardInitialHandGameTest extends TestState implements 
     }
 
     private void andADeckDealsOutASetOfRandomCardsWithATwoPairToPlayerTwo() {
-        org.mockito.Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_PAIR_CARDS).thenReturn(PLAYER_WITH_TWO_PAIR_CARDS);
+        org.mockito.Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_PAIR_CARDS_ONE).thenReturn(PLAYER_WITH_TWO_PAIR_CARDS_ONE);
 
     }
 
@@ -63,7 +63,7 @@ public class VersionOneFiveCardInitialHandGameTest extends TestState implements 
     }
 
     private void givenADeckDealsOutASetOfRandomCardsWithAHigherTwoPairToPlayerOne() {
-        org.mockito.Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_TWO_PAIR_CARDS_TWO).thenReturn(PLAYER_WITH_TWO_PAIR_CARDS);
+        org.mockito.Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_TWO_PAIR_CARDS_TWO).thenReturn(PLAYER_WITH_TWO_PAIR_CARDS_ONE);
     }
 
     private void andADeckDealsOutASetOfRandomCardsWithALowerTwoPairToPlayerTwo() {

@@ -15,9 +15,9 @@ import java.util.List;
 import java.util.Optional;
 
 import static com.hanfak.domain.game.Player.player;
-import static testinfrastructure.HandsExamples.PLAYER_WITH_STRAIGHT;
 import static testinfrastructure.HandsExamples.PLAYER_WITH_STRAIGHT_ONE;
-import static testinfrastructure.HandsExamples.PLAYER_WITH_THREE_OF_A_KIND_CARDS;
+import static testinfrastructure.HandsExamples.PLAYER_WITH_STRAIGHT_TWO;
+import static testinfrastructure.HandsExamples.PLAYER_WITH_THREE_OF_A_KIND_CARDS_ONE;
 
 public class BestHandIsStraightInFiveCardHandTest extends TestState implements WithAssertions {
     @Test
@@ -43,7 +43,7 @@ public class BestHandIsStraightInFiveCardHandTest extends TestState implements W
     }
 
     private void givenADeckDealsOutASetOfRandomCardsWithAStraightAceHighoPlayerTwo() {
-        Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_THREE_OF_A_KIND_CARDS).thenReturn(PLAYER_WITH_STRAIGHT);
+        Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_THREE_OF_A_KIND_CARDS_ONE).thenReturn(PLAYER_WITH_STRAIGHT_ONE);
     }
     // TODO test player two wins with three vs two
     // TODO test same bestHand, but better rank wins
@@ -52,7 +52,7 @@ public class BestHandIsStraightInFiveCardHandTest extends TestState implements W
 
 
     private void givenADeckDealsOutASetOfRandomCardsWithAThreeOfAKindToPlayerOne() {
-        Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_THREE_OF_A_KIND_CARDS).thenReturn(PLAYER_WITH_STRAIGHT_ONE);
+        Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_THREE_OF_A_KIND_CARDS_ONE).thenReturn(PLAYER_WITH_STRAIGHT_TWO);
     }
 
     private void andADeckDealsOutASetOfRandomCardsWithAStraightoPlayerTwo() {

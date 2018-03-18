@@ -29,6 +29,8 @@ public class PokerHandsCards  {
                 .sorted(Comparator.comparingInt(card -> card.rank.getLevelCode())) // TODO use ordinal instead
                 .collect(Collectors.toList());
         if (collect.size() == 5) {
+            // tODO order three of a kind first then pair here
+
             int difference = abs(collect.get(1).rank.ordinal() - collect.get(collect.size() - 1).rank.ordinal());
             if (difference == 3 && cards.stream().filter(card -> card.rank.equals(Rank.ACE)).count() == 1) {
                 List<Card> cards2 = Collections.singletonList(collect.get(0));

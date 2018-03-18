@@ -26,14 +26,17 @@ public class HandEvaluator {
     public PokerHand scoreHand(List<Card> dealtCards) {
         System.out.println(dealtCards);
 
-        Map<Rank, List<Card>> cardsGroupedByRank = dealtCards.stream()
-                .collect(Collectors.groupingBy(x -> x.rank));
-
-        List<List<Card>> listOfFourOfAKind = listWinningBestHand(cardsGroupedByRank, 4);
+        List<List<Card>> listOfFourOfAKind = listWinningBestHand(cardsGroupedByRank(dealtCards), 4);
+        List<List<Card>> listOfThreeOfAKind = listWinningBestHand(cardsGroupedByRank(dealtCards), 3);
+        List<List<Card>> listOfPairs = listWinningBestHand(cardsGroupedByRank(dealtCards), 2);
 
         if (thereExistsAFourOfAKind(listOfFourOfAKind)){
             List<Card> kickers = dealtCards.stream().filter(card -> !setCardsInWinningHand(listOfFourOfAKind).contains(card)).collect(Collectors.toList());
             return new FourOfAKind(new PokerHandsCards(setCardsInWinningHand(listOfFourOfAKind)), new KickerCards(kickers));
+        }
+
+        if (thereExistsAFullHouseIn(dealtCards)) {
+            return new FullHouse(new PokerHandsCards(dealtCards), new KickerCards(emptyList()));
         }
 
         if (thereExistsAFlush(dealtCards)) {
@@ -44,10 +47,6 @@ public class HandEvaluator {
             // tODO test 3 2 A K Q is only high card not straight
             return new Straight(new PokerHandsCards(dealtCards), new KickerCards(emptyList()));
         }
-
-
-        List<List<Card>> listOfPairs = listWinningBestHand(cardsGroupedByRank, 2);
-        List<List<Card>> listOfThreeOfAKind = listWinningBestHand(cardsGroupedByRank, 3);
 
         if (thereExistsThreeOfAKindOfSameRank(listOfThreeOfAKind)) {
             List<Card> kickers = dealtCards.stream().filter(card -> !setCardsInWinningHand(listOfThreeOfAKind).contains(card)).collect(Collectors.toList());
@@ -67,6 +66,14 @@ public class HandEvaluator {
         return new HighCard(new PokerHandsCards(Collections.singletonList(dealtCards.get(0))), new KickerCards(dealtCards.subList(1, dealtCards.size())));
     }
 
+    private Map<Rank, List<Card>> cardsGroupedByRank(List<Card> dealtCards) {
+        return dealtCards.stream()
+                .collect(Collectors.groupingBy(x -> x.rank));
+    }
+
+    private boolean thereExistsAFullHouseIn(List<Card> dealtCards) {
+        return 2 == cardsGroupedByRank(dealtCards).values().size();
+    }
 
 
     private boolean thereExistsAFlush(List<Card> dealtCards) {

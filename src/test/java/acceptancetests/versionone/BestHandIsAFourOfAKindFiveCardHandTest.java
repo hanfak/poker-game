@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static com.hanfak.domain.game.Player.player;
-import static testinfrastructure.HandsExamples.PLAYER_WITH_FOUR_OF_KIND;
+import static testinfrastructure.HandsExamples.PLAYER_WITH_FOUR_OF_KIND_ONE;
 import static testinfrastructure.HandsExamples.PLAYER_WITH_TWO_PAIR_CARDS_TWO;
 
 public class BestHandIsAFourOfAKindFiveCardHandTest extends TestState implements WithAssertions {
@@ -40,7 +40,7 @@ public class BestHandIsAFourOfAKindFiveCardHandTest extends TestState implements
     private void givenADeckDealsOutASetOfRandomCardsWithATwoPairToPlayerOne() {
         // tODO make field
         OngoingStubbing<List<Card>> listOngoingStubbing = Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_TWO_PAIR_CARDS_TWO);
-        listOngoingStubbing.thenReturn(PLAYER_WITH_FOUR_OF_KIND);
+        listOngoingStubbing.thenReturn(PLAYER_WITH_FOUR_OF_KIND_ONE);
     }
 
     private void andADeckDealsOutASetOfRandomCardsWithAFourOfAKindToPlayerTwo() {

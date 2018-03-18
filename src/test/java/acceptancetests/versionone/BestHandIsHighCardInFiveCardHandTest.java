@@ -69,19 +69,19 @@ public class BestHandIsHighCardInFiveCardHandTest extends TestState implements W
     }
 
     private void givenADeckDealsOutASetOfRandomCardsToPlayerOneblah() {
-        org.mockito.Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_HIGH_CARD_CARDS_THREE).thenReturn(PLAYER_TWO_WITH_HIGH_CARD_CARDS_FOUR);
+        org.mockito.Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_HIGH_CARD_CARDS_THREE).thenReturn(PLAYER_WITH_HIGH_CARD_CARDS_FOUR);
     }
 
     private void andADeckDealsOutASetOfRandomCardsToPlayerTwoBlah() {
         testState().interestingGivens.add("Player One Hand", PLAYER_WITH_HIGH_CARD_CARDS_THREE.stream().map(Card::toString).collect(Collectors.joining(", ")));
-        testState().interestingGivens.add("Player Two Hand", PLAYER_TWO_WITH_HIGH_CARD_CARDS_FOUR.stream().map(Card::toString).collect(Collectors.joining(", ")));
+        testState().interestingGivens.add("Player Two Hand", PLAYER_WITH_HIGH_CARD_CARDS_FOUR.stream().map(Card::toString).collect(Collectors.joining(", ")));
         // For readability
     }
 
     private void givenBothPlayersAreDealtAHand() {
-        org.mockito.Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_ONE_DRAW_CARDS).thenReturn(PLAYER_TWO_DRAW_CARDS);
-        testState().interestingGivens.add("Player One Hand", PLAYER_ONE_DRAW_CARDS.stream().map(Card::toString).collect(Collectors.joining(", ")));
-        testState().interestingGivens.add("Player Two Hand",PLAYER_TWO_DRAW_CARDS.stream().map(Card::toString).collect(Collectors.joining(", ")));
+        org.mockito.Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_HIGH_CARD_CARDS_SEVEN).thenReturn(PLAYER_WITH_HIGH_CARD_CARDS_SIX);
+        testState().interestingGivens.add("Player One Hand", PLAYER_WITH_HIGH_CARD_CARDS_SEVEN.stream().map(Card::toString).collect(Collectors.joining(", ")));
+        testState().interestingGivens.add("Player Two Hand", PLAYER_WITH_HIGH_CARD_CARDS_SIX.stream().map(Card::toString).collect(Collectors.joining(", ")));
     }
 
     private void whenAGameOfOneHandWithFiveCardsIsPlayedBetweenTwoPlayers() {

@@ -56,7 +56,7 @@ public class BestHandIsPairInFiveCardHandTest extends TestState implements WithA
     }
 
     private void givenADeckDealsOutASetOfRandomCardsWithAHighCardToPlayerOne() {
-        org.mockito.Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_OTHER_CARDS_TWO).thenReturn(PLAYER_WITH_PAIR_CARDS);
+        org.mockito.Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_HIGH_CARD_CARDS_FIVE).thenReturn(PLAYER_WITH_PAIR_CARDS_ONE);
     }
 
     private void andPlayerOneHasWon() {
@@ -75,8 +75,8 @@ public class BestHandIsPairInFiveCardHandTest extends TestState implements WithA
 
     private void givenBothPlayersAreDealtAHandWithMatchingPair() {
         org.mockito.Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_PAIR_CARDS_THREE).thenReturn(PLAYER_WITH_PAIR_CARDS_FOUR);
-        testState().interestingGivens.add("Player One Hand", PLAYER_ONE_DRAW_CARDS.stream().map(Card::toString).collect(Collectors.joining(", ")));
-        testState().interestingGivens.add("Player Two Hand",PLAYER_TWO_DRAW_CARDS.stream().map(Card::toString).collect(Collectors.joining(", ")));
+        testState().interestingGivens.add("Player One Hand", PLAYER_WITH_HIGH_CARD_CARDS_SEVEN.stream().map(Card::toString).collect(Collectors.joining(", ")));
+        testState().interestingGivens.add("Player Two Hand", PLAYER_WITH_HIGH_CARD_CARDS_SIX.stream().map(Card::toString).collect(Collectors.joining(", ")));
     }
 
     private void andADeckDealsOutASetOfRandomCardsWithAPairToPlayerTwo() {
