@@ -28,13 +28,15 @@ public class PokerHandsCards  {
         List<Card> collect = cards.stream()
                 .sorted(Comparator.comparingInt(card -> card.rank.getLevelCode())) // TODO use ordinal instead
                 .collect(Collectors.toList());
-
-        int difference = abs(collect.get(1).rank.ordinal() - collect.get(collect.size() - 1).rank.ordinal());
-        if (difference == 3 && cards.stream().filter(card -> card.rank.equals(Rank.ACE)).count() == 1) {
-            List<Card> cards2 = Collections.singletonList(collect.get(0));
-            List<Card> cards1 = collect.subList(1, collect.size());
-            return Stream.of(cards1, cards2).flatMap(Collection::stream).collect(Collectors.toList());
+        if (collect.size() == 5) {
+            int difference = abs(collect.get(1).rank.ordinal() - collect.get(collect.size() - 1).rank.ordinal());
+            if (difference == 3 && cards.stream().filter(card -> card.rank.equals(Rank.ACE)).count() == 1) {
+                List<Card> cards2 = Collections.singletonList(collect.get(0));
+                List<Card> cards1 = collect.subList(1, collect.size());
+                return Stream.of(cards1, cards2).flatMap(Collection::stream).collect(Collectors.toList());
+            }
         }
+
         return collect;
     }
 }

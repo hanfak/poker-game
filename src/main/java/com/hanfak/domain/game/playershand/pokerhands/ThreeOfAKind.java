@@ -19,7 +19,7 @@ public class ThreeOfAKind implements PokerHand {
     // TODO use enum valuation instead
     @Override
     public Integer ranking() {
-        return 3;
+        return 4;
     }
 
     @Override

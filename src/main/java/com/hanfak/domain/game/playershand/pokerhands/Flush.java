@@ -19,7 +19,7 @@ public class Flush implements PokerHand {
     // TODO use enum valuation instead
     @Override
     public Integer ranking() {
-        return 4;
+        return 6;
     }
 
     @Override

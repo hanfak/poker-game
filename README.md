@@ -99,6 +99,7 @@ To be added
 * ~~Extract example cards and hands into help classes~~
 * Extract hand evaluator logic for each hand into dependencye
 * dealtCards as type with toString  Display ace as one as last card
+* test rankings
 </details>
 
 ### Useful Stuff

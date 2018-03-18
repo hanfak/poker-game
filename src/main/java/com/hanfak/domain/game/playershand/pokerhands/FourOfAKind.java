@@ -7,11 +7,11 @@ import com.hanfak.domain.game.playershand.PokerHandsCards;
 
 import java.util.List;
 
-public class Straight implements PokerHand {
+public class FourOfAKind implements PokerHand {
     private final PokerHandsCards pokerHandCards; // ORdered list and make it a type with comparable on rank
     private final KickerCards kickers; // Ordered
     // TODO for full house have another field for three and pair
-    public Straight(PokerHandsCards pokerHandCards, KickerCards kickers) {
+    public FourOfAKind(PokerHandsCards pokerHandCards, KickerCards kickers) {
         this.pokerHandCards = pokerHandCards;
         this.kickers = kickers;
     }

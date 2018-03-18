@@ -26,7 +26,17 @@ public class HandEvaluator {
     public PokerHand scoreHand(List<Card> dealtCards) {
         System.out.println(dealtCards);
 
-        if(thereExistsAFlush(dealtCards)) {
+        Map<Rank, List<Card>> cardsGroupedByRank = dealtCards.stream()
+                .collect(Collectors.groupingBy(x -> x.rank));
+
+        List<List<Card>> listOfFourOfAKind = listWinningBestHand(cardsGroupedByRank, 4);
+
+        if (thereExistsAFourOfAKind(listOfFourOfAKind)){
+            List<Card> kickers = dealtCards.stream().filter(card -> !setCardsInWinningHand(listOfFourOfAKind).contains(card)).collect(Collectors.toList());
+            return new FourOfAKind(new PokerHandsCards(setCardsInWinningHand(listOfFourOfAKind)), new KickerCards(kickers));
+        }
+
+        if (thereExistsAFlush(dealtCards)) {
             return new Flush(new PokerHandsCards(dealtCards), new KickerCards(emptyList()));
         }
 
@@ -35,8 +45,6 @@ public class HandEvaluator {
             return new Straight(new PokerHandsCards(dealtCards), new KickerCards(emptyList()));
         }
 
-        Map<Rank, List<Card>> cardsGroupedByRank = dealtCards.stream()
-                .collect(Collectors.groupingBy(x -> x.rank));
 
         List<List<Card>> listOfPairs = listWinningBestHand(cardsGroupedByRank, 2);
         List<List<Card>> listOfThreeOfAKind = listWinningBestHand(cardsGroupedByRank, 3);
@@ -59,6 +67,8 @@ public class HandEvaluator {
         return new HighCard(new PokerHandsCards(Collections.singletonList(dealtCards.get(0))), new KickerCards(dealtCards.subList(1, dealtCards.size())));
     }
 
+
+
     private boolean thereExistsAFlush(List<Card> dealtCards) {
         return dealtCards.stream().map(card -> card.suit).distinct().count() == 1;
     }
@@ -79,13 +89,17 @@ public class HandEvaluator {
         return x -> numberOfGroups == x.size();
     }
 
-    private List<Card> setCardsInWinningHand(List<List<Card>> numberOfPairs) {
-        return numberOfPairs.stream().flatMap(Collection::stream)
+    private List<Card> setCardsInWinningHand(List<List<Card>> numberOfGroupings) {
+        return numberOfGroupings.stream().flatMap(Collection::stream)
                 .collect(Collectors.toList());
     }
 
-    private boolean thereExistsThreeOfAKindOfSameRank(List<List<Card>> numberOfThreeOfKinds) {
-        return !numberOfThreeOfKinds.isEmpty();
+    private boolean thereExistsAFourOfAKind(List<List<Card>> listOfFourOfAKind) {
+        return !listOfFourOfAKind.isEmpty();
+    }
+
+    private boolean thereExistsThreeOfAKindOfSameRank(List<List<Card>> listOfThreeOfKinds) {
+        return !listOfThreeOfKinds.isEmpty();
     }
 
     private boolean thereExistsOnePairOfCardsOfSameRank(List<List<Card>> numberOfPairs) {
