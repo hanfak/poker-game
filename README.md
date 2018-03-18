@@ -100,6 +100,7 @@ To be added
 * Extract hand evaluator logic for each hand into dependencye
 * dealtCards as type with toString  Display ace as one as last card
 * test rankings
+* ATest add assertion on poker hand type that won or drew
 </details>
 
 ### Useful Stuff

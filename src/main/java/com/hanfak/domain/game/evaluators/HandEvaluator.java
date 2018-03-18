@@ -30,6 +30,10 @@ public class HandEvaluator {
         List<List<Card>> listOfThreeOfAKind = listWinningBestHand(cardsGroupedByRank(dealtCards), 3);
         List<List<Card>> listOfPairs = listWinningBestHand(cardsGroupedByRank(dealtCards), 2);
 
+        if (thereExistsAStraightFlushIn(dealtCards)) {
+            return new StraightFlush(new PokerHandsCards(dealtCards), new KickerCards(emptyList()));
+        }
+
         if (thereExistsAFourOfAKind(listOfFourOfAKind)){
             List<Card> kickers = dealtCards.stream().filter(card -> !setCardsInWinningHand(listOfFourOfAKind).contains(card)).collect(Collectors.toList());
             return new FourOfAKind(new PokerHandsCards(setCardsInWinningHand(listOfFourOfAKind)), new KickerCards(kickers));
@@ -66,6 +70,10 @@ public class HandEvaluator {
         return new HighCard(new PokerHandsCards(Collections.singletonList(dealtCards.get(0))), new KickerCards(dealtCards.subList(1, dealtCards.size())));
     }
 
+    private boolean thereExistsAStraightFlushIn(List<Card> dealtCards) {
+        return thereExistsAFlush(dealtCards) && thereExistsAStraightIn(dealtCards);
+    }
+
     private Map<Rank, List<Card>> cardsGroupedByRank(List<Card> dealtCards) {
         return dealtCards.stream()
                 .collect(Collectors.groupingBy(x -> x.rank));
@@ -75,7 +83,6 @@ public class HandEvaluator {
         return 2 == cardsGroupedByRank(dealtCards).values().size();
     }
 
-
     private boolean thereExistsAFlush(List<Card> dealtCards) {
         return dealtCards.stream().map(card -> card.suit).distinct().count() == 1;
     }
@@ -83,7 +90,7 @@ public class HandEvaluator {
     private boolean thereExistsAStraightIn(List<Card> dealtCards) {
         int difference = abs(dealtCards.get(0).rank.ordinal() - dealtCards.get(dealtCards.size() - 1).rank.ordinal());
         boolean thereIsAnAceWhichActsAsAOne = difference == 9 && dealtCards.stream().filter(card -> card.rank.equals(Rank.ACE)).count() == 1;
-        return difference == 5 || thereIsAnAceWhichActsAsAOne;
+        return difference == 4 || thereIsAnAceWhichActsAsAOne;
     }
 
     private List<List<Card>> listWinningBestHand(Map<Rank, List<Card>> cardsGroupedByRank, int numberOfGroups) {

@@ -21,11 +21,14 @@ public class CardsExamples {
     public static final Card QUEEN_OF_SPADES = card(QUEEN, SPADE);
 
     public static final Card JACK_OF_DIAMONDS = card(JACK, DIAMOND);
+    public static final Card JACK_OF_SPADES = card(JACK, SPADE);
 
     public static final Card TEN_OF_DIAMONDS = card(TEN, DIAMOND);
+    public static final Card TEN_OF_SPADES = card(TEN, SPADE);
 
     public static final Card NINE_OF_DIAMONDS = card(NINE, DIAMOND);
     public static final Card NINE_OF_CLUBS = card(NINE, CLUB);
+    public static final Card NINE_OF_SPADES = card(NINE, SPADE);
 
     public static final Card EIGHT_OF_SPADES = card(EIGHT, SPADE);
     public static final Card EIGHT_OF_DIAMONDS = card(EIGHT, DIAMOND);

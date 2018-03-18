@@ -15,30 +15,27 @@ import java.util.List;
 import java.util.Optional;
 
 import static com.hanfak.domain.game.Player.player;
-import static testinfrastructure.HandsExamples.PLAYER_WITH_PAIR_CARDS_ONE;
+import static testinfrastructure.HandsExamples.PLAYER_WITH_STRAIGHT_FLUSH_ONE;
+import static testinfrastructure.HandsExamples.PLAYER_WITH_STRAIGHT_FLUSH_TWO;
 import static testinfrastructure.HandsExamples.PLAYER_WITH_STRAIGHT_ONE;
-import static testinfrastructure.HandsExamples.PLAYER_WITH_STRAIGHT_TWO;
-import static testinfrastructure.HandsExamples.PLAYER_WITH_THREE_OF_A_KIND_CARDS_ONE;
 
-public class BestHandIsStraightInFiveCardHandTest extends TestState implements WithAssertions {
+public class BestHandIsStraightFlushInFiveCardHandTest extends TestState implements WithAssertions {
     @Test
     public void playerWinsWithABetterHand() throws Exception {
-        givenADeckDealsOutASetOfRandomCardsWithAStraightAceHighoPlayerTwo();
-        givenADeckDealsOutASetOfRandomCardsWithAPairToPlayerOne();
+        givenADeckDealsOutASetOfRandomCardsWithAStraightFlushAceHighoPlayerTwo();
+        givenADeckDealsOutASetOfRandomCardsWithAStraightToPlayerOne();
 
         whenAGameOfOneHandWithFiveCardsIsPlayedBetweenTwoPlayers();
 
         andPlayerOneHasLost();
         andPlayerTwoHasWon();
-    }
-
-    private void givenADeckDealsOutASetOfRandomCardsWithAPairToPlayerOne() {
+        andPokerHandThatWonIsAStraightFlush();
 
     }
 
     @Test
     public void playerWinsWithABetterHandWhereAceIsAOne() throws Exception {
-        givenADeckDealsOutASetOfRandomCardsWithAThreeOfAKindToPlayerOne();
+        givenADeckDealsOutASetOfRandomCardsWithAStraightToPlayerOne();
         andADeckDealsOutASetOfRandomCardsWithAStraightoPlayerTwo();
 
         whenAGameOfOneHandWithFiveCardsIsPlayedBetweenTwoPlayers();
@@ -47,18 +44,14 @@ public class BestHandIsStraightInFiveCardHandTest extends TestState implements W
         andPlayerTwoHasWon();
     }
 
-    private void givenADeckDealsOutASetOfRandomCardsWithAStraightAceHighoPlayerTwo() {
-        Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_PAIR_CARDS_ONE).thenReturn(PLAYER_WITH_STRAIGHT_ONE);
+    private void givenADeckDealsOutASetOfRandomCardsWithAStraightFlushAceHighoPlayerTwo() {
+        Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_STRAIGHT_ONE).thenReturn(PLAYER_WITH_STRAIGHT_FLUSH_ONE);
     }
-    // TODO test player two wins with three vs two
-    // TODO test same bestHand, but better rank wins
-    // TODO test Draw case
-    // TODO test same bestHand with same rank, but next highest card is different
 
-
-    private void givenADeckDealsOutASetOfRandomCardsWithAThreeOfAKindToPlayerOne() {
-        Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_THREE_OF_A_KIND_CARDS_ONE).thenReturn(PLAYER_WITH_STRAIGHT_TWO);
+    private void givenADeckDealsOutASetOfRandomCardsWithAStraightToPlayerOne() {
+        Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_STRAIGHT_ONE).thenReturn(PLAYER_WITH_STRAIGHT_FLUSH_TWO);
     }
+
 
     private void andADeckDealsOutASetOfRandomCardsWithAStraightoPlayerTwo() {
         // TODO add interesting givens
@@ -66,6 +59,15 @@ public class BestHandIsStraightInFiveCardHandTest extends TestState implements W
 
     private void whenAGameOfOneHandWithFiveCardsIsPlayedBetweenTwoPlayers() {
         play = pokerGame.play(cardDealer, playerOne, playerTwo);
+    }
+
+    // TODO test same bestHand with same rank, but next highest card is different
+    // TODO test Draw case
+    // TODO test same bestHand, but better rank wins
+    // TODO test player two wins with three vs two
+    private void andPokerHandThatWonIsAStraightFlush() {
+        Optional<PlayerResult> first = play.stream().filter(playerResult -> Result.WIN.equals(playerResult.result)).findFirst();
+        assertThat(first.get().hand.getClass().getSimpleName()).isEqualTo("StraightFlush");
     }
 
     @SuppressWarnings("ConstantConditions")
