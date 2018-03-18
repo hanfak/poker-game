@@ -23,8 +23,6 @@ import static testinfrastructure.HandsExamples.*;
 
 @RunWith(SpecRunner.class)
 public class BestHandIsHighCardInFiveCardHandTest extends TestState implements WithAssertions {
-   // extend junit
-    //static classes and wiring
 
     @Test
     public void playerOneWinsOneRoundGameWithTheSameBestHandWithDifferentCards() throws Exception {
@@ -62,7 +60,6 @@ public class BestHandIsHighCardInFiveCardHandTest extends TestState implements W
 
     private void givenADeckDealsOutASetOfRandomCardsToPlayerOne() {
         org.mockito.Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_ONE_HIGH_CARD_CARDS_ONE).thenReturn(PLAYER_WITH_HIGH_CARD_CARDS_TWO);
-
     }
 
     private void andADeckDealsOutASetOfRandomCardsToPlayerTwo() {

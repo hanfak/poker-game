@@ -5,10 +5,7 @@ import com.hanfak.domain.cards.Rank;
 import com.hanfak.domain.game.playershand.KickerCards;
 import com.hanfak.domain.game.playershand.PokerHand;
 import com.hanfak.domain.game.playershand.PokerHandsCards;
-import com.hanfak.domain.game.playershand.pokerhands.HighCard;
-import com.hanfak.domain.game.playershand.pokerhands.Pair;
-import com.hanfak.domain.game.playershand.pokerhands.ThreeOfAKind;
-import com.hanfak.domain.game.playershand.pokerhands.TwoPair;
+import com.hanfak.domain.game.playershand.pokerhands.*;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -17,39 +14,50 @@ import java.util.Map;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import static java.lang.Math.abs;
+import static java.util.Collections.emptyList;
+
 // TODO Unit test for each type of hand
 // TODO extract to class the evaluator for each bestHand
 // MOve most of the logic to classes represnting the type of hand
+
 public class HandEvaluator {
 
     public PokerHand scoreHand(List<Card> dealtCards) {
         System.out.println(dealtCards);
 
+        if (thereExistsAStraightIn(dealtCards)) {
+            return new Straight(new PokerHandsCards(dealtCards), new KickerCards(emptyList()));
+        }
+
         Map<Rank, List<Card>> cardsGroupedByRank = dealtCards.stream()
                 .collect(Collectors.groupingBy(x -> x.rank));
 
-        List<List<Card>> numberOfPairs = listWinningBestHand(cardsGroupedByRank, 2);
-        List<Card> cardsInWinningHand = setCardsInWinningHand(numberOfPairs);
+        List<List<Card>> listOfPairs = listWinningBestHand(cardsGroupedByRank, 2);
+        List<List<Card>> listOfThreeOfAKind = listWinningBestHand(cardsGroupedByRank, 3);
 
-        List<List<Card>> winningBestHand = listWinningBestHand(cardsGroupedByRank, 3);
-        List<Card> cardsInWinningHand1 = setCardsInWinningHand(winningBestHand);
-
-        if (thereExistsThreeOfAKindOfSameRank(winningBestHand)) {
-            List<Card> kickers = dealtCards.stream().filter(card -> !cardsInWinningHand1.contains(card)).collect(Collectors.toList());
-            return new ThreeOfAKind(new PokerHandsCards(cardsInWinningHand1), new KickerCards(kickers));
+        if (thereExistsThreeOfAKindOfSameRank(listOfThreeOfAKind)) {
+            List<Card> kickers = dealtCards.stream().filter(card -> !setCardsInWinningHand(listOfThreeOfAKind).contains(card)).collect(Collectors.toList());
+            return new ThreeOfAKind(new PokerHandsCards(setCardsInWinningHand(listOfThreeOfAKind)), new KickerCards(kickers));
         }
 
-        if (thereExistsTwoPairOfCardsOfSameRank(numberOfPairs)) {
-            List<Card> kickers = dealtCards.stream().filter(card -> !cardsInWinningHand.contains(card)).collect(Collectors.toList());
-            return new TwoPair(new PokerHandsCards(cardsInWinningHand), new KickerCards(kickers));
+        if (thereExistsTwoPairOfCardsOfSameRank(listOfPairs)) {
+            List<Card> kickers = dealtCards.stream().filter(card -> !setCardsInWinningHand(listOfPairs).contains(card)).collect(Collectors.toList());
+            return new TwoPair(new PokerHandsCards(setCardsInWinningHand(listOfPairs)), new KickerCards(kickers));
         }
 
-        if (thereExistsOnePairOfCardsOfSameRank(numberOfPairs)) {
-            List<Card> kickers = dealtCards.stream().filter(card -> !cardsInWinningHand.contains(card)).collect(Collectors.toList());
-            return new Pair(new PokerHandsCards(cardsInWinningHand), new KickerCards(kickers));
+        if (thereExistsOnePairOfCardsOfSameRank(listOfPairs)) {
+            List<Card> kickers = dealtCards.stream().filter(card -> !setCardsInWinningHand(listOfPairs).contains(card)).collect(Collectors.toList());
+            return new Pair(new PokerHandsCards(setCardsInWinningHand(listOfPairs)), new KickerCards(kickers));
         }
 
         return new HighCard(new PokerHandsCards(Collections.singletonList(dealtCards.get(0))), new KickerCards(dealtCards.subList(1, dealtCards.size())));
+    }
+
+    private boolean thereExistsAStraightIn(List<Card> dealtCards) {
+        int difference = abs(dealtCards.get(0).rank.ordinal() - dealtCards.get(dealtCards.size() - 1).rank.ordinal());
+        boolean thereIsAnAceWhichActsAsAOne = difference == 10 && dealtCards.stream().filter(card -> card.rank.equals(Rank.ACE)).count() == 1;
+        return difference == 5 || thereIsAnAceWhichActsAsAOne;
     }
 
     private List<List<Card>> listWinningBestHand(Map<Rank, List<Card>> cardsGroupedByRank, int numberOfGroups) {

@@ -35,4 +35,7 @@ public class CardsExamples {
     public static final Card KING_OF_HEARTS = card(KING, HEART);
     public static final Card KING_OF_DIAMONDS = card(KING, DIAMOND);
     public static final Card TWO_OF_SPADES = card(TWO, SPADE);
+    public static final Card QUEEN_OF_SPADES = card(QUEEN, SPADE);
+    public static final Card TEN_OF_DIAMONDS = card(TEN, DIAMOND);
+    public static final Card NINE_OF_CLUBS = card(NINE, CLUB);
 }

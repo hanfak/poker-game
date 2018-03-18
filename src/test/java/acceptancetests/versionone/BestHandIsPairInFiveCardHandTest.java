@@ -21,6 +21,8 @@ import static testinfrastructure.HandsExamples.*;
 
 public class BestHandIsPairInFiveCardHandTest extends TestState implements WithAssertions {
 
+    // TODO player one wins with pair against high card
+    // TODO player wins with kicker card when same pairs
     @Test
     public void playerWinsWithABetterHand() throws Exception {
         givenADeckDealsOutASetOfRandomCardsWithAHighCardToPlayerOne();
@@ -52,8 +54,6 @@ public class BestHandIsPairInFiveCardHandTest extends TestState implements WithA
         thenPlayerOneHasDrawn();
         andPlayerTwoHasDrawn();
     }
-
-    // TODO test both pairs with same rank, but next or second next card is different
 
     private void givenADeckDealsOutASetOfRandomCardsWithAHighCardToPlayerOne() {
         org.mockito.Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_OTHER_CARDS_TWO).thenReturn(PLAYER_WITH_PAIR_CARDS);

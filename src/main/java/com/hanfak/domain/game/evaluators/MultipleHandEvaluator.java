@@ -24,7 +24,7 @@ public class MultipleHandEvaluator {
             }
             return determinePlayerResultFromHighestKickerCard(players);
         } else {
-            return determinePlayerResultByPokerHandCards(players);
+            return determinePlayerResultFromPokerHandCards(players);
         }
     }
 
@@ -47,7 +47,7 @@ public class MultipleHandEvaluator {
     }
 
     // TODO refactor dry up
-    private List<PlayerResult> determinePlayerResultByPokerHandCards(List<Player> players) {
+    private List<PlayerResult> determinePlayerResultFromPokerHandCards(List<Player> players) {
         List<Card> playerOnePokerHandCards = players.get(0).pokerHand.getPokerHandsCards();
         List<Card> playerTwoPokerHandCards = players.get(1).pokerHand.getPokerHandsCards();
         return calculateResultBasedOnHighestDifferentCard(players, playerOnePokerHandCards, playerTwoPokerHandCards, playerOnePokerHandCards.size());

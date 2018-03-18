@@ -15,19 +15,35 @@ import java.util.List;
 import java.util.Optional;
 
 import static com.hanfak.domain.game.Player.player;
-import static testinfrastructure.HandsExamples.PLAYER_WITH_PAIR_CARDS;
+import static testinfrastructure.HandsExamples.PLAYER_WITH_STRAIGHT;
+import static testinfrastructure.HandsExamples.PLAYER_WITH_STRAIGHT_ONE;
 import static testinfrastructure.HandsExamples.PLAYER_WITH_THREE_OF_A_KIND_CARDS;
 
-public class BestHandIsThreeOfAKindInFiveCardHandTest extends TestState implements WithAssertions {
+public class BestHandIsStraightInFiveCardHandTest extends TestState implements WithAssertions {
     @Test
     public void playerWinsWithABetterHand() throws Exception {
+        givenADeckDealsOutASetOfRandomCardsWithAStraightAceHighoPlayerTwo();
         givenADeckDealsOutASetOfRandomCardsWithAThreeOfAKindToPlayerOne();
-        andADeckDealsOutASetOfRandomCardsWithAHighCardToPlayerTwo();
 
         whenAGameOfOneHandWithFiveCardsIsPlayedBetweenTwoPlayers();
 
-        andPlayerOneHasWon();
-        andPlayerTwoHasLost();
+        andPlayerOneHasLost();
+        andPlayerTwoHasWon();
+    }
+
+    @Test
+    public void playerWinsWithABetterHandWhereAceIsAOne() throws Exception {
+        givenADeckDealsOutASetOfRandomCardsWithAThreeOfAKindToPlayerOne();
+        andADeckDealsOutASetOfRandomCardsWithAStraightoPlayerTwo();
+
+        whenAGameOfOneHandWithFiveCardsIsPlayedBetweenTwoPlayers();
+
+        andPlayerOneHasLost();
+        andPlayerTwoHasWon();
+    }
+
+    private void givenADeckDealsOutASetOfRandomCardsWithAStraightAceHighoPlayerTwo() {
+        Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_THREE_OF_A_KIND_CARDS).thenReturn(PLAYER_WITH_STRAIGHT);
     }
     // TODO test player two wins with three vs two
     // TODO test same bestHand, but better rank wins
@@ -36,10 +52,10 @@ public class BestHandIsThreeOfAKindInFiveCardHandTest extends TestState implemen
 
 
     private void givenADeckDealsOutASetOfRandomCardsWithAThreeOfAKindToPlayerOne() {
-        org.mockito.Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_THREE_OF_A_KIND_CARDS).thenReturn(PLAYER_WITH_PAIR_CARDS);
+        Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_THREE_OF_A_KIND_CARDS).thenReturn(PLAYER_WITH_STRAIGHT_ONE);
     }
 
-    private void andADeckDealsOutASetOfRandomCardsWithAHighCardToPlayerTwo() {
+    private void andADeckDealsOutASetOfRandomCardsWithAStraightoPlayerTwo() {
         // TODO add interesting givens
     }
 
@@ -73,6 +89,8 @@ public class BestHandIsThreeOfAKindInFiveCardHandTest extends TestState implemen
         assertThat(result).isEqualTo(Result.WIN);
         assertThat(play.get(0).playerName).isEqualTo("Player One");
     }
+
+
 
     private static final  String VERSION = "1.0";
 
