@@ -26,7 +26,12 @@ public class HandEvaluator {
     public PokerHand scoreHand(List<Card> dealtCards) {
         System.out.println(dealtCards);
 
+        if(thereExistsAFlush(dealtCards)) {
+            return new Flush(new PokerHandsCards(dealtCards), new KickerCards(emptyList()));
+        }
+
         if (thereExistsAStraightIn(dealtCards)) {
+            // tODO test 3 2 A K Q is only high card not straight
             return new Straight(new PokerHandsCards(dealtCards), new KickerCards(emptyList()));
         }
 
@@ -52,6 +57,10 @@ public class HandEvaluator {
         }
 
         return new HighCard(new PokerHandsCards(Collections.singletonList(dealtCards.get(0))), new KickerCards(dealtCards.subList(1, dealtCards.size())));
+    }
+
+    private boolean thereExistsAFlush(List<Card> dealtCards) {
+        return dealtCards.stream().map(card -> card.suit).distinct().count() == 1;
     }
 
     private boolean thereExistsAStraightIn(List<Card> dealtCards) {
