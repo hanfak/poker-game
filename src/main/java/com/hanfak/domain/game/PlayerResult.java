@@ -22,6 +22,7 @@ public class PlayerResult {
         return new PlayerResult(playerName, result, hand);
     }
 
+    // TODO Display ace as one as last card
     @Override
     public String toString() {
         return "PlayerResult{" +

@@ -65,7 +65,7 @@ public class HandEvaluator {
 
     private boolean thereExistsAStraightIn(List<Card> dealtCards) {
         int difference = abs(dealtCards.get(0).rank.ordinal() - dealtCards.get(dealtCards.size() - 1).rank.ordinal());
-        boolean thereIsAnAceWhichActsAsAOne = difference == 10 && dealtCards.stream().filter(card -> card.rank.equals(Rank.ACE)).count() == 1;
+        boolean thereIsAnAceWhichActsAsAOne = difference == 9 && dealtCards.stream().filter(card -> card.rank.equals(Rank.ACE)).count() == 1;
         return difference == 5 || thereIsAnAceWhichActsAsAOne;
     }
 

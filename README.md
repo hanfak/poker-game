@@ -98,6 +98,7 @@ To be added
     * test multiple players, keep track of games won
 * ~~Extract example cards and hands into help classes~~
 * Extract hand evaluator logic for each hand into dependencye
+* dealtCards as type with toString  Display ace as one as last card
 </details>
 
 ### Useful Stuff
