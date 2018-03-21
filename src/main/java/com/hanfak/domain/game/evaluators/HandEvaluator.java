@@ -7,10 +7,7 @@ import com.hanfak.domain.game.playershand.PokerHand;
 import com.hanfak.domain.game.playershand.PokerHandsCards;
 import com.hanfak.domain.game.playershand.pokerhands.*;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -48,6 +45,7 @@ public class HandEvaluator {
         }
 
         if (thereExistsAStraightIn(dealtCards)) {
+            // NOT working
             // tODO test 3 2 A K Q is only high card not straight
             return new Straight(new PokerHandsCards(dealtCards), new KickerCards(emptyList()));
         }
@@ -88,9 +86,19 @@ public class HandEvaluator {
     }
 
     private boolean thereExistsAStraightIn(List<Card> dealtCards) {
-        int difference = abs(dealtCards.get(0).rank.ordinal() - dealtCards.get(dealtCards.size() - 1).rank.ordinal());
-        boolean thereIsAnAceWhichActsAsAOne = difference == 9 && dealtCards.stream().filter(card -> card.rank.equals(Rank.ACE)).count() == 1;
-        return difference == 4 || thereIsAnAceWhichActsAsAOne;
+        List<Card> dealtCardsWithAce = dealtCards.stream().filter(card -> card.rank.equals(Rank.ACE)).collect(Collectors.toList());
+        if (dealtCards.stream().map(card -> card.rank).distinct().count() != 5) {
+            return false;
+        }
+        if (dealtCardsWithAce.isEmpty()) {
+            int difference = abs(dealtCards.get(0).rank.ordinal() - dealtCards.get(dealtCards.size() - 1).rank.ordinal());
+            return 4 == difference;
+        } else {
+            List<Rank> collect = dealtCards.stream().map(card -> card.rank).collect(Collectors.toList());
+            boolean b = collect.containsAll(Arrays.asList(Rank.ACE, Rank.TWO, Rank.THREE, Rank.FOUR, Rank.FIVE));
+            boolean c = collect.containsAll(Arrays.asList(Rank.ACE, Rank.KING,Rank.QUEEN, Rank.JACK, Rank.TEN));
+            return b || c;
+        }
     }
 
     private List<List<Card>> listWinningBestHand(Map<Rank, List<Card>> cardsGroupedByRank, int numberOfGroups) {
@@ -124,17 +132,3 @@ public class HandEvaluator {
         return 2 == numberOfPairs.size();
     }
 }
-
-/*
-
-Order cards in terms of their hands ie AA543 for high/pairs/three/four, for straight/flush/full no need to
-
-* Order hand.cards
-* Look for each type of hand in Winning hand, start from best to worst
-* if match return that winningHand
-*
-* Could inject list of evaluators for each hand, flush evaluator, straight evaluator,
-* all implementing evaluator interface, to allow for different impl but this logic should never change
-*
-*
-* */

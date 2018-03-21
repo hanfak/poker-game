@@ -19,6 +19,7 @@ public class DeckTest implements WithAssertions {
         Deck deck = new Deck();
 
         List<Card> cardsInDeck = deck.cardsInDeck;
+
         assertThat(cardsInDeck.size()).isEqualTo(52);
         assertThat(cardsInDeck.stream().distinct().count()).isEqualTo(52);
     }

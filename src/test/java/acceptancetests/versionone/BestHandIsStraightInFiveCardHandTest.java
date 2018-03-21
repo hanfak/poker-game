@@ -15,11 +15,9 @@ import java.util.List;
 import java.util.Optional;
 
 import static com.hanfak.domain.game.Player.player;
-import static testinfrastructure.HandsExamples.PLAYER_WITH_PAIR_CARDS_ONE;
-import static testinfrastructure.HandsExamples.PLAYER_WITH_STRAIGHT_ONE;
-import static testinfrastructure.HandsExamples.PLAYER_WITH_STRAIGHT_TWO;
-import static testinfrastructure.HandsExamples.PLAYER_WITH_THREE_OF_A_KIND_CARDS_ONE;
+import static testinfrastructure.HandsExamples.*;
 
+// TODO Fix this
 public class BestHandIsStraightInFiveCardHandTest extends TestState implements WithAssertions {
     @Test
     public void playerWinsWithABetterHand() throws Exception {
@@ -47,6 +45,52 @@ public class BestHandIsStraightInFiveCardHandTest extends TestState implements W
         andPlayerTwoHasWon();
     }
 
+    @Test
+    public void playerWinsWithABetterHandWhereAceIsNotIncluded() throws Exception {
+        givenADeckDealsOutASetOfRandomCardsWithAStraightButNoAceToPlayerOne();
+        andADeckDealsOutASetOfRandomCardsWithThreeOfAKindPlayerTwo();
+
+        whenAGameOfOneHandWithFiveCardsIsPlayedBetweenTwoPlayers();
+
+        andPlayerOneHasWon();
+        andPlayerTwoHasLost();
+    }
+
+    @Test
+    public void playerDoesNotWinIfDuplicateCard() throws Exception {
+        givenADeckDealsOutASetOfRandomCardsWithADuplicateCardButNoAceToPlayerOne();
+        andADeckDealsOutASetOfRandomCardsWithThreeOfAKindPlayerTwo();
+
+        whenAGameOfOneHandWithFiveCardsIsPlayedBetweenTwoPlayers();
+
+        andPlayerOneHasLost();
+        andPlayerTwoHasWon();
+    }
+
+    @Test
+    public void playerDoesNotWinIfIllegalStraight() throws Exception {
+        givenADeckDealsOutASetOfRandomCardsWithAIllegalStraightButNoAceToPlayerOne();
+        andADeckDealsOutASetOfRandomCardsWithThreeOfAKindPlayerTwo();
+
+        whenAGameOfOneHandWithFiveCardsIsPlayedBetweenTwoPlayers();
+
+        andPlayerOneHasLost();
+        andPlayerTwoHasWon();
+    }
+
+
+    private void givenADeckDealsOutASetOfRandomCardsWithAIllegalStraightButNoAceToPlayerOne() {
+        Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_NOT_A_STRAIGHT_TWO).thenReturn(PLAYER_WITH_THREE_OF_A_KIND_CARDS_ONE);
+    }
+
+    private void givenADeckDealsOutASetOfRandomCardsWithADuplicateCardButNoAceToPlayerOne() {
+        Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_NOT_A_STRAIGHT_ONE).thenReturn(PLAYER_WITH_THREE_OF_A_KIND_CARDS_ONE);
+    }
+
+    private void givenADeckDealsOutASetOfRandomCardsWithAStraightButNoAceToPlayerOne() {
+        Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_STRAIGHT_THREE).thenReturn(PLAYER_WITH_THREE_OF_A_KIND_CARDS_ONE);
+    }
+
     private void givenADeckDealsOutASetOfRandomCardsWithAStraightAceHighoPlayerTwo() {
         Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_PAIR_CARDS_ONE).thenReturn(PLAYER_WITH_STRAIGHT_ONE);
     }
@@ -61,6 +105,10 @@ public class BestHandIsStraightInFiveCardHandTest extends TestState implements W
     }
 
     private void andADeckDealsOutASetOfRandomCardsWithAStraightoPlayerTwo() {
+        // TODO add interesting givens
+    }
+
+    private void andADeckDealsOutASetOfRandomCardsWithThreeOfAKindPlayerTwo() {
         // TODO add interesting givens
     }
 
