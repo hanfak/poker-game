@@ -101,6 +101,7 @@ To be added
 * dealtCards as type with toString  Display ace as one as last card
 * test rankings
 * ATest add assertion on poker hand type that won or drew
+* Improve logic checking if it is a straight
 </details>
 
 ### Useful Stuff

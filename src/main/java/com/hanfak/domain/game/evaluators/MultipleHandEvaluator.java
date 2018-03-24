@@ -60,6 +60,7 @@ public class MultipleHandEvaluator {
     }
 
     // tODO refactor remove for loop
+    // TODO have comparator in KickersCard
     private List<PlayerResult> calculateResultBasedOnHighestDifferentCard(List<Player> players, List<Card> playerOneCards, List<Card> playerTwoCards, int cardsSize) {
         List<PlayerResult> playerResults = null;
         for (int position = 0; position < cardsSize; position++) {

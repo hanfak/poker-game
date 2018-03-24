@@ -40,7 +40,7 @@ public class VersionOneGame {
 
     private Player dealHand(Player player) {
         List<Card> dealtCards = cardDealer.dealHand(5);
-        PokerHand pokerHand = handEvaluator.scoreHand(dealtCards);
+        PokerHand pokerHand = handEvaluator.setPokerHand(dealtCards);
         return player(player.playerName, dealtCards, pokerHand);
     }
 
