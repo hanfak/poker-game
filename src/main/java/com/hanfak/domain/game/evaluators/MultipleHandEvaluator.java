@@ -13,14 +13,9 @@ import java.util.stream.Collectors;
 // TODO need to unit test
 public class MultipleHandEvaluator {
     public List<PlayerResult> compareAllPlayersHands(List<Player> players) {
-        // simplify, order players by pokerhand ranking, then set winners and losers
-        if (playerOnePokerHandIsBetterRankedThenPlayerTwoPokerHand(players)) {
-            return assignPlayerOneWinsWithBestPokerHand(players);
+        if (pokerHandsHaveDifferentRankings(players)) {
+            return determinePlayerResultWherePokerHandsAreDifferentRankings(players);
         }
-        if (playerTwoPokerHandIsBetterRankedThenPlayerOnePokerHand(players)) {
-            return assignPlayerTwoWinsWithBestPokerHand(players);
-        }
-
         if (pokerHandCardsAreTheSame(players)) {
             return determinePlayerResultByKickerCards(players);
         } else {
@@ -28,12 +23,21 @@ public class MultipleHandEvaluator {
         }
     }
 
+    private boolean pokerHandsHaveDifferentRankings(List<Player> players) {
+        return players.stream().map(x -> x.pokerHand.ranking()).distinct().count() != 1;
+    }
+
+    private List<PlayerResult> determinePlayerResultWherePokerHandsAreDifferentRankings(List<Player> players) {
+        List<Player> playersOrderedByRankingOfPokerHand = players.stream()
+                .sorted(Comparator.<Player>comparingInt(p -> p.pokerHand.ranking()).reversed())
+                .collect(Collectors.toList());
+        return setWinnersAndLosersPlayerResults(playersOrderedByRankingOfPokerHand);
+    }
+
     private List<PlayerResult> determinePlayerResultByPokerHandCards(List<Player> players) {
-        System.out.println("players = " + players);
         List<Player> orderPlayers = players.stream()
                 .sorted(Comparator.comparing(p -> p.pokerHand.getPokerHandsCards()))
                 .collect(Collectors.toList());
-        System.out.println("orderPlayers = " + orderPlayers.stream().map(x -> x.pokerHand.getPokerHandsCards().getCards()).collect(Collectors.toList()));
         return setWinnersAndLosersPlayerResults(orderPlayers);
     }
 
@@ -63,30 +67,8 @@ public class MultipleHandEvaluator {
                 .distinct().count() == 1;
     }
 
-    private boolean playerTwoPokerHandIsBetterRankedThenPlayerOnePokerHand(List<Player> players) {
-        return players.get(0).pokerHand.ranking() < players.get(1).pokerHand.ranking();
-    }
-
-    private boolean playerOnePokerHandIsBetterRankedThenPlayerTwoPokerHand(List<Player> players) {
-        return players.get(0).pokerHand.ranking() > players.get(1).pokerHand.ranking();
-    }
-
     private boolean pokerHandCardsAreTheSame(List<Player> players) {
         return players.get(0).pokerHand.getPokerHandsCards().getCards().stream().map(card -> card.rank.ordinal()).collect(Collectors.toList())
                 .equals(players.get(1).pokerHand.getPokerHandsCards().getCards().stream().map(card -> card.rank.ordinal()).collect(Collectors.toList()));
-    }
-
-    private List<PlayerResult> assignPlayerTwoWinsWithBestPokerHand(List<Player> players) {
-        return setPlayersResults(players, Result.LOSS, Result.WIN);
-    }
-
-    private List<PlayerResult> assignPlayerOneWinsWithBestPokerHand(List<Player> players) {
-        return setPlayersResults(players, Result.WIN, Result.LOSS);
-    }
-
-    private List<PlayerResult> setPlayersResults(List<Player> players, Result playerOneResults, Result playerTwoResults) {
-        PlayerResult playerOneResult = PlayerResult.playerResult(players.get(0).playerName, playerOneResults, players.get(0).pokerHand);
-        PlayerResult playerTwoResult = PlayerResult.playerResult(players.get(1).playerName, playerTwoResults, players.get(1).pokerHand);
-        return Arrays.asList(playerOneResult, playerTwoResult);
     }
 }
