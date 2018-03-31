@@ -5,7 +5,6 @@ import com.hanfak.domain.cards.Card;
 import com.hanfak.domain.deck.CardDealer;
 import com.hanfak.domain.game.Player;
 import com.hanfak.domain.game.PlayerResult;
-import com.hanfak.domain.game.Result;
 import com.hanfak.wiring.PokerGame;
 import org.assertj.core.api.WithAssertions;
 import org.junit.Before;
@@ -60,8 +59,8 @@ public class BestHandIsPairInFiveCardHandTest extends TestState implements WithA
     }
 
     private void andPlayerOneHasWon() {
-        Result result = play.get(0).result;
-        assertThat(result).isEqualTo(Result.WIN);
+        Integer result = play.get(0).result;
+        assertThat(result).isEqualTo(1);
         assertThat(play.get(0).playerName).isEqualTo("Player One");
     }
 
@@ -90,7 +89,7 @@ public class BestHandIsPairInFiveCardHandTest extends TestState implements WithA
     @SuppressWarnings("ConstantConditions")
     private void andPlayerOneHasLost() {
         Optional<PlayerResult> first = play.stream().filter(playerResult -> "Player One".equals(playerResult.playerName)).findFirst();
-        assertThat(first.get().result).isEqualTo(Result.LOSS);
+        assertThat(first.get().result).isEqualTo(2);
         assertThat(first.get().playerName).isEqualTo("Player One");
 
     }
@@ -98,18 +97,18 @@ public class BestHandIsPairInFiveCardHandTest extends TestState implements WithA
     @SuppressWarnings("ConstantConditions")
     private void andPlayerTwoHasWon() {
         Optional<PlayerResult> first = play.stream().filter(playerResult -> "Player Two".equals(playerResult.playerName)).findFirst();
-        assertThat(first.get().result).isEqualTo(Result.WIN);
+        assertThat(first.get().result).isEqualTo(1);
         assertThat(first.get().playerName).isEqualTo("Player Two");
     }
 
     private void andPlayerTwoHasDrawn() {
-        Result result = play.get(1).result;
-        assertThat(result).isEqualTo(Result.DRAW);
+        Integer result = play.get(1).result;
+        assertThat(result).isEqualTo(1);
     }
 
     private void thenPlayerOneHasDrawn() {
-        Result result = play.get(0).result;
-        assertThat(result).isEqualTo(Result.DRAW);
+        Integer result = play.get(0).result;
+        assertThat(result).isEqualTo(1);
     }
 
     private static final  String VERSION = "1.0";

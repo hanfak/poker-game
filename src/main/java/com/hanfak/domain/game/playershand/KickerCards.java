@@ -27,23 +27,23 @@ public class KickerCards implements Comparable<KickerCards> {
         return cards;
     }
 
-    private List<Card> orderCards(List<Card> cards) {
-        return cards.stream()
-                .sorted(Comparator.comparingInt(card -> card.rank.getLevelCode()))
-                .collect(Collectors.toList());
-    }
-
     @Override
     public int compareTo(KickerCards otherKickerCards) {
         return COMPARATOR.compare(this, otherKickerCards);
     }
+    // TODO unit test this
+    private List<Card> orderCards(List<Card> cards) {
+        return cards.stream().
+                sorted(Comparator.comparingInt(card -> card.rank.getLevelCode())).
+                collect(Collectors.toList());
+    }
 
     private static final Comparator<KickerCards> COMPARATOR =
-            (l1, l2) -> IntStream.range(0, l1.getCards().size())
-                    .map(i -> Integer.compare(l1.getCards().get(i).rank.getLevelCode(), l2.getCards().get(i).rank.getLevelCode()))
-                    .filter(rankValue -> rankValue != 0)
-                    .findFirst()
-                    .orElse(0);
+            (kickerCardsOne, kickerCardsTwo) -> IntStream.range(0, kickerCardsOne.getCards().size()).
+                    map(i -> Integer.compare(kickerCardsOne.getCards().get(i).rank.getLevelCode(), kickerCardsTwo.getCards().get(i).rank.getLevelCode())).
+                    filter(rankValue -> rankValue != 0).
+                    findFirst().
+                    orElse(0);
 
     @Override
     public boolean equals(Object o) {
@@ -90,6 +90,7 @@ public class KickerCards implements Comparable<KickerCards> {
         List<KickerCards> kickerCards = Arrays.asList(kickerCardsTwo, kickerCardsOne, kickerCardsThree, kickerCardsFour);
         System.out.println("before = " + kickerCards.stream().map(KickerCards::getCards).collect(Collectors.toList()));
         Collections.sort(kickerCards);
+
         System.out.println("after = " + kickerCards.stream().map(KickerCards::getCards).collect(Collectors.toList()));
     }
 

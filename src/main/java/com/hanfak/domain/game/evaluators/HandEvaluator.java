@@ -63,11 +63,14 @@ public class HandEvaluator {
     }
 
     private List<Card> kickersForGroupingsOfCards(List<Card> dealtCards, List<List<Card>> numberOfGroupings) {
-        return dealtCards.stream().filter(card -> !setCardsInWinningHand(numberOfGroupings).contains(card)).collect(Collectors.toList());
+        return dealtCards.stream().
+                filter(card -> !setCardsInWinningHand(numberOfGroupings).contains(card)).
+                collect(Collectors.toList());
     }
 
     private List<Card> setCardsInWinningHand(List<List<Card>> numberOfGroupings) {
-        return numberOfGroupings.stream().flatMap(Collection::stream)
-                .collect(Collectors.toList());
+        return numberOfGroupings.stream().
+                flatMap(Collection::stream).
+                collect(Collectors.toList());
     }
 }

@@ -4,7 +4,6 @@ import com.googlecode.yatspec.state.givenwhenthen.TestState;
 import com.hanfak.domain.deck.CardDealer;
 import com.hanfak.domain.game.Player;
 import com.hanfak.domain.game.PlayerResult;
-import com.hanfak.domain.game.Result;
 import com.hanfak.wiring.PokerGame;
 import org.assertj.core.api.WithAssertions;
 import org.junit.Before;
@@ -66,14 +65,14 @@ public class BestHandIsStraightFlushInFiveCardHandTest extends TestState impleme
     // TODO test same bestHand, but better rank wins
     // TODO test player two wins with three vs two
     private void andPokerHandThatWonIsAStraightFlush() {
-        Optional<PlayerResult> first = play.stream().filter(playerResult -> Result.WIN.equals(playerResult.result)).findFirst();
+        Optional<PlayerResult> first = play.stream().filter(playerResult -> 1 == playerResult.result).findFirst();
         assertThat(first.get().hand.getClass().getSimpleName()).isEqualTo("StraightFlush");
     }
 
     @SuppressWarnings("ConstantConditions")
     private void andPlayerOneHasLost() {
         Optional<PlayerResult> first = play.stream().filter(playerResult -> "Player One".equals(playerResult.playerName)).findFirst();
-        assertThat(first.get().result).isEqualTo(Result.LOSS);
+        assertThat(first.get().result).isEqualTo(2);
         assertThat(first.get().playerName).isEqualTo("Player One");
 
     }
@@ -81,19 +80,19 @@ public class BestHandIsStraightFlushInFiveCardHandTest extends TestState impleme
     @SuppressWarnings("ConstantConditions")
     private void andPlayerTwoHasWon() {
         Optional<PlayerResult> first = play.stream().filter(playerResult -> "Player Two".equals(playerResult.playerName)).findFirst();
-        assertThat(first.get().result).isEqualTo(Result.WIN);
+        assertThat(first.get().result).isEqualTo(1);
         assertThat(first.get().playerName).isEqualTo("Player Two");
     }
 
     private void andPlayerTwoHasLost() {
-        Result result = play.get(1).result;
-        assertThat(result).isEqualTo(Result.LOSS);
+        Integer result = play.get(1).result;
+        assertThat(result).isEqualTo(2);
         assertThat(play.get(1).playerName).isEqualTo("Player Two");
     }
 
     private void andPlayerOneHasWon() {
-        Result result = play.get(0).result;
-        assertThat(result).isEqualTo(Result.WIN);
+        Integer result = play.get(0).result;
+        assertThat(result).isEqualTo(1);
         assertThat(play.get(0).playerName).isEqualTo("Player One");
     }
 

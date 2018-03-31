@@ -1,10 +1,28 @@
 package com.hanfak.domain.game.playershand;
 
 // TODO comparable
-public interface PokerHand {
-    Integer ranking();
-    PokerHandsCards getPokerHandsCards();
-    KickerCards getKickerCards();
+public abstract class PokerHand {
+    private final int ranking;
+    private final PokerHandsCards pokerHandCards;
+    private final KickerCards kickerCards;
+
+    public PokerHand(int ranking, PokerHandsCards pokerHandCards, KickerCards kickerCards) {
+        this.ranking = ranking;
+        this.pokerHandCards = pokerHandCards;
+        this.kickerCards = kickerCards;
+    }
+
+    public Integer ranking() {
+        return ranking;
+    }
+
+    public PokerHandsCards getPokerHandsCards() {
+        return pokerHandCards;
+    }
+
+    public KickerCards getKickerCards() {
+        return kickerCards;
+    }
 }
 
 

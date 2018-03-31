@@ -13,7 +13,6 @@ import java.util.stream.Stream;
 
 import static java.lang.Math.abs;
 
-// TODO implement equals
 public class PokerHandsCards implements Comparable<PokerHandsCards> {
     private final List<Card> cards;
     // TODO Order by rank or by three of a kind
@@ -25,6 +24,11 @@ public class PokerHandsCards implements Comparable<PokerHandsCards> {
         return cards;
     }
 
+    @Override
+    public int compareTo(PokerHandsCards otherPokerHandCards) {
+        return COMPARATOR.compare(this, otherPokerHandCards);
+    }
+    //TODO Unit test this
     private List<Card> orderCards(List<Card> cards) {
         List<Card> collect = cards.stream()
                 .sorted(Comparator.comparingInt(card -> card.rank.getLevelCode())) // TODO use ordinal instead
@@ -45,16 +49,11 @@ public class PokerHandsCards implements Comparable<PokerHandsCards> {
         return collect;
     }
 
-    @Override
-    public int compareTo(PokerHandsCards otherPokerHandCards) {
-        return COMPARATOR.compare(this, otherPokerHandCards);
-    }
-
     private static final Comparator<PokerHandsCards> COMPARATOR =
-            (l1, l2) -> IntStream.range(0, l1.getCards().size())
-                    .map(i -> Integer.compare(l1.getCards().get(i).rank.getLevelCode(), l2.getCards().get(i).rank.getLevelCode()))
-                    .filter(rankValue -> rankValue != 0)
-                    .findFirst()
-                    .orElse(0);
+            (pokerHandCardsOne, pokerHandsCardsTwo) -> IntStream.range(0, pokerHandCardsOne.getCards().size()).
+                    map(i -> Integer.compare(pokerHandCardsOne.getCards().get(i).rank.getLevelCode(), pokerHandsCardsTwo.getCards().get(i).rank.getLevelCode())).
+                    filter(rankValue -> rankValue != 0).
+                    findFirst().
+                    orElse(0);
 
 }

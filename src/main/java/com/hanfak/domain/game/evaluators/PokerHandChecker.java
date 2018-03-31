@@ -71,8 +71,8 @@ public class PokerHandChecker {
     }
 
     private Map<Rank, List<Card>> cardsGroupedByRank(List<Card> dealtCards) {
-        return dealtCards.stream()
-                .collect(Collectors.groupingBy(x -> x.rank));
+        return dealtCards.stream().
+                collect(Collectors.groupingBy(x -> x.rank));
     }
 
     private List<List<Card>> listWinningBestHand(Map<Rank, List<Card>> cardsGroupedByRank, int numberOfGroups) {

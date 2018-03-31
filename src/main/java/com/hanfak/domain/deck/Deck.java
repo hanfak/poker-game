@@ -20,9 +20,9 @@ public class Deck {
     }
 
     private List<Card> removeCardsDealtFromDeck(List<Card> dealtCards) {
-        return cardsInDeck.stream()
-                .filter(card -> !dealtCards.contains(card))
-                .collect(Collectors.toList());
+        return cardsInDeck.stream().
+                filter(card -> !dealtCards.contains(card)).
+                collect(Collectors.toList());
     }
 
     private List<Card> createDeck() {
