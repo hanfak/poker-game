@@ -28,8 +28,8 @@ public class HighCard implements PokerHand {
     }
 
     @Override
-    public List<Card> getKickerCards() {
-        return kickers.getCards();
+    public KickerCards getKickerCards() {
+        return kickers;
     }
 
     /*

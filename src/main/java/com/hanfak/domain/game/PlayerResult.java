@@ -8,7 +8,7 @@ import java.util.Arrays;
 public class PlayerResult {
 
     public final String playerName; //TODO Should this be Player object?
-    public final Result result;
+    public final Result result; // Should be int fro ranking
     public final PokerHand hand;
 
     // TODO add what hand won ie the enum WinningHand

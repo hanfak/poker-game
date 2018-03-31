@@ -24,7 +24,6 @@ public class PokerHandsCards  {
         return cards;
     }
 
-
     private List<Card> orderCards(List<Card> cards) {
         List<Card> collect = cards.stream()
                 .sorted(Comparator.comparingInt(card -> card.rank.getLevelCode())) // TODO use ordinal instead

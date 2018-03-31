@@ -8,7 +8,7 @@ import java.util.List;
 public interface PokerHand {
     Integer ranking();
     List<Card> getPokerHandsCards();
-    List<Card> getKickerCards();
+    KickerCards getKickerCards();
 }
 
 

@@ -1,6 +1,6 @@
 package com.hanfak.domain.cards;
 
-public class Card {
+public class Card implements Comparable<Card> {
     public final Rank rank;
     public final Suit suit;
 
@@ -51,5 +51,10 @@ public class Card {
         }
         return rank.name().charAt(0) + rank.name().substring(1).toLowerCase() +
                 suitSymbol;
+    }
+
+    @Override
+    public int compareTo(Card o) {
+        return rank.compareTo(o.rank);
     }
 }

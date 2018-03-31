@@ -4,28 +4,55 @@ import com.hanfak.domain.cards.Card;
 import com.hanfak.domain.game.Player;
 import com.hanfak.domain.game.PlayerResult;
 import com.hanfak.domain.game.Result;
+import com.hanfak.domain.game.playershand.KickerCards;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
 // TODO need to unit test
 public class MultipleHandEvaluator {
     public List<PlayerResult> compareAllPlayersHands(List<Player> players) {
+        // simplify, order players by pokerhand ranking, then set winners and losers
         if (playerOnePokerHandIsBetterRankedThenPlayerTwoPokerHand(players)) {
             return assignPlayerOneWinsWithBestPokerHand(players);
         }
         if (playerTwoPokerHandIsBetterRankedThenPlayerOnePokerHand(players)) {
             return assignPlayerTwoWinsWithBestPokerHand(players);
         }
+
         if (pokerHandCardsAreTheSame(players)) {
-            if (kickerCardsTheSame(players)) {
-                return assignBothPlayersDraw(players);
-            }
-            return determinePlayerResultFromHighestKickerCard(players);
+            return determinePlayerResultByKickerCards(players);
         } else {
             return determinePlayerResultFromPokerHandCards(players);
         }
+    }
+
+    private List<PlayerResult> determinePlayerResultByKickerCards(List<Player> players) {
+        List<Player> orderPlayers = players.stream().sorted(Comparator.comparing(p -> p.pokerHand.getKickerCards())).collect(Collectors.toList());
+        if (kickerCardsAreTheSame(orderPlayers)) {
+            return setWinnersAndLosersPlayerResults(orderPlayers);
+        }
+        return setDrawAsPlayerResults(orderPlayers);
+    }
+
+    private List<PlayerResult> setDrawAsPlayerResults(List<Player> orderPlayers) {
+        PlayerResult winner = PlayerResult.playerResult(orderPlayers.get(0).playerName, Result.WIN, orderPlayers.get(0).pokerHand);
+        PlayerResult loser = PlayerResult.playerResult(orderPlayers.get(1).playerName, Result.LOSS, orderPlayers.get(1).pokerHand);
+        return Arrays.asList(winner, loser);
+    }
+
+    private List<PlayerResult> setWinnersAndLosersPlayerResults(List<Player> orderPlayers) {
+        PlayerResult drawOne = PlayerResult.playerResult(orderPlayers.get(0).playerName, Result.DRAW, orderPlayers.get(0).pokerHand);
+        PlayerResult drawTwo = PlayerResult.playerResult(orderPlayers.get(1).playerName, Result.DRAW, orderPlayers.get(1).pokerHand);
+        return Arrays.asList(drawOne, drawTwo);
+    }
+
+    private boolean kickerCardsAreTheSame(List<Player> orderPlayers) {
+        return orderPlayers.stream().map(x -> x.pokerHand.getKickerCards())
+                .map(KickerCards::getCards).map(x -> x.stream().map(x1 -> x1.rank).collect(Collectors.toList()))
+                .distinct().count() == 1;
     }
 
     private boolean playerTwoPokerHandIsBetterRankedThenPlayerOnePokerHand(List<Player> players) {
@@ -34,11 +61,6 @@ public class MultipleHandEvaluator {
 
     private boolean playerOnePokerHandIsBetterRankedThenPlayerTwoPokerHand(List<Player> players) {
         return players.get(0).pokerHand.ranking() > players.get(1).pokerHand.ranking();
-    }
-
-    private boolean kickerCardsTheSame(List<Player> players) {
-        return players.get(0).pokerHand.getKickerCards().stream().map(card -> card.rank.ordinal()).collect(Collectors.toList()).
-                equals(players.get(1).pokerHand.getKickerCards().stream().map(card -> card.rank.ordinal()).collect(Collectors.toList()));
     }
 
     private boolean pokerHandCardsAreTheSame(List<Player> players) {
@@ -51,12 +73,6 @@ public class MultipleHandEvaluator {
         List<Card> playerOnePokerHandCards = players.get(0).pokerHand.getPokerHandsCards();
         List<Card> playerTwoPokerHandCards = players.get(1).pokerHand.getPokerHandsCards();
         return calculateResultBasedOnHighestDifferentCard(players, playerOnePokerHandCards, playerTwoPokerHandCards, playerOnePokerHandCards.size());
-    }
-
-    private List<PlayerResult> determinePlayerResultFromHighestKickerCard(List<Player> players) {
-        List<Card> playerOneKickerCards = players.get(0).pokerHand.getKickerCards();
-        List<Card> playerTwoKickerCards = players.get(1).pokerHand.getKickerCards();
-        return calculateResultBasedOnHighestDifferentCard(players, playerOneKickerCards, playerTwoKickerCards, playerOneKickerCards.size());
     }
 
     // tODO refactor remove for loop
@@ -90,10 +106,6 @@ public class MultipleHandEvaluator {
 
     private List<PlayerResult> assignPlayerOneWinsWithBestPokerHand(List<Player> players) {
         return setPlayersResults(players, Result.WIN, Result.LOSS);
-    }
-
-    private List<PlayerResult> assignBothPlayersDraw(List<Player> players) {
-        return setPlayersResults(players, Result.DRAW, Result.DRAW);
     }
 
     private List<PlayerResult> setPlayersResults(List<Player> players, Result playerOneResults, Result playerTwoResults) {
