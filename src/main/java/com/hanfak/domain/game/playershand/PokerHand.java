@@ -1,13 +1,9 @@
 package com.hanfak.domain.game.playershand;
 
-import com.hanfak.domain.cards.Card;
-
-import java.util.List;
-
 // TODO comparable
 public interface PokerHand {
     Integer ranking();
-    List<Card> getPokerHandsCards();
+    PokerHandsCards getPokerHandsCards();
     KickerCards getKickerCards();
 }
 

@@ -8,12 +8,13 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import static java.lang.Math.abs;
 
 // TODO implement equals
-public class PokerHandsCards  {
+public class PokerHandsCards implements Comparable<PokerHandsCards> {
     private final List<Card> cards;
     // TODO Order by rank or by three of a kind
     public PokerHandsCards(List<Card> cards) {
@@ -43,4 +44,17 @@ public class PokerHandsCards  {
 
         return collect;
     }
+
+    @Override
+    public int compareTo(PokerHandsCards otherPokerHandCards) {
+        return COMPARATOR.compare(this, otherPokerHandCards);
+    }
+
+    private static final Comparator<PokerHandsCards> COMPARATOR =
+            (l1, l2) -> IntStream.range(0, l1.getCards().size())
+                    .map(i -> Integer.compare(l1.getCards().get(i).rank.getLevelCode(), l2.getCards().get(i).rank.getLevelCode()))
+                    .filter(rankValue -> rankValue != 0)
+                    .findFirst()
+                    .orElse(0);
+
 }

@@ -1,11 +1,8 @@
 package com.hanfak.domain.game.playershand.pokerhands;
 
-import com.hanfak.domain.cards.Card;
 import com.hanfak.domain.game.playershand.KickerCards;
 import com.hanfak.domain.game.playershand.PokerHand;
 import com.hanfak.domain.game.playershand.PokerHandsCards;
-
-import java.util.List;
 
 public class HighCard implements PokerHand {
     private final PokerHandsCards pokerHandCards; // ORdered list and make it a type with comparable on rank
@@ -23,10 +20,9 @@ public class HighCard implements PokerHand {
     }
 
     @Override
-    public List<Card> getPokerHandsCards() {
-        return pokerHandCards.getCards();
+    public PokerHandsCards getPokerHandsCards() {
+        return pokerHandCards;
     }
-
     @Override
     public KickerCards getKickerCards() {
         return kickers;
