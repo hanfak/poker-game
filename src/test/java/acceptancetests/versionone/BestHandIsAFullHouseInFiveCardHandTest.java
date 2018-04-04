@@ -15,6 +15,8 @@ import java.util.Optional;
 
 import static com.hanfak.domain.game.Player.player;
 import static testinfrastructure.HandsExamples.PLAYER_WITH_FULL_HOUSE_CARDS_ONE;
+import static testinfrastructure.HandsExamples.PLAYER_WITH_FULL_HOUSE_CARDS_THREE;
+import static testinfrastructure.HandsExamples.PLAYER_WITH_FULL_HOUSE_CARDS_TWO;
 import static testinfrastructure.HandsExamples.PLAYER_WITH_THREE_OF_A_KIND_CARDS_ONE;
 
 public class BestHandIsAFullHouseInFiveCardHandTest extends TestState implements WithAssertions {
@@ -28,11 +30,57 @@ public class BestHandIsAFullHouseInFiveCardHandTest extends TestState implements
         andPlayerOneHasLost();
         andPlayerTwoHasWon();
     }
-    // TODO test player one wins
-    // TODO test with better three
-    // TODO test with same three better pair
-    // TODO test Draw case
 
+    @Test
+    public void playerWinsWithBetterFullHouseWhereGroupOfThreeIsHigher() throws Exception {
+        givenADeckDealsOutASetOfRandomCardsWithAFullHouseToPlayerOne();
+        andADeckDealsOutASetOfRandomCardsWithAFullHouseToPlayerTwo();
+
+        whenAGameOfOneHandWithFiveCardsIsPlayedBetweenTwoPlayers();
+
+        andPlayerOneHasWon();
+        andPlayerTwoHasLost();
+    }
+
+    private void givenADeckDealsOutASetOfRandomCardsWithAFullHouseToPlayerOne() {
+        Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_FULL_HOUSE_CARDS_TWO).thenReturn(PLAYER_WITH_FULL_HOUSE_CARDS_ONE);
+    }
+
+    @Test
+    public void playerWinsWithBetterFullHouseWhereGroupOfThreeIsTheSameAndPairIsHigher() throws Exception {
+        givenADeckDealsOutASetOfRandomCardsWithAFullHouseWithHigherPairToPlayerOne();
+        andADeckDealsOutASetOfRandomCardsWithAFullHouseWithLowPairToPlayerTwo();
+
+        whenAGameOfOneHandWithFiveCardsIsPlayedBetweenTwoPlayers();
+
+        andPlayerOneHasLost();
+        andPlayerTwoHasWon();
+    }
+
+    private void andADeckDealsOutASetOfRandomCardsWithAFullHouseWithLowPairToPlayerTwo() {
+    }
+
+    private void givenADeckDealsOutASetOfRandomCardsWithAFullHouseWithHigherPairToPlayerOne() {
+        Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_FULL_HOUSE_CARDS_TWO).thenReturn(PLAYER_WITH_FULL_HOUSE_CARDS_THREE);
+    }
+
+    @Test
+    public void playersDrawWithSameHand() throws Exception {
+        givenADeckDealsOutASetOfRandomCardsWithAnotherFullHouseToPlayerOne();
+        andADeckDealsOutASetOfRandomCardsWithAnotherFullHouseoPlayerTwo();
+
+        whenAGameOfOneHandWithFiveCardsIsPlayedBetweenTwoPlayers();
+
+        thenPlayerOneHasDrawn();
+        andPlayerTwoHasDrawn();
+    }
+
+    private void andADeckDealsOutASetOfRandomCardsWithAnotherFullHouseoPlayerTwo() {
+    }
+
+    private void givenADeckDealsOutASetOfRandomCardsWithAnotherFullHouseToPlayerOne() {
+        Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_FULL_HOUSE_CARDS_THREE).thenReturn(PLAYER_WITH_FULL_HOUSE_CARDS_THREE);
+    }
 
     private void givenADeckDealsOutASetOfRandomCardsWithAThreeOfAKindToPlayerOne() {
         Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_THREE_OF_A_KIND_CARDS_ONE).thenReturn(PLAYER_WITH_FULL_HOUSE_CARDS_ONE);
@@ -73,14 +121,22 @@ public class BestHandIsAFullHouseInFiveCardHandTest extends TestState implements
         assertThat(play.get(0).playerName).isEqualTo("Player One");
     }
 
-    private static final  String VERSION = "1.0";
+    private void andPlayerTwoHasDrawn() {
+        Integer result = play.get(1).result;
+        assertThat(result).isEqualTo(1);
+    }
 
+    private void thenPlayerOneHasDrawn() {
+        Integer result = play.get(0).result;
+        assertThat(result).isEqualTo(1);
+    }
+
+    private static final  String VERSION = "1.0";
     private static final Player playerTwo = player("Player Two");
     private static final Player playerOne = player("Player One");
     private final CardDealer cardDealer = Mockito.mock(CardDealer.class); // TODO use a stub
 
     private List<PlayerResult> play;
-
     private PokerGame pokerGame;
 
     @Before

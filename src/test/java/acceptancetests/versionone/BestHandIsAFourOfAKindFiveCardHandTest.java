@@ -1,7 +1,6 @@
 package acceptancetests.versionone;
 
 import com.googlecode.yatspec.state.givenwhenthen.TestState;
-import com.hanfak.domain.cards.Card;
 import com.hanfak.domain.deck.CardDealer;
 import com.hanfak.domain.game.Player;
 import com.hanfak.domain.game.PlayerResult;
@@ -10,13 +9,14 @@ import org.assertj.core.api.WithAssertions;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
-import org.mockito.stubbing.OngoingStubbing;
 
 import java.util.List;
 import java.util.Optional;
 
 import static com.hanfak.domain.game.Player.player;
 import static testinfrastructure.HandsExamples.PLAYER_WITH_FOUR_OF_KIND_ONE;
+import static testinfrastructure.HandsExamples.PLAYER_WITH_FOUR_OF_KIND_THREE;
+import static testinfrastructure.HandsExamples.PLAYER_WITH_FOUR_OF_KIND_TWO;
 import static testinfrastructure.HandsExamples.PLAYER_WITH_TWO_PAIR_CARDS_TWO;
 
 public class BestHandIsAFourOfAKindFiveCardHandTest extends TestState implements WithAssertions {
@@ -30,16 +30,64 @@ public class BestHandIsAFourOfAKindFiveCardHandTest extends TestState implements
         andPlayerOneHasLost();
         andPlayerTwoHasWon();
     }
-    // TODO test player two wins with three vs two
-    // TODO test same bestHand, but better rank wins
-    // TODO test Draw case
-    // TODO test same bestHand with same rank, but next highest card is different
+
+    @Test
+    public void playerWithHigherFourOfAKindWin() throws Exception {
+        givenADeckDealsOutASetOfRandomCardsWithAFourOfAKindToPlayerOne();
+        andADeckDealsOutASetOfRandomCardsWithAFourOfAKindToPlayerTwo();
+
+        whenAGameOfOneHandWithFiveCardsIsPlayedBetweenTwoPlayers();
+
+        andPlayerOneHasWon();
+        andPlayerTwoHasLost();
+    }
+
+    private void givenADeckDealsOutASetOfRandomCardsWithAFourOfAKindToPlayerOne() {
+        Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_FOUR_OF_KIND_ONE).thenReturn(PLAYER_WITH_FOUR_OF_KIND_TWO);
+    }
+
+    @Test
+    public void playerWithSameFourOfAKindButHigherKickerWins() throws Exception {
+        givenADeckDealsOutASetOfRandomCardsWithAFourOfAKindLowerKickerToPlayerOne();
+        andADeckDealsOutASetOfRandomCardsWithAFourOfAKindHigherKickerToPlayerTwo();
+
+        whenAGameOfOneHandWithFiveCardsIsPlayedBetweenTwoPlayers();
+
+        andPlayerOneHasLost();
+        andPlayerTwoHasWon();
+    }
+
+    private void andADeckDealsOutASetOfRandomCardsWithAFourOfAKindHigherKickerToPlayerTwo() {
+
+    }
+
+    private void givenADeckDealsOutASetOfRandomCardsWithAFourOfAKindLowerKickerToPlayerOne() {
+        Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_FOUR_OF_KIND_TWO).thenReturn(PLAYER_WITH_FOUR_OF_KIND_THREE);
+    }
+
+    @Test
+    public void playerWithSameHandDraws() throws Exception {
+        givenADeckDealsOutASetOfRandomCardsWithAnotherFourOfAKindToPlayerOne();
+        andADeckDealsOutASetOfRandomCardsWithAndTheSameFourOfAKindToPlayerTwo();
+
+        whenAGameOfOneHandWithFiveCardsIsPlayedBetweenTwoPlayers();
+
+        thenPlayerOneHasDrawn();
+        andPlayerTwoHasDrawn();
+    }
+
+    private void givenADeckDealsOutASetOfRandomCardsWithAnotherFourOfAKindToPlayerOne() {
+        Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_FOUR_OF_KIND_TWO).thenReturn(PLAYER_WITH_FOUR_OF_KIND_TWO);
+    }
+
+    private void andADeckDealsOutASetOfRandomCardsWithAndTheSameFourOfAKindToPlayerTwo() {
+
+    }
 
 
     private void givenADeckDealsOutASetOfRandomCardsWithATwoPairToPlayerOne() {
         // tODO make field
-        OngoingStubbing<List<Card>> listOngoingStubbing = Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_TWO_PAIR_CARDS_TWO);
-        listOngoingStubbing.thenReturn(PLAYER_WITH_FOUR_OF_KIND_ONE);
+        Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_TWO_PAIR_CARDS_TWO).thenReturn(PLAYER_WITH_FOUR_OF_KIND_ONE);
     }
 
     private void andADeckDealsOutASetOfRandomCardsWithAFourOfAKindToPlayerTwo() {
@@ -77,14 +125,22 @@ public class BestHandIsAFourOfAKindFiveCardHandTest extends TestState implements
         assertThat(play.get(0).playerName).isEqualTo("Player One");
     }
 
-    private static final  String VERSION = "1.0";
+    private void andPlayerTwoHasDrawn() {
+        Integer result = play.get(1).result;
+        assertThat(result).isEqualTo(1);
+    }
 
+    private void thenPlayerOneHasDrawn() {
+        Integer result = play.get(0).result;
+        assertThat(result).isEqualTo(1);
+    }
+
+    private static final  String VERSION = "1.0";
     private static final Player playerTwo = player("Player Two");
     private static final Player playerOne = player("Player One");
     private final CardDealer cardDealer = Mockito.mock(CardDealer.class); // TODO use a stub
 
     private List<PlayerResult> play;
-
     private PokerGame pokerGame;
 
     @Before

@@ -13,6 +13,7 @@ import static com.hanfak.domain.cards.Suit.SPADE;
 public class CardsExamples {
     public static final Card ACE_OF_SPADES = card(ACE, SPADE);
     public static final Card ACE_OF_HEARTS = card(ACE, HEART);
+    public static final Card ACE_OF_DIAMONDS = card(ACE, DIAMOND);
 
     public static final Card KING_OF_SPADES = card(KING, SPADE);
     public static final Card KING_OF_HEARTS = card(KING, HEART);

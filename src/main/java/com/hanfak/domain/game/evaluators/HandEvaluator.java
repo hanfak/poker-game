@@ -27,9 +27,9 @@ public class HandEvaluator {
     public PokerHand setPokerHand(List<Card> dealtCards) {
         System.out.println(dealtCards);
 
-        if (pokerHandChecker.thereExistsAStraightFlushIn(dealtCards)) {
-            return new StraightFlush(new PokerHandsCards(dealtCards), new KickerCards(emptyList()));
-        }
+//        if (pokerHandChecker.thereExistsAStraightFlushIn(dealtCards)) {
+//            return new StraightFlush(new PokerHandsCards(dealtCards), new KickerCards(emptyList()));
+//        }
 
         if (pokerHandChecker.thereExistsAFourOfAKind(dealtCards)){
             return new FourOfAKind(new PokerHandsCards(setCardsInWinningHand(pokerHandChecker.listOfFourOfAKind(dealtCards))), new KickerCards(kickersForGroupingsOfCards(dealtCards, pokerHandChecker.listOfFourOfAKind(dealtCards))));

@@ -17,6 +17,8 @@ import java.util.Optional;
 
 import static com.hanfak.domain.game.Player.player;
 import static testinfrastructure.HandsExamples.PLAYER_WITH_FLUSH_ONE;
+import static testinfrastructure.HandsExamples.PLAYER_WITH_FLUSH_THREE;
+import static testinfrastructure.HandsExamples.PLAYER_WITH_FLUSH_TWO;
 import static testinfrastructure.HandsExamples.PLAYER_WITH_TWO_PAIR_CARDS_TWO;
 
 public class BestHandIsAFlushInFiveCardHandTest extends TestState implements WithAssertions {
@@ -30,11 +32,51 @@ public class BestHandIsAFlushInFiveCardHandTest extends TestState implements Wit
         andPlayerOneHasLost();
         andPlayerTwoHasWon();
     }
-    // TODO test player two wins with three vs two
-    // TODO test same bestHand, but better rank wins
-    // TODO test Draw case
-    // TODO test same bestHand with same rank, but next highest card is different
 
+    @Test
+    public void playerWithBetterFlushWins() throws Exception {
+        givenADeckDealsOutASetOfRandomCardsWithAFlushToPlayerOne();
+        andADeckDealsOutASetOfRandomCardsWithAFLushToPlayerTwo();
+
+        whenAGameOfOneHandWithFiveCardsIsPlayedBetweenTwoPlayers();
+
+        andPlayerOneHasWon();
+        andPlayerTwoHasLost();
+    }
+
+    @Test
+    public void playerWithEqualHighestRankButLowerRankCardsIsHigherWins() throws Exception {
+        givenADeckDealsOutASetOfRandomCardsWithAnotherFlushToPlayerOne();
+        andADeckDealsOutASetOfRandomCardsWithAFLushToPlayerTwo();
+
+        whenAGameOfOneHandWithFiveCardsIsPlayedBetweenTwoPlayers();
+
+        andPlayerOneHasLost();
+        andPlayerTwoHasWon();
+    }
+
+    @Test
+    public void playersDrawWithSameHand() throws Exception {
+        givenADeckDealsOutASetOfRandomCardsWithSomeFlushToPlayerOne();
+        andADeckDealsOutASetOfRandomCardsWithAFLushToPlayerTwo();
+
+        whenAGameOfOneHandWithFiveCardsIsPlayedBetweenTwoPlayers();
+
+        thenPlayerOneHasDrawn();
+        andPlayerTwoHasDrawn();
+    }
+
+    private void givenADeckDealsOutASetOfRandomCardsWithAFlushToPlayerOne() {
+        Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_FLUSH_TWO).thenReturn(PLAYER_WITH_FLUSH_ONE);
+    }
+
+    private void givenADeckDealsOutASetOfRandomCardsWithAnotherFlushToPlayerOne() {
+        Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_FLUSH_TWO).thenReturn(PLAYER_WITH_FLUSH_THREE);
+    }
+
+    private void givenADeckDealsOutASetOfRandomCardsWithSomeFlushToPlayerOne() {
+        Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_FLUSH_TWO).thenReturn(PLAYER_WITH_FLUSH_TWO);
+    }
 
     private void givenADeckDealsOutASetOfRandomCardsWithATwoPairToPlayerOne() {
         // tODO make field
@@ -77,8 +119,17 @@ public class BestHandIsAFlushInFiveCardHandTest extends TestState implements Wit
         assertThat(play.get(0).playerName).isEqualTo("Player One");
     }
 
-    private static final  String VERSION = "1.0";
+    private void andPlayerTwoHasDrawn() {
+        Integer result = play.get(1).result;
+        assertThat(result).isEqualTo(1);
+    }
 
+    private void thenPlayerOneHasDrawn() {
+        Integer result = play.get(0).result;
+        assertThat(result).isEqualTo(1);
+    }
+
+    private static final  String VERSION = "1.0";
     private static final Player playerTwo = player("Player Two");
     private static final Player playerOne = player("Player One");
     private final CardDealer cardDealer = Mockito.mock(CardDealer.class); // TODO use a stub

@@ -16,6 +16,8 @@ import java.util.Optional;
 import static com.hanfak.domain.game.Player.player;
 import static testinfrastructure.HandsExamples.PLAYER_WITH_PAIR_CARDS_ONE;
 import static testinfrastructure.HandsExamples.PLAYER_WITH_THREE_OF_A_KIND_CARDS_ONE;
+import static testinfrastructure.HandsExamples.PLAYER_WITH_THREE_OF_A_KIND_CARDS_THREE;
+import static testinfrastructure.HandsExamples.PLAYER_WITH_THREE_OF_A_KIND_CARDS_TWO;
 
 public class BestHandIsThreeOfAKindInFiveCardHandTest extends TestState implements WithAssertions {
     @Test
@@ -27,6 +29,63 @@ public class BestHandIsThreeOfAKindInFiveCardHandTest extends TestState implemen
 
         andPlayerOneHasWon();
         andPlayerTwoHasLost();
+    }
+
+    @Test
+    public void playerWinsWithABetterThreeOfAKind() throws Exception {
+        givenADeckDealsOutASetOfRandomCardsWithAHigherThreeOfAKindToPlayerOne();
+        andADeckDealsOutASetOfRandomCardsWithALowerThreeOfAKindToPlayerTwo();
+
+        whenAGameOfOneHandWithFiveCardsIsPlayedBetweenTwoPlayers();
+
+        andPlayerOneHasLost();
+        andPlayerTwoHasWon();
+    }
+
+    @Test
+    public void playerWinsWithASameThreeOfAKindButBetterKicker() throws Exception {
+        givenADeckDealsOutASetOfRandomCardsWithSameThreeOfAKindAndHigherKickerToPlayerOne();
+        andADeckDealsOutASetOfRandomCardsWithSameThreeOfAKindAndHigherKickerToPlayerTwo();
+
+        whenAGameOfOneHandWithFiveCardsIsPlayedBetweenTwoPlayers();
+
+        andPlayerOneHasWon();
+        andPlayerTwoHasLost();
+    }
+
+    @Test
+    public void playersDrawWithSameHand() throws Exception {
+        givenADeckDealsOutASetOfRandomCardsWithAnotherThreeOfAKindToPlayerOne();
+        andADeckDealsOutASetOfRandomCardsWithAThreeOfAKindToPlayerTwo();
+
+        whenAGameOfOneHandWithFiveCardsIsPlayedBetweenTwoPlayers();
+
+        thenPlayerOneHasDrawn();
+        andPlayerTwoHasDrawn();
+    }
+
+    private void andADeckDealsOutASetOfRandomCardsWithSameThreeOfAKindAndHigherKickerToPlayerTwo() {
+        org.mockito.Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_THREE_OF_A_KIND_CARDS_THREE).thenReturn(PLAYER_WITH_THREE_OF_A_KIND_CARDS_TWO);
+    }
+
+    private void givenADeckDealsOutASetOfRandomCardsWithSameThreeOfAKindAndHigherKickerToPlayerOne() {
+
+    }
+
+    private void givenADeckDealsOutASetOfRandomCardsWithAHigherThreeOfAKindToPlayerOne() {
+        org.mockito.Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_THREE_OF_A_KIND_CARDS_TWO).thenReturn(PLAYER_WITH_THREE_OF_A_KIND_CARDS_ONE);
+    }
+
+    private void andADeckDealsOutASetOfRandomCardsWithALowerThreeOfAKindToPlayerTwo() {
+
+    }
+
+    private void givenADeckDealsOutASetOfRandomCardsWithAnotherThreeOfAKindToPlayerOne() {
+        org.mockito.Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_THREE_OF_A_KIND_CARDS_ONE).thenReturn(PLAYER_WITH_THREE_OF_A_KIND_CARDS_ONE);
+    }
+
+    private void andADeckDealsOutASetOfRandomCardsWithAThreeOfAKindToPlayerTwo() {
+
     }
     // TODO test player two wins with three vs two
     // TODO test same bestHand, but better rank wins
@@ -71,6 +130,16 @@ public class BestHandIsThreeOfAKindInFiveCardHandTest extends TestState implemen
         Integer result = play.get(0).result;
         assertThat(result).isEqualTo(1);
         assertThat(play.get(0).playerName).isEqualTo("Player One");
+    }
+
+    private void andPlayerTwoHasDrawn() {
+        Integer result = play.get(1).result;
+        assertThat(result).isEqualTo(1);
+    }
+
+    private void thenPlayerOneHasDrawn() {
+        Integer result = play.get(0).result;
+        assertThat(result).isEqualTo(1);
     }
 
     private static final  String VERSION = "1.0";
