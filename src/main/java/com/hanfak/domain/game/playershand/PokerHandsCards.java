@@ -34,7 +34,10 @@ public class PokerHandsCards implements Comparable<PokerHandsCards> {
         // Ordering full house cards so three of a kind is first and pair is second
         Map<Rank, List<Card>> collect1 = collect.stream().collect(Collectors.groupingBy(x -> x.rank));
         if (collect.size() == 5 && collect1.values().size() == 2) {
-            return collect1.values().stream().flatMap(Collection::stream).collect(Collectors.toList());
+            return collect1.values().stream().
+                    sorted(Comparator.comparingInt(List::size)).
+                    flatMap(Collection::stream).
+                    collect(Collectors.toList());
         }
 
         // TODO rethink how to do this Ace High straight not showing correctly

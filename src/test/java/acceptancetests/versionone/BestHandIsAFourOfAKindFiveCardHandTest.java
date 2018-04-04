@@ -2,6 +2,7 @@ package acceptancetests.versionone;
 
 import com.googlecode.yatspec.state.givenwhenthen.TestState;
 import com.hanfak.domain.deck.CardDealer;
+import com.hanfak.domain.deck.DealtCards;
 import com.hanfak.domain.game.Player;
 import com.hanfak.domain.game.PlayerResult;
 import com.hanfak.wiring.PokerGame;
@@ -43,7 +44,7 @@ public class BestHandIsAFourOfAKindFiveCardHandTest extends TestState implements
     }
 
     private void givenADeckDealsOutASetOfRandomCardsWithAFourOfAKindToPlayerOne() {
-        Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_FOUR_OF_KIND_ONE).thenReturn(PLAYER_WITH_FOUR_OF_KIND_TWO);
+        Mockito.when(cardDealer.dealHand(5)).thenReturn(new DealtCards(PLAYER_WITH_FOUR_OF_KIND_ONE)).thenReturn(new DealtCards(PLAYER_WITH_FOUR_OF_KIND_TWO));
     }
 
     @Test
@@ -62,7 +63,7 @@ public class BestHandIsAFourOfAKindFiveCardHandTest extends TestState implements
     }
 
     private void givenADeckDealsOutASetOfRandomCardsWithAFourOfAKindLowerKickerToPlayerOne() {
-        Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_FOUR_OF_KIND_TWO).thenReturn(PLAYER_WITH_FOUR_OF_KIND_THREE);
+        Mockito.when(cardDealer.dealHand(5)).thenReturn(new DealtCards(PLAYER_WITH_FOUR_OF_KIND_TWO)).thenReturn(new DealtCards(PLAYER_WITH_FOUR_OF_KIND_THREE));
     }
 
     @Test
@@ -77,7 +78,7 @@ public class BestHandIsAFourOfAKindFiveCardHandTest extends TestState implements
     }
 
     private void givenADeckDealsOutASetOfRandomCardsWithAnotherFourOfAKindToPlayerOne() {
-        Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_FOUR_OF_KIND_TWO).thenReturn(PLAYER_WITH_FOUR_OF_KIND_TWO);
+        Mockito.when(cardDealer.dealHand(5)).thenReturn(new DealtCards(PLAYER_WITH_FOUR_OF_KIND_TWO)).thenReturn(new DealtCards(PLAYER_WITH_FOUR_OF_KIND_TWO));
     }
 
     private void andADeckDealsOutASetOfRandomCardsWithAndTheSameFourOfAKindToPlayerTwo() {
@@ -87,7 +88,7 @@ public class BestHandIsAFourOfAKindFiveCardHandTest extends TestState implements
 
     private void givenADeckDealsOutASetOfRandomCardsWithATwoPairToPlayerOne() {
         // tODO make field
-        Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_TWO_PAIR_CARDS_TWO).thenReturn(PLAYER_WITH_FOUR_OF_KIND_ONE);
+        Mockito.when(cardDealer.dealHand(5)).thenReturn(new DealtCards(PLAYER_WITH_TWO_PAIR_CARDS_TWO)).thenReturn(new DealtCards(PLAYER_WITH_FOUR_OF_KIND_ONE));
     }
 
     private void andADeckDealsOutASetOfRandomCardsWithAFourOfAKindToPlayerTwo() {

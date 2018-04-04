@@ -1,6 +1,7 @@
 package com.hanfak.domain.game.evaluators;
 
 import com.hanfak.domain.cards.Card;
+import com.hanfak.domain.deck.DealtCards;
 import com.hanfak.domain.game.playershand.KickerCards;
 import com.hanfak.domain.game.playershand.PokerHand;
 import com.hanfak.domain.game.playershand.PokerHandsCards;
@@ -24,42 +25,42 @@ public class HandEvaluator {
         this.pokerHandChecker = pokerHandChecker;
     }
 
-    public PokerHand setPokerHand(List<Card> dealtCards) {
-        System.out.println(dealtCards);
+    public PokerHand setPokerHand(DealtCards dealtCards) {
+        System.out.println(dealtCards.cards);
 
-//        if (pokerHandChecker.thereExistsAStraightFlushIn(dealtCards)) {
-//            return new StraightFlush(new PokerHandsCards(dealtCards), new KickerCards(emptyList()));
-//        }
-
-        if (pokerHandChecker.thereExistsAFourOfAKind(dealtCards)){
-            return new FourOfAKind(new PokerHandsCards(setCardsInWinningHand(pokerHandChecker.listOfFourOfAKind(dealtCards))), new KickerCards(kickersForGroupingsOfCards(dealtCards, pokerHandChecker.listOfFourOfAKind(dealtCards))));
+        if (pokerHandChecker.thereExistsAStraightFlushIn(dealtCards.cards)) {
+            return new StraightFlush(new PokerHandsCards(dealtCards.cards), new KickerCards(emptyList()));
         }
 
-        if (pokerHandChecker.thereExistsAFullHouseIn(dealtCards)) {
-            return new FullHouse(new PokerHandsCards(dealtCards), new KickerCards(emptyList()));
+        if (pokerHandChecker.thereExistsAFourOfAKind(dealtCards.cards)){
+            return new FourOfAKind(new PokerHandsCards(setCardsInWinningHand(pokerHandChecker.listOfFourOfAKind(dealtCards.cards))), new KickerCards(kickersForGroupingsOfCards(dealtCards.cards, pokerHandChecker.listOfFourOfAKind(dealtCards.cards))));
         }
 
-        if (pokerHandChecker.thereExistsAFlush(dealtCards)) {
-            return new Flush(new PokerHandsCards(dealtCards), new KickerCards(emptyList()));
+        if (pokerHandChecker.thereExistsAFullHouseIn(dealtCards.cards)) {
+            return new FullHouse(new PokerHandsCards(dealtCards.cards), new KickerCards(emptyList()));
         }
 
-        if (pokerHandChecker.thereExistsAStraightIn(dealtCards)) {
-            return new Straight(new PokerHandsCards(dealtCards), new KickerCards(emptyList()));
+        if (pokerHandChecker.thereExistsAFlush(dealtCards.cards)) {
+            return new Flush(new PokerHandsCards(dealtCards.cards), new KickerCards(emptyList()));
         }
 
-        if (pokerHandChecker.thereExistsThreeOfAKindOfSameRank(dealtCards)) {
-            return new ThreeOfAKind(new PokerHandsCards(setCardsInWinningHand(pokerHandChecker.listOfThreeOfAKind(dealtCards))), new KickerCards(kickersForGroupingsOfCards(dealtCards, pokerHandChecker.listOfThreeOfAKind(dealtCards))));
+        if (pokerHandChecker.thereExistsAStraightIn(dealtCards.cards)) {
+            return new Straight(new PokerHandsCards(dealtCards.cards), new KickerCards(emptyList()));
         }
 
-        if (pokerHandChecker.thereExistsTwoPairOfCardsOfSameRank(dealtCards)) {
-            return new TwoPair(new PokerHandsCards(setCardsInWinningHand(pokerHandChecker.listOfPairs(dealtCards))), new KickerCards(kickersForGroupingsOfCards(dealtCards, pokerHandChecker.listOfPairs(dealtCards))));
+        if (pokerHandChecker.thereExistsThreeOfAKindOfSameRank(dealtCards.cards)) {
+            return new ThreeOfAKind(new PokerHandsCards(setCardsInWinningHand(pokerHandChecker.listOfThreeOfAKind(dealtCards.cards))), new KickerCards(kickersForGroupingsOfCards(dealtCards.cards, pokerHandChecker.listOfThreeOfAKind(dealtCards.cards))));
         }
 
-        if (pokerHandChecker.thereExistsOnePairOfCardsOfSameRank(dealtCards)) {
-            return new Pair(new PokerHandsCards(setCardsInWinningHand(pokerHandChecker.listOfPairs(dealtCards))), new KickerCards(kickersForGroupingsOfCards(dealtCards, pokerHandChecker.listOfPairs(dealtCards))));
+        if (pokerHandChecker.thereExistsTwoPairOfCardsOfSameRank(dealtCards.cards)) {
+            return new TwoPair(new PokerHandsCards(setCardsInWinningHand(pokerHandChecker.listOfPairs(dealtCards.cards))), new KickerCards(kickersForGroupingsOfCards(dealtCards.cards, pokerHandChecker.listOfPairs(dealtCards.cards))));
         }
 
-        return new HighCard(new PokerHandsCards(Collections.singletonList(dealtCards.get(0))), new KickerCards(dealtCards.subList(1, dealtCards.size())));
+        if (pokerHandChecker.thereExistsOnePairOfCardsOfSameRank(dealtCards.cards)) {
+            return new Pair(new PokerHandsCards(setCardsInWinningHand(pokerHandChecker.listOfPairs(dealtCards.cards))), new KickerCards(kickersForGroupingsOfCards(dealtCards.cards, pokerHandChecker.listOfPairs(dealtCards.cards))));
+        }
+
+        return new HighCard(new PokerHandsCards(Collections.singletonList(dealtCards.cards.get(0))), new KickerCards(dealtCards.cards.subList(1, dealtCards.cards.size())));
     }
 
     private List<Card> kickersForGroupingsOfCards(List<Card> dealtCards, List<List<Card>> numberOfGroupings) {

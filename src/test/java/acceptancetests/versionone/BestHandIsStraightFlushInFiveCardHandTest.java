@@ -2,12 +2,12 @@ package acceptancetests.versionone;
 
 import com.googlecode.yatspec.state.givenwhenthen.TestState;
 import com.hanfak.domain.deck.CardDealer;
+import com.hanfak.domain.deck.DealtCards;
 import com.hanfak.domain.game.Player;
 import com.hanfak.domain.game.PlayerResult;
 import com.hanfak.wiring.PokerGame;
 import org.assertj.core.api.WithAssertions;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.Mockito;
 
@@ -21,7 +21,6 @@ import static testinfrastructure.HandsExamples.PLAYER_WITH_STRAIGHT_ONE;
 // TODO NOT WORKING?!?!!!!?!
 public class BestHandIsStraightFlushInFiveCardHandTest extends TestState implements WithAssertions {
     @Test
-    @Ignore
     public void playerWinsWithABetterHand() throws Exception {
         givenADeckDealsOutASetOfRandomCardsWithAStraightFlushAceHighoPlayerTwo();
         givenADeckDealsOutASetOfRandomCardsWithAStraightToPlayerOne();
@@ -34,7 +33,6 @@ public class BestHandIsStraightFlushInFiveCardHandTest extends TestState impleme
     }
 
     @Test
-    @Ignore
     public void playerWinsWithABetterHandWhereAceIsAOne() throws Exception {
         givenADeckDealsOutASetOfRandomCardsWithAStraightToPlayerOne();
         andADeckDealsOutASetOfRandomCardsWithAStraightoPlayerTwo();
@@ -45,12 +43,15 @@ public class BestHandIsStraightFlushInFiveCardHandTest extends TestState impleme
         andPlayerTwoHasWon();
     }
 
+    //TODO test higher SF
+    // TODO Draw
+
     private void givenADeckDealsOutASetOfRandomCardsWithAStraightFlushAceHighoPlayerTwo() {
-        Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_STRAIGHT_ONE).thenReturn(PLAYER_WITH_STRAIGHT_FLUSH_ONE);
+        Mockito.when(cardDealer.dealHand(5)).thenReturn(new DealtCards(PLAYER_WITH_STRAIGHT_ONE)).thenReturn(new DealtCards(PLAYER_WITH_STRAIGHT_FLUSH_ONE));
     }
 
     private void givenADeckDealsOutASetOfRandomCardsWithAStraightToPlayerOne() {
-        Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_STRAIGHT_ONE).thenReturn(PLAYER_WITH_STRAIGHT_FLUSH_TWO);
+        Mockito.when(cardDealer.dealHand(5)).thenReturn(new DealtCards(PLAYER_WITH_STRAIGHT_ONE)).thenReturn(new DealtCards(PLAYER_WITH_STRAIGHT_FLUSH_TWO));
     }
 
 

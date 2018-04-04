@@ -2,6 +2,7 @@ package acceptancetests.versionone;
 
 import com.googlecode.yatspec.state.givenwhenthen.TestState;
 import com.hanfak.domain.deck.CardDealer;
+import com.hanfak.domain.deck.DealtCards;
 import com.hanfak.domain.game.Player;
 import com.hanfak.domain.game.PlayerResult;
 import com.hanfak.wiring.PokerGame;
@@ -101,7 +102,7 @@ public class BestHandIsStraightInFiveCardHandTest extends TestState implements W
     }
 
     private void givenADeckDealsOutASetOfRandomCardsWithAStraightToPlayerOne() {
-        Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_STRAIGHT_THREE).thenReturn(PLAYER_WITH_STRAIGHT_THREE);
+        Mockito.when(cardDealer.dealHand(5)).thenReturn(new DealtCards(PLAYER_WITH_STRAIGHT_THREE)).thenReturn(new DealtCards(PLAYER_WITH_STRAIGHT_THREE));
     }
 
     private void andADeckDealsOutASetOfRandomCardsWithAStraightAceHighPlayerTwo() {
@@ -109,30 +110,30 @@ public class BestHandIsStraightInFiveCardHandTest extends TestState implements W
     }
 
     private void givenADeckDealsOutASetOfRandomCardsWithAStraightAceLowPlayerOne() {
-        Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_STRAIGHT_TWO).thenReturn(PLAYER_WITH_STRAIGHT_ONE);
+        Mockito.when(cardDealer.dealHand(5)).thenReturn(new DealtCards(PLAYER_WITH_STRAIGHT_TWO)).thenReturn(new DealtCards(PLAYER_WITH_STRAIGHT_ONE));
     }
 
     private void givenADeckDealsOutASetOfRandomCardsWithAPairToPlayerOne() {
     }
 
     private void givenADeckDealsOutASetOfRandomCardsWithAIllegalStraightButNoAceToPlayerOne() {
-        Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_NOT_A_STRAIGHT_TWO).thenReturn(PLAYER_WITH_THREE_OF_A_KIND_CARDS_ONE);
+        Mockito.when(cardDealer.dealHand(5)).thenReturn(new DealtCards(PLAYER_WITH_NOT_A_STRAIGHT_TWO)).thenReturn(new DealtCards(PLAYER_WITH_THREE_OF_A_KIND_CARDS_ONE));
     }
 
     private void givenADeckDealsOutASetOfRandomCardsWithADuplicateCardButNoAceToPlayerOne() {
-        Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_NOT_A_STRAIGHT_ONE).thenReturn(PLAYER_WITH_THREE_OF_A_KIND_CARDS_ONE);
+        Mockito.when(cardDealer.dealHand(5)).thenReturn(new DealtCards(PLAYER_WITH_NOT_A_STRAIGHT_ONE)).thenReturn(new DealtCards(PLAYER_WITH_THREE_OF_A_KIND_CARDS_ONE));
     }
 
     private void givenADeckDealsOutASetOfRandomCardsWithAStraightButNoAceToPlayerOne() {
-        Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_STRAIGHT_THREE).thenReturn(PLAYER_WITH_THREE_OF_A_KIND_CARDS_ONE);
+        Mockito.when(cardDealer.dealHand(5)).thenReturn(new DealtCards(PLAYER_WITH_STRAIGHT_THREE)).thenReturn(new DealtCards(PLAYER_WITH_THREE_OF_A_KIND_CARDS_ONE));
     }
 
     private void givenADeckDealsOutASetOfRandomCardsWithAStraightAceHighoPlayerTwo() {
-        Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_PAIR_CARDS_ONE).thenReturn(PLAYER_WITH_STRAIGHT_ONE);
+        Mockito.when(cardDealer.dealHand(5)).thenReturn(new DealtCards(PLAYER_WITH_PAIR_CARDS_ONE)).thenReturn(new DealtCards(PLAYER_WITH_STRAIGHT_ONE));
     }
 
     private void givenADeckDealsOutASetOfRandomCardsWithAThreeOfAKindToPlayerOne() {
-        Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_THREE_OF_A_KIND_CARDS_ONE).thenReturn(PLAYER_WITH_STRAIGHT_TWO);
+        Mockito.when(cardDealer.dealHand(5)).thenReturn(new DealtCards(PLAYER_WITH_THREE_OF_A_KIND_CARDS_ONE)).thenReturn(new DealtCards(PLAYER_WITH_STRAIGHT_TWO));
     }
 
     private void andADeckDealsOutASetOfRandomCardsWithAStraightoPlayerTwo() {

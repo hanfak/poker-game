@@ -1,8 +1,8 @@
 package acceptancetests.versionone;
 
 import com.googlecode.yatspec.state.givenwhenthen.TestState;
-import com.hanfak.domain.cards.Card;
 import com.hanfak.domain.deck.CardDealer;
+import com.hanfak.domain.deck.DealtCards;
 import com.hanfak.domain.game.Player;
 import com.hanfak.domain.game.PlayerResult;
 import com.hanfak.wiring.PokerGame;
@@ -67,21 +67,21 @@ public class BestHandIsAFlushInFiveCardHandTest extends TestState implements Wit
     }
 
     private void givenADeckDealsOutASetOfRandomCardsWithAFlushToPlayerOne() {
-        Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_FLUSH_TWO).thenReturn(PLAYER_WITH_FLUSH_ONE);
+        Mockito.when(cardDealer.dealHand(5)).thenReturn(new DealtCards(PLAYER_WITH_FLUSH_TWO)).thenReturn(new DealtCards(PLAYER_WITH_FLUSH_ONE));
     }
 
     private void givenADeckDealsOutASetOfRandomCardsWithAnotherFlushToPlayerOne() {
-        Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_FLUSH_TWO).thenReturn(PLAYER_WITH_FLUSH_THREE);
+        Mockito.when(cardDealer.dealHand(5)).thenReturn(new DealtCards(PLAYER_WITH_FLUSH_TWO)).thenReturn(new DealtCards(PLAYER_WITH_FLUSH_THREE));
     }
 
     private void givenADeckDealsOutASetOfRandomCardsWithSomeFlushToPlayerOne() {
-        Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_FLUSH_TWO).thenReturn(PLAYER_WITH_FLUSH_TWO);
+        Mockito.when(cardDealer.dealHand(5)).thenReturn(new DealtCards(PLAYER_WITH_FLUSH_TWO)).thenReturn(new DealtCards(PLAYER_WITH_FLUSH_TWO));
     }
 
     private void givenADeckDealsOutASetOfRandomCardsWithATwoPairToPlayerOne() {
         // tODO make field
-        OngoingStubbing<List<Card>> listOngoingStubbing = Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_TWO_PAIR_CARDS_TWO);
-        listOngoingStubbing.thenReturn(PLAYER_WITH_FLUSH_ONE);
+        OngoingStubbing<DealtCards> listOngoingStubbing = Mockito.when(cardDealer.dealHand(5)).thenReturn(new DealtCards(PLAYER_WITH_TWO_PAIR_CARDS_TWO));
+        listOngoingStubbing.thenReturn(new DealtCards(PLAYER_WITH_FLUSH_ONE));
     }
 
     private void andADeckDealsOutASetOfRandomCardsWithAFLushToPlayerTwo() {

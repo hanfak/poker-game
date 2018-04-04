@@ -2,6 +2,7 @@ package acceptancetests.versionone;
 
 import com.googlecode.yatspec.state.givenwhenthen.TestState;
 import com.hanfak.domain.deck.CardDealer;
+import com.hanfak.domain.deck.DealtCards;
 import com.hanfak.domain.game.Player;
 import com.hanfak.domain.game.PlayerResult;
 import com.hanfak.wiring.PokerGame;
@@ -73,12 +74,12 @@ public class BestHandIsTwoPairInFiveCardHandTest extends TestState implements Wi
     }
 
     private void andADeckDealsOutASetOfRandomCardsWithATwoPairToPlayerTwo() {
-        org.mockito.Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_PAIR_CARDS_ONE).thenReturn(PLAYER_WITH_TWO_PAIR_CARDS_ONE);
+        org.mockito.Mockito.when(cardDealer.dealHand(5)).thenReturn(new DealtCards(PLAYER_WITH_PAIR_CARDS_ONE)).thenReturn(new DealtCards(PLAYER_WITH_TWO_PAIR_CARDS_ONE));
 
     }
 
     private void givenADeckDealsOutASetOfRandomCardsWithAHigherTwoPairToPlayerOne() {
-        org.mockito.Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_TWO_PAIR_CARDS_TWO).thenReturn(PLAYER_WITH_TWO_PAIR_CARDS_ONE);
+        org.mockito.Mockito.when(cardDealer.dealHand(5)).thenReturn(new DealtCards(PLAYER_WITH_TWO_PAIR_CARDS_TWO)).thenReturn(new DealtCards(PLAYER_WITH_TWO_PAIR_CARDS_ONE));
     }
 
     private void andADeckDealsOutASetOfRandomCardsWithALowerTwoPairToPlayerTwo() {
@@ -86,7 +87,7 @@ public class BestHandIsTwoPairInFiveCardHandTest extends TestState implements Wi
     }
 
     private void givenADeckDealsOutASetOfRandomCardsWithAPairToPlayerOne() {
-        org.mockito.Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_HIGH_CARD_CARDS_FIVE).thenReturn(PLAYER_WITH_PAIR_CARDS_ONE);
+        org.mockito.Mockito.when(cardDealer.dealHand(5)).thenReturn(new DealtCards(PLAYER_WITH_HIGH_CARD_CARDS_FIVE)).thenReturn(new DealtCards(PLAYER_WITH_PAIR_CARDS_ONE));
     }
 
     private void andADeckDealsOutASetOfRandomCardsWithALowerTwoPairAndLowestPairIsLowerToPlayerTwo() {
@@ -94,7 +95,7 @@ public class BestHandIsTwoPairInFiveCardHandTest extends TestState implements Wi
     }
 
     private void givenADeckDealsOutASetOfRandomCardsWithAHigherTwoPairAndLowestPairIsHigherToPlayerOne() {
-        org.mockito.Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_TWO_PAIR_CARDS_FOUR).thenReturn(PLAYER_WITH_TWO_PAIR_CARDS_TWO);
+        org.mockito.Mockito.when(cardDealer.dealHand(5)).thenReturn(new DealtCards(PLAYER_WITH_TWO_PAIR_CARDS_FOUR)).thenReturn(new DealtCards(PLAYER_WITH_TWO_PAIR_CARDS_TWO));
     }
 
     private void andADeckDealsOutASetOfRandomCardsWithATwoPairAndHighCardIsLowerToPlayerTwo() {
@@ -102,12 +103,12 @@ public class BestHandIsTwoPairInFiveCardHandTest extends TestState implements Wi
     }
 
     private void givenADeckDealsOutASetOfRandomCardsWithATwoPairAndHighCardIsHigherToPlayerOne() {
-        org.mockito.Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_TWO_PAIR_CARDS_TWO).thenReturn(PLAYER_WITH_TWO_PAIR_CARDS_THREE);
+        org.mockito.Mockito.when(cardDealer.dealHand(5)).thenReturn(new DealtCards(PLAYER_WITH_TWO_PAIR_CARDS_TWO)).thenReturn(new DealtCards(PLAYER_WITH_TWO_PAIR_CARDS_THREE));
 
     }
 
     private void givenBothPlayersAreDealtAHandWithMatchingTwoPair() {
-        org.mockito.Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_TWO_PAIR_CARDS_TWO).thenReturn(PLAYER_WITH_TWO_PAIR_CARDS_FIVE);
+        org.mockito.Mockito.when(cardDealer.dealHand(5)).thenReturn(new DealtCards(PLAYER_WITH_TWO_PAIR_CARDS_TWO)).thenReturn(new DealtCards(PLAYER_WITH_TWO_PAIR_CARDS_FIVE));
 
     }
 

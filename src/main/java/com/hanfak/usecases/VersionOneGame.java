@@ -1,7 +1,7 @@
 package com.hanfak.usecases;
 
-import com.hanfak.domain.cards.Card;
 import com.hanfak.domain.deck.CardDealer;
+import com.hanfak.domain.deck.DealtCards;
 import com.hanfak.domain.game.Player;
 import com.hanfak.domain.game.PlayerResult;
 import com.hanfak.domain.game.evaluators.HandEvaluator;
@@ -39,9 +39,9 @@ public class VersionOneGame {
     }
 
     private Player dealHand(Player player) {
-        List<Card> dealtCards = cardDealer.dealHand(5);
+        DealtCards dealtCards = cardDealer.dealHand(5);
         PokerHand pokerHand = handEvaluator.setPokerHand(dealtCards);
-        return player(player.playerName, dealtCards, pokerHand);
+        return player(player.playerName, dealtCards.cards, pokerHand);
     }
 
     private List<PlayerResult> evaluateGame(List<Player> players) {

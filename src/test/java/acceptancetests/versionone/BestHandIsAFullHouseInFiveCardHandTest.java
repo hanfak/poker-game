@@ -2,6 +2,7 @@ package acceptancetests.versionone;
 
 import com.googlecode.yatspec.state.givenwhenthen.TestState;
 import com.hanfak.domain.deck.CardDealer;
+import com.hanfak.domain.deck.DealtCards;
 import com.hanfak.domain.game.Player;
 import com.hanfak.domain.game.PlayerResult;
 import com.hanfak.wiring.PokerGame;
@@ -43,7 +44,7 @@ public class BestHandIsAFullHouseInFiveCardHandTest extends TestState implements
     }
 
     private void givenADeckDealsOutASetOfRandomCardsWithAFullHouseToPlayerOne() {
-        Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_FULL_HOUSE_CARDS_TWO).thenReturn(PLAYER_WITH_FULL_HOUSE_CARDS_ONE);
+        Mockito.when(cardDealer.dealHand(5)).thenReturn(new DealtCards(PLAYER_WITH_FULL_HOUSE_CARDS_TWO)).thenReturn(new DealtCards(PLAYER_WITH_FULL_HOUSE_CARDS_ONE));
     }
 
     @Test
@@ -61,7 +62,7 @@ public class BestHandIsAFullHouseInFiveCardHandTest extends TestState implements
     }
 
     private void givenADeckDealsOutASetOfRandomCardsWithAFullHouseWithHigherPairToPlayerOne() {
-        Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_FULL_HOUSE_CARDS_TWO).thenReturn(PLAYER_WITH_FULL_HOUSE_CARDS_THREE);
+        Mockito.when(cardDealer.dealHand(5)).thenReturn(new DealtCards(PLAYER_WITH_FULL_HOUSE_CARDS_TWO)).thenReturn(new DealtCards(PLAYER_WITH_FULL_HOUSE_CARDS_THREE));
     }
 
     @Test
@@ -79,11 +80,11 @@ public class BestHandIsAFullHouseInFiveCardHandTest extends TestState implements
     }
 
     private void givenADeckDealsOutASetOfRandomCardsWithAnotherFullHouseToPlayerOne() {
-        Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_FULL_HOUSE_CARDS_THREE).thenReturn(PLAYER_WITH_FULL_HOUSE_CARDS_THREE);
+        Mockito.when(cardDealer.dealHand(5)).thenReturn(new DealtCards(PLAYER_WITH_FULL_HOUSE_CARDS_THREE)).thenReturn(new DealtCards(PLAYER_WITH_FULL_HOUSE_CARDS_THREE));
     }
 
     private void givenADeckDealsOutASetOfRandomCardsWithAThreeOfAKindToPlayerOne() {
-        Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_THREE_OF_A_KIND_CARDS_ONE).thenReturn(PLAYER_WITH_FULL_HOUSE_CARDS_ONE);
+        Mockito.when(cardDealer.dealHand(5)).thenReturn(new DealtCards(PLAYER_WITH_THREE_OF_A_KIND_CARDS_ONE)).thenReturn(new DealtCards(PLAYER_WITH_FULL_HOUSE_CARDS_ONE));
     }
 
     private void andADeckDealsOutASetOfRandomCardsWithAFullHouseToPlayerTwo() {

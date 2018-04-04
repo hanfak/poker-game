@@ -3,6 +3,7 @@ package acceptancetests.versionone;
 import com.googlecode.yatspec.state.givenwhenthen.TestState;
 import com.hanfak.domain.cards.Card;
 import com.hanfak.domain.deck.CardDealer;
+import com.hanfak.domain.deck.DealtCards;
 import com.hanfak.domain.game.Player;
 import com.hanfak.domain.game.PlayerResult;
 import com.hanfak.wiring.PokerGame;
@@ -64,15 +65,15 @@ public class BestHandIsPairInFiveCardHandTest extends TestState implements WithA
     }
 
     private void givenADeckDealsOutASetOfRandomCardsWithAPairToPlayerOne() {
-        org.mockito.Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_PAIR_CARDS_FIVE).thenReturn(PLAYER_WITH_PAIR_CARDS_ONE);
+        org.mockito.Mockito.when(cardDealer.dealHand(5)).thenReturn(new DealtCards(PLAYER_WITH_PAIR_CARDS_FIVE)).thenReturn(new DealtCards(PLAYER_WITH_PAIR_CARDS_ONE));
     }
 
     private void givenADeckDealsOutASetOfRandomCardsWithAHighCardToPlayerOne() {
-        org.mockito.Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_HIGH_CARD_CARDS_FIVE).thenReturn(PLAYER_WITH_PAIR_CARDS_ONE);
+        org.mockito.Mockito.when(cardDealer.dealHand(5)).thenReturn(new DealtCards(PLAYER_WITH_HIGH_CARD_CARDS_FIVE)).thenReturn(new DealtCards(PLAYER_WITH_PAIR_CARDS_ONE));
     }
 
     private void givenADeckDealsOutASetOfRandomCardsWithALowestPairToPlayerOne() {
-        org.mockito.Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_PAIR_CARDS_TWO).thenReturn(PLAYER_WITH_PAIR_CARDS_THREE);
+        org.mockito.Mockito.when(cardDealer.dealHand(5)).thenReturn(new DealtCards(PLAYER_WITH_PAIR_CARDS_TWO)).thenReturn(new DealtCards(PLAYER_WITH_PAIR_CARDS_THREE));
     }
 
     private void andADeckDealsOutASetOfRandomCardsWithAHighestPairToPlayerTwo() {
@@ -80,7 +81,7 @@ public class BestHandIsPairInFiveCardHandTest extends TestState implements WithA
     }
 
     private void givenBothPlayersAreDealtAHandWithMatchingPair() {
-        org.mockito.Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_PAIR_CARDS_THREE).thenReturn(PLAYER_WITH_PAIR_CARDS_FOUR);
+        org.mockito.Mockito.when(cardDealer.dealHand(5)).thenReturn(new DealtCards(PLAYER_WITH_PAIR_CARDS_THREE)).thenReturn(new DealtCards(PLAYER_WITH_PAIR_CARDS_FOUR));
         testState().interestingGivens.add("Player One Hand", PLAYER_WITH_HIGH_CARD_CARDS_SEVEN.stream().map(Card::toString).collect(Collectors.joining(", ")));
         testState().interestingGivens.add("Player Two Hand", PLAYER_WITH_HIGH_CARD_CARDS_SIX.stream().map(Card::toString).collect(Collectors.joining(", ")));
     }

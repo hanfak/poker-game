@@ -4,6 +4,7 @@ import com.googlecode.yatspec.junit.SpecRunner;
 import com.googlecode.yatspec.state.givenwhenthen.TestState;
 import com.hanfak.domain.cards.Card;
 import com.hanfak.domain.deck.CardDealer;
+import com.hanfak.domain.deck.DealtCards;
 import com.hanfak.domain.game.Player;
 import com.hanfak.domain.game.PlayerResult;
 import com.hanfak.wiring.PokerGame;
@@ -58,7 +59,7 @@ public class BestHandIsHighCardInFiveCardHandTest extends TestState implements W
     }
 
     private void givenADeckDealsOutASetOfRandomCardsToPlayerOne() {
-        org.mockito.Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_ONE_HIGH_CARD_CARDS_ONE).thenReturn(PLAYER_WITH_HIGH_CARD_CARDS_TWO);
+        org.mockito.Mockito.when(cardDealer.dealHand(5)).thenReturn(new DealtCards(PLAYER_ONE_HIGH_CARD_CARDS_ONE)).thenReturn(new DealtCards(PLAYER_WITH_HIGH_CARD_CARDS_TWO));
     }
 
     private void andADeckDealsOutASetOfRandomCardsToPlayerTwo() {
@@ -68,7 +69,7 @@ public class BestHandIsHighCardInFiveCardHandTest extends TestState implements W
     }
 
     private void givenADeckDealsOutASetOfRandomCardsToPlayerOneblah() {
-        org.mockito.Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_HIGH_CARD_CARDS_THREE).thenReturn(PLAYER_WITH_HIGH_CARD_CARDS_FOUR);
+        org.mockito.Mockito.when(cardDealer.dealHand(5)).thenReturn(new DealtCards(PLAYER_WITH_HIGH_CARD_CARDS_THREE)).thenReturn(new DealtCards(PLAYER_WITH_HIGH_CARD_CARDS_FOUR));
     }
 
     private void andADeckDealsOutASetOfRandomCardsToPlayerTwoBlah() {
@@ -78,7 +79,7 @@ public class BestHandIsHighCardInFiveCardHandTest extends TestState implements W
     }
 
     private void givenBothPlayersAreDealtAHand() {
-        org.mockito.Mockito.when(cardDealer.dealHand(5)).thenReturn(PLAYER_WITH_HIGH_CARD_CARDS_SEVEN).thenReturn(PLAYER_WITH_HIGH_CARD_CARDS_SIX);
+        org.mockito.Mockito.when(cardDealer.dealHand(5)).thenReturn(new DealtCards(PLAYER_WITH_HIGH_CARD_CARDS_SEVEN)).thenReturn(new DealtCards(PLAYER_WITH_HIGH_CARD_CARDS_SIX));
         testState().interestingGivens.add("Player One Hand", PLAYER_WITH_HIGH_CARD_CARDS_SEVEN.stream().map(Card::toString).collect(Collectors.joining(", ")));
         testState().interestingGivens.add("Player Two Hand", PLAYER_WITH_HIGH_CARD_CARDS_SIX.stream().map(Card::toString).collect(Collectors.joining(", ")));
     }
