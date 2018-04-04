@@ -12,6 +12,7 @@ import java.util.stream.IntStream;
 import static com.hanfak.domain.game.PlayerResult.playerResult;
 
 // TODO need to unit test
+// TODO Extact set winner/loser and draw
 public class MultipleHandEvaluator {
     public List<PlayerResult> compareAllPlayersHands(List<Player> players) {
         if (pokerHandsHaveDifferentRankings(players)) {
@@ -59,17 +60,17 @@ public class MultipleHandEvaluator {
                 map(KickerCards::getCards).map(listOfCards -> listOfCards.stream().map(x1 -> x1.rank).collect(Collectors.toList())).
                 distinct().count();
     }
+    // If list is ordered, then map to ranks, and if groupby same cards, then give lowest number to both, and increase rank of rest of list
+    private List<PlayerResult> setDrawAsPlayerResults(List<Player> orderPlayers) {
+        return orderPlayers.stream().
+                map(orderPlayer -> playerResult(orderPlayer.playerName, 1, orderPlayer.pokerHand)).
+                collect(Collectors.toList());
+    }
 
     private List<PlayerResult> determinePlayerResultByPokerHandCards(List<Player> players) {
         List<Player> orderPlayers = players.stream().
                 sorted(Comparator.comparing(p -> p.pokerHand.getPokerHandsCards())).
                 collect(Collectors.toList());
         return setWinnersAndLosersPlayerResults(orderPlayers);
-    }
-
-    private List<PlayerResult> setDrawAsPlayerResults(List<Player> orderPlayers) {
-        return orderPlayers.stream().
-                map(orderPlayer -> playerResult(orderPlayer.playerName, 1, orderPlayer.pokerHand)).
-                collect(Collectors.toList());
     }
 }

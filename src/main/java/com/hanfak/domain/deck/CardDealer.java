@@ -41,6 +41,8 @@ public class CardDealer {
         }
     }
 
+    //TODO unit test
+    // Order cards so straight is seen correctly, ie Ace to King, or Two to Ace
     private List<Card> orderCards(List<Card> cards) {
         List<Card> collect = cards.stream().
                 sorted(Comparator.comparingInt(card -> card.rank.getLevelCode())). // TODO use ordinal instead

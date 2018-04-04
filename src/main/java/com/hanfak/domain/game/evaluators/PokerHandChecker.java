@@ -25,6 +25,7 @@ public class PokerHandChecker {
         return dealtCards.stream().map(card -> card.suit).distinct().count() == 1;
     }
 
+    // TODO tidy up
     public boolean thereExistsAStraightIn(List<Card> dealtCards) {
         List<Card> dealtCardsWithAce = dealtCards.stream().filter(card -> card.rank.equals(Rank.ACE)).collect(Collectors.toList());
         if (dealtCards.stream().map(card -> card.rank).distinct().count() != 5) {

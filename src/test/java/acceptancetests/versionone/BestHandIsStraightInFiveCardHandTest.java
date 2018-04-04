@@ -66,6 +66,7 @@ public class BestHandIsStraightInFiveCardHandTest extends TestState implements W
         andPlayerTwoHasWon();
     }
 
+    // tODO move to unit test in multiple hand evaluator/pokerHandChecker
     @Test
     public void playerDoesNotWinIfIllegalStraight() throws Exception {
         givenADeckDealsOutASetOfRandomCardsWithAIllegalStraightButNoAceToPlayerOne();

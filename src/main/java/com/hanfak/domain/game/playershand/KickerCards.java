@@ -37,7 +37,7 @@ public class KickerCards implements Comparable<KickerCards> {
                 sorted(Comparator.comparingInt(card -> card.rank.getLevelCode())).
                 collect(Collectors.toList());
     }
-
+    // TODO unit test
     private static final Comparator<KickerCards> COMPARATOR =
             (kickerCardsOne, kickerCardsTwo) -> IntStream.range(0, kickerCardsOne.getCards().size()).
                     map(i -> Integer.compare(kickerCardsOne.getCards().get(i).rank.getLevelCode(), kickerCardsTwo.getCards().get(i).rank.getLevelCode())).

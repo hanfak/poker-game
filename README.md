@@ -102,6 +102,8 @@ To be added
 * test rankings
 * ATest add assertion on poker hand type that won or drew
 * Improve logic checking if it is a straight
+* Have multiple hands
+* Have 6/7 cards and choose best 5 card hand
 </details>
 
 ### Useful Stuff
