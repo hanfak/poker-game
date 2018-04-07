@@ -11,8 +11,9 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static java.lang.Math.abs;
-
+//TOOD unit tests
 public class DealtCards {
+    // tODO change to private and create getter, place ordering in getter
     public final List<Card> cards;
 
     public DealtCards(List<Card> cards) {

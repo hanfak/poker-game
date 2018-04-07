@@ -37,8 +37,10 @@ public class CardsExamples {
     public static final Card EIGHT_OF_HEARTS = card(EIGHT, HEART);
 
     public static final Card SEVEN_OF_DIAMONDS = card(SEVEN, DIAMOND);
+    public static final Card SEVEN_OF_SPADES = card(SEVEN, SPADE);
 
     public static final Card SIX_OF_HEARTS = card(SIX, HEART);
+    public static final Card SIX_OF_SPADES = card(SIX, SPADE);
 
 
     public static final Card FIVE_OF_SPADES = card(FIVE, SPADE);
