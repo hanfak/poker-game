@@ -10,7 +10,7 @@ import java.util.List;
 // Hand is just the PokerHand
 public class Player {
     public final String playerName;
-    private final List<Card> dealtHand; // Type with comparable(??)
+    private final List<Card> dealtHand; // TODO Replace with type
     public final PokerHand pokerHand;
 
     private Player(String playerName, List<Card> dealtHand, PokerHand pokerHand) {

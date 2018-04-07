@@ -15,7 +15,6 @@ import static com.hanfak.domain.cards.Suit.DIAMOND;
 import static com.hanfak.domain.cards.Suit.HEART;
 import static com.hanfak.domain.cards.Suit.SPADE;
 
-// TODO implement equals
 public class KickerCards implements Comparable<KickerCards> {
     private final List<Card> cards;
 
@@ -27,17 +26,19 @@ public class KickerCards implements Comparable<KickerCards> {
         return cards;
     }
 
+    // TODO unit test
     @Override
     public int compareTo(KickerCards otherKickerCards) {
         return COMPARATOR.compare(this, otherKickerCards);
     }
+
     // TODO unit test this
     private List<Card> orderCards(List<Card> cards) {
         return cards.stream().
                 sorted(Comparator.comparingInt(card -> card.rank.getLevelCode())).
                 collect(Collectors.toList());
     }
-    // TODO unit test
+
     private static final Comparator<KickerCards> COMPARATOR =
             (kickerCardsOne, kickerCardsTwo) -> IntStream.range(0, kickerCardsOne.getCards().size()).
                     map(i -> Integer.compare(kickerCardsOne.getCards().get(i).rank.getLevelCode(), kickerCardsTwo.getCards().get(i).rank.getLevelCode())).

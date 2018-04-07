@@ -3,16 +3,16 @@ package com.hanfak.domain.game.playershand;
 import com.hanfak.domain.cards.Card;
 import com.hanfak.domain.cards.Rank;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
-
-import static java.lang.Math.abs;
 // TODO unit test
 public class PokerHandsCards implements Comparable<PokerHandsCards> {
     private final List<Card> cards;
-    // TODO Order by rank or by three of a kind
+
     public PokerHandsCards(List<Card> cards) {
         this.cards = orderCards(cards);
     }
@@ -34,21 +34,11 @@ public class PokerHandsCards implements Comparable<PokerHandsCards> {
         // Ordering full house cards so three of a kind is first and pair is second
         Map<Rank, List<Card>> collect1 = collect.stream().collect(Collectors.groupingBy(x -> x.rank));
         if (collect.size() == 5 && collect1.values().size() == 2) {
+            //TODO Extract ordeirng to injected class
             return collect1.values().stream().
                     sorted(Comparator.comparingInt(List::size)).
                     flatMap(Collection::stream).
                     collect(Collectors.toList());
-        }
-
-        // TODO rethink how to do this Ace High straight not showing correctly
-        if (collect.size() == 5) {
-
-            int difference = abs(collect.get(1).rank.ordinal() - collect.get(collect.size() - 1).rank.ordinal());
-            if (difference == 3 && cards.stream().filter(card -> card.rank.equals(Rank.ACE) && !card.rank.equals(Rank.KING)).count() == 1) {
-                List<Card> cards2 = Collections.singletonList(collect.get(0));
-                List<Card> cards1 = collect.subList(1, collect.size());
-                return Stream.of(cards1, cards2).flatMap(Collection::stream).collect(Collectors.toList());
-            }
         }
 
         return collect;

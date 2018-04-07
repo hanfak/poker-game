@@ -30,6 +30,7 @@ public class Card implements Comparable<Card> {
         return result;
     }
 
+    // TODO test for each suit shown
     @Override
     public String toString() {
         // TODO move to Suit enum
@@ -53,6 +54,7 @@ public class Card implements Comparable<Card> {
                 suitSymbol;
     }
 
+    // TODO test
     @Override
     public int compareTo(Card o) {
         return rank.compareTo(o.rank);

@@ -24,8 +24,9 @@ public class DealtCards {
         List<Card> collect = cards.stream().
                 sorted(Comparator.comparingInt(card -> card.rank.getLevelCode())). // TODO use ordinal instead
                 collect(Collectors.toList());
+
         int difference = abs(collect.get(1).rank.ordinal() - collect.get(collect.size() - 1).rank.ordinal());
-        if (difference == 3 && cards.stream().filter(card -> card.rank.equals(Rank.ACE)).count() == 1) {
+        if (difference == 3 && collect.get(0).rank == Rank.ACE && collect.get(1).rank != Rank.KING) {
             List<Card> cards2 = Collections.singletonList(collect.get(0));
             List<Card> cards1 = collect.subList(1, collect.size());
             return Stream.of(cards1, cards2).flatMap(Collection::stream).collect(Collectors.toList());
