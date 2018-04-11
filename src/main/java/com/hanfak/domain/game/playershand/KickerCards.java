@@ -26,13 +26,11 @@ public class KickerCards implements Comparable<KickerCards> {
         return cards;
     }
 
-    // TODO unit test
     @Override
     public int compareTo(KickerCards otherKickerCards) {
         return COMPARATOR.compare(this, otherKickerCards);
     }
 
-    // TODO unit test this
     private List<Card> orderCards(List<Card> cards) {
         return cards.stream().
                 sorted(Comparator.comparingInt(card -> card.rank.getLevelCode())).
@@ -88,8 +86,11 @@ public class KickerCards implements Comparable<KickerCards> {
         KickerCards kickerCardsThree = new KickerCards(kickersThree);
         KickerCards kickerCardsFour = new KickerCards(kickersFour);
 
-        List<KickerCards> kickerCards = Arrays.asList(kickerCardsTwo, kickerCardsOne, kickerCardsThree, kickerCardsFour);
+//        List<KickerCards> kickerCards = Arrays.asList(kickerCardsTwo, kickerCardsOne, kickerCardsThree, kickerCardsFour);
+        List<KickerCards> kickerCards = Arrays.asList(kickerCardsTwo, kickerCardsOne);
         System.out.println("before = " + kickerCards.stream().map(KickerCards::getCards).collect(Collectors.toList()));
+        System.out.println(kickerCardsTwo.compareTo(kickerCardsOne));
+        System.out.println(kickerCardsTwo.compareTo(kickerCardsOne));
         Collections.sort(kickerCards);
 
         System.out.println("after = " + kickerCards.stream().map(KickerCards::getCards).collect(Collectors.toList()));

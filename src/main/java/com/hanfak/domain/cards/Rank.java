@@ -31,5 +31,4 @@ public enum Rank {
     }
 
 
-    // TODO turn worded numbers into ints, and face cards into first capitalised first letter
 }

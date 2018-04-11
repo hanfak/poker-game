@@ -19,8 +19,8 @@ public class CardDealerTest implements WithAssertions {
 
         DealtCards hand = cardDealer.dealHand(4);
 
-        assertThat(hand.cards.size()).isEqualTo(4);
-        assertThat(hand.cards.stream().distinct().count()).isEqualTo(4);
+        assertThat(hand.getCards().size()).isEqualTo(4);
+        assertThat(hand.getCards().stream().distinct().count()).isEqualTo(4);
     }
 
     @Test
@@ -32,7 +32,7 @@ public class CardDealerTest implements WithAssertions {
         DealtCards handOne = cardDealer.dealHand(4);
         DealtCards handTwo = cardDealer.dealHand(4);
 
-        assertThat(handOne.cards).doesNotContain(handTwo.cards.toArray(new Card[4]));
+        assertThat(handOne.getCards()).doesNotContain(handTwo.getCards().toArray(new Card[4]));
     }
 
     @Test

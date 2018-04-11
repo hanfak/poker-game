@@ -4,11 +4,10 @@ import com.hanfak.domain.game.playershand.PokerHand;
 
 import java.util.Arrays;
 
-// TODO Add why won, ie better hand rank, kicker etc
 public class PlayerResult {
 
     public final String playerName; //TODO Should this be Player object?
-    public final Integer result; // Should be int fro ranking
+    public final Integer result;
     public final PokerHand hand;
 
     // TODO add what hand won ie the enum WinningHand
@@ -22,7 +21,6 @@ public class PlayerResult {
         return new PlayerResult(playerName, result, hand);
     }
 
-    // TODO Display ace as one as last card
     @Override
     public String toString() {
         return "PlayerResult{" +

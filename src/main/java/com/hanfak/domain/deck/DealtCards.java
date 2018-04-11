@@ -11,20 +11,22 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static java.lang.Math.abs;
-//TOOD unit tests
+
 public class DealtCards {
-    // tODO change to private and create getter, place ordering in getter
-    public final List<Card> cards;
+    private final List<Card> cards;
 
     public DealtCards(List<Card> cards) {
         this.cards = orderCards(cards);
     }
-    // TODO straight with high ace should be first
+
+    public List<Card> getCards() {
+        return cards;
+    }
     private List<Card> orderCards(List<Card> cards) {
         List<Card> collect = cards.stream().
                 sorted(Comparator.comparingInt(card -> card.rank.getLevelCode())). // TODO use ordinal instead
                 collect(Collectors.toList());
-
+//       TODO  Extract out
         int difference = abs(collect.get(1).rank.ordinal() - collect.get(collect.size() - 1).rank.ordinal());
         if (difference == 3 && collect.get(0).rank == Rank.ACE && collect.get(1).rank != Rank.KING) {
             List<Card> cards2 = Collections.singletonList(collect.get(0));

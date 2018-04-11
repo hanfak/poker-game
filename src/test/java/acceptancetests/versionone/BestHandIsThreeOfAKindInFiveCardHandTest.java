@@ -88,11 +88,6 @@ public class BestHandIsThreeOfAKindInFiveCardHandTest extends TestState implemen
     private void andADeckDealsOutASetOfRandomCardsWithAThreeOfAKindToPlayerTwo() {
 
     }
-    // TODO test player two wins with three vs two
-    // TODO test same bestHand, but better rank wins
-    // TODO test Draw case
-    // TODO test same bestHand with same rank, but next highest card is different
-
 
     private void givenADeckDealsOutASetOfRandomCardsWithAThreeOfAKindToPlayerOne() {
         org.mockito.Mockito.when(cardDealer.dealHand(5)).thenReturn(new DealtCards(PLAYER_WITH_THREE_OF_A_KIND_CARDS_ONE)).thenReturn(new DealtCards(PLAYER_WITH_PAIR_CARDS_ONE));

@@ -98,10 +98,6 @@ public class BestHandIsStraightFlushInFiveCardHandTest extends TestState impleme
         play = pokerGame.play(cardDealer, playerOne, playerTwo);
     }
 
-    // TODO test same bestHand with same rank, but next highest card is different
-    // TODO test Draw case
-    // TODO test same bestHand, but better rank wins
-    // TODO test player two wins with three vs two
     private void andPokerHandThatWonIsAStraightFlush() {
         Optional<PlayerResult> first = play.stream().filter(playerResult -> 1 == playerResult.result).findFirst();
         assertThat(first.get().hand.getClass().getSimpleName()).isEqualTo("StraightFlush");

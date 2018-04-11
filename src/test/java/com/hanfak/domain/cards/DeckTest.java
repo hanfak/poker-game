@@ -18,7 +18,7 @@ public class DeckTest implements WithAssertions {
     public void createsADeckOf52CardsThatAreUnique() throws Exception {
         Deck deck = new Deck();
 
-        List<Card> cardsInDeck = deck.cardsInDeck;
+        List<Card> cardsInDeck = deck.getCardsInDeck();
 
         assertThat(cardsInDeck.size()).isEqualTo(52);
         assertThat(cardsInDeck.stream().distinct().count()).isEqualTo(52);
@@ -31,8 +31,8 @@ public class DeckTest implements WithAssertions {
 
         deck.removeCards(cardsToRemove);
 
-        assertThat(deck.cardsInDeck.size()).isEqualTo(50);
-        assertThat(deck.cardsInDeck).doesNotContain(THREE_OF_SPADES, ACE_OF_SPADES);
+        assertThat(deck.getCardsInDeck().size()).isEqualTo(50);
+        assertThat(deck.getCardsInDeck()).doesNotContain(THREE_OF_SPADES, ACE_OF_SPADES);
     }
 
     @Test
@@ -43,14 +43,14 @@ public class DeckTest implements WithAssertions {
         deck.removeCards(cardsToRemove);
         deck.removeCards(singletonList(THREE_OF_SPADES));
 
-        assertThat(deck.cardsInDeck.size()).isEqualTo(50);
+        assertThat(deck.getCardsInDeck().size()).isEqualTo(50);
     }
 
     @Test
     public void has13HeartsInDeck() throws Exception {
         Deck deck = new Deck();
 
-        long count = deck.cardsInDeck.stream().filter(card -> Suit.HEART.equals(card.suit)).count();
+        long count = deck.getCardsInDeck().stream().filter(card -> Suit.HEART.equals(card.suit)).count();
 
         assertThat(count).isEqualTo(13);
     }
@@ -59,7 +59,7 @@ public class DeckTest implements WithAssertions {
     public void has13ClubsInDeck() throws Exception {
         Deck deck = new Deck();
 
-        long count = deck.cardsInDeck.stream().filter(card -> Suit.CLUB.equals(card.suit)).count();
+        long count = deck.getCardsInDeck().stream().filter(card -> Suit.CLUB.equals(card.suit)).count();
 
         assertThat(count).isEqualTo(13);
     }
@@ -68,7 +68,7 @@ public class DeckTest implements WithAssertions {
     public void has13DiamondsInDeck() throws Exception {
         Deck deck = new Deck();
 
-        long count = deck.cardsInDeck.stream().filter(card -> Suit.DIAMOND.equals(card.suit)).count();
+        long count = deck.getCardsInDeck().stream().filter(card -> Suit.DIAMOND.equals(card.suit)).count();
 
         assertThat(count).isEqualTo(13);
     }
@@ -77,7 +77,7 @@ public class DeckTest implements WithAssertions {
     public void has13SpadesInDeck() throws Exception {
         Deck deck = new Deck();
 
-        long count = deck.cardsInDeck.stream().filter(card -> Suit.SPADE.equals(card.suit)).count();
+        long count = deck.getCardsInDeck().stream().filter(card -> Suit.SPADE.equals(card.suit)).count();
 
         assertThat(count).isEqualTo(13);
     }

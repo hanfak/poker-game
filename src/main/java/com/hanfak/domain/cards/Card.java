@@ -1,6 +1,6 @@
 package com.hanfak.domain.cards;
 
-public class Card implements Comparable<Card> {
+public class Card /*implements Comparable<Card>*/ {
     public final Rank rank;
     public final Suit suit;
 
@@ -30,10 +30,9 @@ public class Card implements Comparable<Card> {
         return result;
     }
 
-    // TODO test for each suit shown
     @Override
     public String toString() {
-        // TODO move to Suit enum
+        // TODO move to Suit enum??
         String suitSymbol = "";
 
         switch (suit) {
@@ -55,8 +54,8 @@ public class Card implements Comparable<Card> {
     }
 
     // TODO test
-    @Override
-    public int compareTo(Card o) {
-        return rank.compareTo(o.rank);
-    }
+//    @Override
+//    public int compareTo(Card o) {
+//        return rank.compareTo(o.rank);
+//    }
 }

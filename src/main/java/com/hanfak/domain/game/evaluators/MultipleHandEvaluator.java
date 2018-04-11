@@ -11,8 +11,6 @@ import java.util.stream.IntStream;
 
 import static com.hanfak.domain.game.PlayerResult.playerResult;
 
-// TODO need to unit test
-// TODO Extact set winner/loser and draw
 public class MultipleHandEvaluator {
     public List<PlayerResult> compareAllPlayersHands(List<Player> players) {
         if (pokerHandsHaveDifferentRankings(players)) {
@@ -43,16 +41,18 @@ public class MultipleHandEvaluator {
     }
 
     private boolean pokerHandCardsAreTheSame(List<Player> players) {
-        return players.get(0).pokerHand.getPokerHandsCards().getCards().stream().map(card -> card.rank.ordinal()).collect(Collectors.toList()).
-                equals(players.get(1).pokerHand.getPokerHandsCards().getCards().stream().map(card -> card.rank.ordinal()).collect(Collectors.toList()));
+        List<Integer> collect = players.get(0).pokerHand.getPokerHandsCards().getCards().stream().map(card -> card.rank.ordinal()).collect(Collectors.toList());
+        List<Integer> collect1 = players.get(1).pokerHand.getPokerHandsCards().getCards().stream().map(card -> card.rank.ordinal()).collect(Collectors.toList());
+        return collect.
+                equals(collect1);
     }
 
     private List<PlayerResult> determinePlayerResultByKickerCards(List<Player> players) {
-        List<Player> orderPlayers = players.stream().sorted(Comparator.comparing(p -> p.pokerHand.getKickerCards())).collect(Collectors.toList());
-        if (kickerCardsAreTheSame(orderPlayers)) {
-            return setDrawAsPlayerResults(orderPlayers);
+        List<Player> playersOrderedByKickerCards = players.stream().sorted(Comparator.comparing(p -> p.pokerHand.getKickerCards())).collect(Collectors.toList());
+        if (kickerCardsAreTheSame(playersOrderedByKickerCards)) {
+            return setDrawAsPlayerResults(playersOrderedByKickerCards);
         }
-        return setWinnersAndLosersPlayerResults(orderPlayers);
+        return setWinnersAndLosersPlayerResults(playersOrderedByKickerCards);
     }
 
     private boolean kickerCardsAreTheSame(List<Player> orderPlayers) {

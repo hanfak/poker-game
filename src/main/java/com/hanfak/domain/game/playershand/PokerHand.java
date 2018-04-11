@@ -1,6 +1,6 @@
 package com.hanfak.domain.game.playershand;
 
-// TODO comparable
+// TODO comparable??
 public abstract class PokerHand {
     private final int ranking;
     private final PokerHandsCards pokerHandCards;

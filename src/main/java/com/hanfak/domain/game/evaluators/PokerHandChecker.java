@@ -10,7 +10,6 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import static java.lang.Math.abs;
-// TODO unit test
 public class PokerHandChecker {
 
     public boolean thereExistsAStraightFlushIn(List<Card> dealtCards) {

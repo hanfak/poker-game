@@ -1,6 +1,6 @@
 # TODO
 
-1. Acceptance test for all possible hands
+1. -Acceptance test for all possible hands-
 2. Unit tests for in TODOs
 3. Acceptance test for multiple hands to evaluate
     - Deal with multiple players and Draws
