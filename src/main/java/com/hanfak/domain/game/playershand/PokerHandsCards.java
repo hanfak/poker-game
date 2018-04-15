@@ -11,6 +11,21 @@ import java.util.stream.Stream;
 import static java.lang.Math.abs;
 
 public class PokerHandsCards implements Comparable<PokerHandsCards> {
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        PokerHandsCards that = (PokerHandsCards) o;
+
+        return cards != null ? cards.equals(that.cards) : that.cards == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return cards != null ? cards.hashCode() : 0;
+    }
+
     private final List<Card> cards;
 
     public PokerHandsCards(List<Card> cards) {

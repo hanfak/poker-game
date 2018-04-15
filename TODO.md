@@ -6,6 +6,8 @@
     - Deal with multiple players and Draws
         - What will be the ordering 1,2,3,3,4,5?
         - Multiple draws for different positions ie 1,1,2,3,4,4,5
+    - Add JavaFx interface
+        - test this (https://github.com/TestFX/TestFX)
 4. New version: Best hand for multiple cards dealt, and multiple players
     - playing with two dealt, then flop, then turn, then river
         - use of multipleHandEvaluator to get best hand from all possible combinations of 5 cards

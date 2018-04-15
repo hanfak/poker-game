@@ -35,16 +35,33 @@ public class MultipleHandEvaluator {
     }
 
     private List<PlayerResult> setWinnersAndLosersPlayerResults(List<Player> orderPlayers) {
-        return IntStream.range(0, orderPlayers.size()).
+        List<PlayerResult> collect = IntStream.range(0, orderPlayers.size()).
                 mapToObj(p -> playerResult(orderPlayers.get(p).playerName, p + 1, orderPlayers.get(p).pokerHand)).
                 collect(Collectors.toList());
+        System.out.println("collect = " + collect);
+
+        return IntStream.range(0, collect.size()).
+                mapToObj(i -> {
+                    if (i < collect.size() - 1 &&
+                            collect.get(i).hand.getPokerHandsCards().getCards().containsAll(collect.get(i + 1).hand.getPokerHandsCards().getCards()) &&
+                            collect.get(i+1).hand.getPokerHandsCards().getCards().containsAll(collect.get(i).hand.getPokerHandsCards().getCards())) {
+                        return playerResult(collect.get(i + 1).playerName, collect.get(i).result, collect.get(i + 1).hand);
+                    }
+                    if(i >= 1 && !collect.get(i).result.equals(collect.get(i-1).result)) {
+                        return playerResult(collect.get(i - 1).playerName, collect.get(i).result - 1, collect.get(i -1).hand);
+                    }
+                    return playerResult(collect.get(i).playerName, collect.get(i).result, collect.get(i).hand);
+                }).collect(Collectors.toList());
     }
 
     private boolean pokerHandCardsAreTheSame(List<Player> players) {
         List<Integer> collect = players.get(0).pokerHand.getPokerHandsCards().getCards().stream().map(card -> card.rank.ordinal()).collect(Collectors.toList());
         List<Integer> collect1 = players.get(1).pokerHand.getPokerHandsCards().getCards().stream().map(card -> card.rank.ordinal()).collect(Collectors.toList());
-        return collect.
-                equals(collect1);
+
+        long count = players.stream().map(p -> p.pokerHand.getPokerHandsCards().getCards().stream().map(card -> card.rank.ordinal()).collect(Collectors.toList())).
+                distinct().count();
+        System.out.println("count = " + count);
+        return collect.equals(collect1);
     }
 
     private List<PlayerResult> determinePlayerResultByKickerCards(List<Player> players) {
@@ -60,6 +77,7 @@ public class MultipleHandEvaluator {
                 map(KickerCards::getCards).map(listOfCards -> listOfCards.stream().map(x1 -> x1.rank).collect(Collectors.toList())).
                 distinct().count();
     }
+
     // If list is ordered, then map to ranks, and if groupby same cards, then give lowest number to both, and increase rank of rest of list
     private List<PlayerResult> setDrawAsPlayerResults(List<Player> orderPlayers) {
         return orderPlayers.stream().
