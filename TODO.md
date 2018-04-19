@@ -1,6 +1,8 @@
 # TODO
 
 1. -Acceptance test for all possible hands-
+1.a. get rid of ordinal method calls
+1.b. use enum map when groupby Item37 effective java
 2. Unit tests for in TODOs
 3. Acceptance test for multiple hands to evaluate
     - Deal with multiple players and Draws
