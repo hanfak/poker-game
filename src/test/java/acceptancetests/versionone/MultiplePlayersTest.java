@@ -92,7 +92,7 @@ public class MultiplePlayersTest extends TestState implements WithAssertions {
 
     // 1,1,1,4
     @Test
-    public void threePlayersWithSameHandsWithOnlyPokerHandGetSameRankingAndOnePlayerWithLowerHandGetsHighestRanking() throws Exception {
+    public void threePlayersWithSameHandsWithOnlyPokerHandGetSameRankingAndOnePlayerWithLowerHandGetsLowestRanking() throws Exception {
         givenADeckDealsOutASetOfRandomCardsWithAFlushtToPlayerOne();
         andADeckDealsOutASetOfRandomCardsWithAFullHouseToPlayerTwo();
         andADeckDealsOutASetOfRandomCardsWithASameFullHouseToPlayerThree();
@@ -107,6 +107,38 @@ public class MultiplePlayersTest extends TestState implements WithAssertions {
     }
 
     // 1,2,2,4
+    @Test
+    public void twoPlayersWithSameHandsWithOnlyPokerHandGetSameRankingAndOnePlayerWithLowerHandGetsHighestRankingAndAnotherGetsTheLowerRanking() throws Exception {
+        givenADeckDealsOutASetOfRandomCardsWithAStraightFlushtToPlayerOne();
+        andADeckDealsOutASetOfRandomCardsWithAFullHouseToPlayerTwo();
+        andADeckDealsOutASetOfRandomCardsWithASameFullHouseToPlayerThree();
+        andADeckDealsOutASetOfRandomCardsWithAHighCardToPlayerFour();
+
+        whenAGameOfOneHandWithFiveCardsIsPlayedBetweenFourPlayers();
+
+        andPlayerOneIsFourthPositon();
+        andPlayerTwoIsInSecondPositon();
+        andPlayerThreeIsInSecondPositon();
+        andPlayerFourIsInFirstPositon();
+    }
+
+    //Test 1,1,3,4,4
+
+    private void andPlayerTwoIsInSecondPositon() {
+        assertResultMatchesForPlayer(2, "Player Two");
+
+    }
+
+    private void givenADeckDealsOutASetOfRandomCardsWithAStraightFlushtToPlayerOne() {
+        Mockito.when(cardDealer.dealHand(5)).
+                thenReturn(new DealtCards(PLAYER_WITH_HIGH_CARD_CARDS_FOUR)).
+                thenReturn(new DealtCards(PLAYER_WITH_FULL_HOUSE_CARDS_FOUR)).
+                thenReturn(new DealtCards(PLAYER_WITH_FULL_HOUSE_CARDS_ONE)).
+                thenReturn(new DealtCards(PLAYER_WITH_STRAIGHT_FLUSH_TWO));
+    }
+
+    private void andADeckDealsOutASetOfRandomCardsWithAHighCardToPlayerFour() {
+    }
 
     private void andPlayerOneIsFourthPositon() {
         assertResultMatchesForPlayer(4, "Player One");
@@ -127,6 +159,7 @@ public class MultiplePlayersTest extends TestState implements WithAssertions {
     private void givenADeckDealsOutASetOfRandomCardsWithAFlushtToPlayerOne() {
             Mockito.when(cardDealer.dealHand(5)).
                     thenReturn(new DealtCards(PLAYER_WITH_FLUSH_ONE)).
+                    thenReturn(new DealtCards(PLAYER_WITH_FULL_HOUSE_CARDS_FOUR)).
                     thenReturn(new DealtCards(PLAYER_WITH_FULL_HOUSE_CARDS_ONE)).
                     thenReturn(new DealtCards(PLAYER_WITH_FULL_HOUSE_CARDS_FOUR));
     }
@@ -135,8 +168,6 @@ public class MultiplePlayersTest extends TestState implements WithAssertions {
 
     }
 
-    // TODO Test 1,2,2,4
-    // TODO Test 1,2,3,3
 
     private void andADeckDealsOutASetOfRandomCardsWithASameStraightToPlayerThree() {
 
@@ -191,7 +222,7 @@ public class MultiplePlayersTest extends TestState implements WithAssertions {
     }
 
     private void andPlayerOneIsFirstPositon() {
-        assertResultMatchesForPlayer(1, "Player Two");
+        assertResultMatchesForPlayer(1, "Player One");
     }
 
     private void givenADeckDealsOutASetOfRandomCardsWithAPairToPlayerOne() {
