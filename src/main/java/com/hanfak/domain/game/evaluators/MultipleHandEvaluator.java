@@ -4,13 +4,10 @@ import com.hanfak.domain.game.Player;
 import com.hanfak.domain.game.PlayerResult;
 import com.hanfak.domain.game.playershand.KickerCards;
 
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 import static com.hanfak.domain.game.PlayerResult.playerResult;
 
@@ -25,6 +22,7 @@ public class MultipleHandEvaluator {
             return determinePlayerResultByPokerHandCards(players);
         }
     }
+
     // Extract to HandComparer
     private boolean pokerHandsHaveDifferentRankings(List<Player> players) {
         return 1 != players.stream().map(x -> x.pokerHand.ranking()).distinct().count();
@@ -40,6 +38,7 @@ public class MultipleHandEvaluator {
                 map(KickerCards::getCards).map(listOfCards -> listOfCards.stream().map(x1 -> x1.rank).collect(Collectors.toList())).
                 distinct().count();
     }
+
     //Extract to HandOrderer
     private List<PlayerResult> determinePlayerResultWherePokerHandsAreDifferentRankings(List<Player> players) {
         List<Player> playersOrderedByRankingOfPokerHand = players.stream().
@@ -48,7 +47,6 @@ public class MultipleHandEvaluator {
         return setWinnersAndLosersPlayerResults(playersOrderedByRankingOfPokerHand);
     }
     //Extract to HandOrderer
-
     private List<PlayerResult> determinePlayerResultByKickerCards(List<Player> players) {
         List<Player> playersOrderedByKickerCards = players.stream().
                 sorted(Comparator.comparing(p -> p.pokerHand.getKickerCards())).
@@ -59,7 +57,6 @@ public class MultipleHandEvaluator {
         return setWinnersAndLosersPlayerResults(playersOrderedByKickerCards);
     }
     //Extract to HandOrderer
-
     private List<PlayerResult> determinePlayerResultByPokerHandCards(List<Player> players) {
         List<Player> orderPlayers = players.stream().
                 sorted(Comparator.comparing(p -> p.pokerHand.getPokerHandsCards())).
@@ -74,40 +71,30 @@ public class MultipleHandEvaluator {
                 collect(Collectors.toList());
     }
 
-    //    //Extract to ResultSetter
-
+    //Extract to ResultSetter
     private List<PlayerResult> setWinnersAndLosersPlayerResults1(List<Player> orderPlayers) {
         return IntStream.range(0, orderPlayers.size()).
                 mapToObj(p -> playerResult(orderPlayers.get(p).playerName, p + 1, orderPlayers.get(p).pokerHand)).
                 collect(Collectors.toList());
     }
+
     //Extract to ResultSetter
     private List<PlayerResult> setWinnersAndLosersPlayerResults(List<Player> orderPlayers) {
         List<PlayerResult> collect = setWinnersAndLosersPlayerResults1(orderPlayers);
         System.out.println("collect = " + collect);
 
-        PlayerResult winner = collect.get(0);
-        List<PlayerResult> playerResults = collect.subList(1, collect.size());
+        return collect.stream().map(k -> {
+            List<PlayerResult> collect1 = collect.subList(0, collect.indexOf(k)).stream().filter(y -> y.hand.getPokerHandsCards().getCards().stream().map(x -> x.rank).collect(Collectors.toList()).
+                    containsAll(k.hand.getPokerHandsCards().getCards().stream().map(x -> x.rank).collect(Collectors.toList())) &&
+                    y.hand.getKickerCards().getCards().stream().map(x -> x.rank).collect(Collectors.toList()).
+                            containsAll(k.hand.getKickerCards().getCards().stream().map(x -> x.rank).collect(Collectors.toList()))).collect(Collectors.toList());
 
-        // TODO Compare with first player with same hand
-        List<PlayerResult> changedPlayerResults = playerResults.stream().
-                map(p -> {
-                    int i = collect.indexOf(p);
-                    if (p.hand.getPokerHandsCards().getCards().stream().map(x->x.rank).collect(Collectors.toList()).
-                            containsAll(collect.get(i-1).hand.getPokerHandsCards().getCards().stream().map(x->x.rank).collect(Collectors.toList())) &&
-                            p.hand.getKickerCards().getCards().stream().map(x->x.rank).collect(Collectors.toList()).
-                                    containsAll(collect.get(i-1).hand.getKickerCards().getCards().stream().map(x->x.rank).collect(Collectors.toList()))) {
-                        return playerResult(p.playerName, collect.get(i-1).result, p.hand);
-                    }
-                    return p;
-
-                }).
-                collect(Collectors.toList());
-
-        return Stream.of(Collections.singletonList(winner), changedPlayerResults)
-                .flatMap(Collection::stream)
-                .collect(Collectors.toList());
-
+            if (collect1.isEmpty()) {
+                return k;
+            }
+            return playerResult(k.playerName, collect1.get(0).result, k.hand);
+        }).collect(Collectors.toList());
         // TODO another idea split by winner, group by rankings of pokerhands and in each value set result to the lowest one there,
     }
+
 }

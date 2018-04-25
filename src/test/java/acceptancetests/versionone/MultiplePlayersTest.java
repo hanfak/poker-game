@@ -91,7 +91,6 @@ public class MultiplePlayersTest extends TestState implements WithAssertions {
     }
 
     // 1,1,1,4
-
     @Test
     public void threePlayersWithSameHandsWithOnlyPokerHandGetSameRankingAndOnePlayerWithLowerHandGetsHighestRanking() throws Exception {
         givenADeckDealsOutASetOfRandomCardsWithAFlushtToPlayerOne();
@@ -107,13 +106,14 @@ public class MultiplePlayersTest extends TestState implements WithAssertions {
         andPlayerFourIsInFirstPositon();
     }
 
-    private void andPlayerOneIsFourthPositon() {
-        blah(4, "Player One");
+    // 1,2,2,4
 
+    private void andPlayerOneIsFourthPositon() {
+        assertResultMatchesForPlayer(4, "Player One");
     }
 
     private void andPlayerFourIsInFirstPositon() {
-        blah(1, "Player Four");
+        assertResultMatchesForPlayer(1, "Player Four");
     }
 
     private void andADeckDealsOutASetOfRandomCardsWithASameFullHouseToPlayerFour() {
@@ -121,7 +121,7 @@ public class MultiplePlayersTest extends TestState implements WithAssertions {
     }
 
     private void andPlayerThreeIsInFirstPositon() {
-        blah(1, "Player Three");
+        assertResultMatchesForPlayer(1, "Player Three");
     }
 
     private void givenADeckDealsOutASetOfRandomCardsWithAFlushtToPlayerOne() {
@@ -135,8 +135,6 @@ public class MultiplePlayersTest extends TestState implements WithAssertions {
 
     }
 
-    // TODO test 1,1,1,4
-    // TODO Test 1,1,2
     // TODO Test 1,2,2,4
     // TODO Test 1,2,3,3
 
@@ -155,14 +153,14 @@ public class MultiplePlayersTest extends TestState implements WithAssertions {
     }
 
     private void andPlayerThreeIsInSecondPositon() {
-        blah(2, "Player Three");
+        assertResultMatchesForPlayer(2, "Player Three");
     }
 
     private void andPlayerOneIsSecondPositon() {
-        blah(2, "Player One");
+        assertResultMatchesForPlayer(2, "Player One");
     }
 
-    private void blah(int result, String playerName) {
+    private void assertResultMatchesForPlayer(int result, String playerName) {
         List<PlayerResult> collect = play.stream().
                 filter(presult -> presult.result == result).
                 filter(playerResult -> playerResult.playerName.equals(playerName)).
@@ -185,15 +183,15 @@ public class MultiplePlayersTest extends TestState implements WithAssertions {
     }
 
     private void andPlayerTwoIsInFirstPositon() {
-        blah(1, "Player Two");
+        assertResultMatchesForPlayer(1, "Player Two");
     }
 
     private void andPlayerThreeIsFirstPositon() {
-        blah(1, "Player Three");
+        assertResultMatchesForPlayer(1, "Player Three");
     }
 
     private void andPlayerOneIsFirstPositon() {
-        blah(1, "Player Two");
+        assertResultMatchesForPlayer(1, "Player Two");
     }
 
     private void givenADeckDealsOutASetOfRandomCardsWithAPairToPlayerOne() {
@@ -212,11 +210,11 @@ public class MultiplePlayersTest extends TestState implements WithAssertions {
     }
 
     private void andPlayerTwoIsFirstPositon() {
-        blah(1, "Player Two");
+        assertResultMatchesForPlayer(1, "Player Two");
     }
 
     private void andPlayerOneIsThirdPositon() {
-        blah(3, "Player One");
+        assertResultMatchesForPlayer(3, "Player One");
     }
 
     private void andPlayerThreeIsSecondPositon() {
