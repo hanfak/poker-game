@@ -23,6 +23,15 @@ public abstract class PokerHand {
     public KickerCards getKickerCards() {
         return kickerCards;
     }
+
+    @Override
+    public String toString() {
+        return "PokerHand{" +
+                "ranking=" + ranking +
+                ", pokerHandCards=" + pokerHandCards +
+                ", kickerCards=" + kickerCards +
+                '}';
+    }
 }
 
 

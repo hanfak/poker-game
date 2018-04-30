@@ -48,7 +48,7 @@ public class PokerGame {
         StringBuilder a = new StringBuilder();
         IntStream.range(1,100).forEach(x -> {
             List<PlayerResult> result = pokerGame.play(new CardDealer(new Deck(), new CollectionsCardShuffler()), player("one"),
-                    player("two"));
+                    player("two"), player("three"), player("four"), player("five"));
             String blah = result.toString() + "\n\n";
             System.out.println("ind result " + blah);
             a.append(x + ": " + blah);

@@ -74,4 +74,11 @@ public class PokerHandsCards implements Comparable<PokerHandsCards> {
                     filter(rankValue -> rankValue != 0).
                     findFirst().
                     orElse(0);
+
+    @Override
+    public String toString() {
+        return "PokerHandsCards{" +
+                "cards=" + cards +
+                '}';
+    }
 }

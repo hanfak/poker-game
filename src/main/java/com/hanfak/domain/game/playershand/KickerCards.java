@@ -59,6 +59,13 @@ public class KickerCards implements Comparable<KickerCards> {
         return cards != null ? cards.hashCode() : 0;
     }
 
+    @Override
+    public String toString() {
+        return "KickerCards{" +
+                "cards=" + cards +
+                '}';
+    }
+
     public static void main(String[] args) {
         Card ACE_OF_SPADES = card(ACE, SPADE);
         Card ACE_OF_SPADES1 = card(ACE, SPADE);

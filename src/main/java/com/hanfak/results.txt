@@ -1,0 +1,693 @@
+1: [PlayerResult{playerName='two', result=1, hand=[[Queen♣, Queen♦], [Ten♦, Six❤, Two♠]], pokerHand=Pair}
+, PlayerResult{playerName='three', result=2, hand=[[Three❤, Three♣], [Nine♠, Eight❤, Five♠]], pokerHand=Pair}
+, PlayerResult{playerName='one', result=3, hand=[[King♣], [Jack♦, Eight♠, Six♦, Four♣]], pokerHand=HighCard}
+, PlayerResult{playerName='four', result=4, hand=[[Ace❤], [Ten♣, Nine♣, Seven❤, Three♦]], pokerHand=HighCard}
+, PlayerResult{playerName='five', result=5, hand=[[King❤], [Ten♠, Seven♦, Five♣, Two♣]], pokerHand=HighCard}
+]
+
+2: [PlayerResult{playerName='one', result=1, hand=[[Seven♦, Seven♣], [Nine♦, Eight♣, Two♣]], pokerHand=Pair}
+, PlayerResult{playerName='four', result=2, hand=[[Three❤, Three♦], [Ten♠, Eight♦, Six❤]], pokerHand=Pair}
+, PlayerResult{playerName='two', result=3, hand=[[Queen♦], [Seven♠, Five❤, Four♦, Three♠]], pokerHand=HighCard}
+, PlayerResult{playerName='three', result=4, hand=[[King♠], [Jack♠, Five♣, Four♠, Three♣]], pokerHand=HighCard}
+, PlayerResult{playerName='five', result=5, hand=[[King♦], [Queen❤, Ten♣, Nine♠, Four❤]], pokerHand=HighCard}
+]
+
+3: [PlayerResult{playerName='three', result=1, hand=[[Nine♣, Nine♦, Nine❤], [Seven♦, Four♠]], pokerHand=ThreeOfAKind}
+, PlayerResult{playerName='one', result=2, hand=[[Queen♣, Queen♦, Six♦, Six♠], [Ace♦]], pokerHand=TwoPair}
+, PlayerResult{playerName='two', result=3, hand=[[King♠], [Jack♣, Seven❤, Six❤, Two♠]], pokerHand=HighCard}
+, PlayerResult{playerName='four', result=4, hand=[[Queen❤], [Jack♦, Ten♠, Six♣, Three♦]], pokerHand=HighCard}
+, PlayerResult{playerName='five', result=5, hand=[[King❤], [Eight♠, Seven♣, Three❤, Two❤]], pokerHand=HighCard}
+]
+
+4: [PlayerResult{playerName='two', result=1, hand=[[Seven❤, Seven♣], [Nine❤, Six♦, Four♠]], pokerHand=Pair}
+, PlayerResult{playerName='three', result=2, hand=[[Four♣, Four❤], [King♣, Jack❤, Ten♣]], pokerHand=Pair}
+, PlayerResult{playerName='four', result=3, hand=[[Nine♦, Nine♠], [King♦, Queen♦, Three♠]], pokerHand=Pair}
+, PlayerResult{playerName='one', result=4, hand=[[Jack♠], [Six♣, Five♦, Four♦, Two♠]], pokerHand=HighCard}
+, PlayerResult{playerName='five', result=5, hand=[[Ace♣], [Queen♣, Ten♠, Eight❤, Seven♦]], pokerHand=HighCard}
+]
+
+5: [PlayerResult{playerName='one', result=1, hand=[[Jack❤, Jack♦], [Nine♣, Five♦, Two♠]], pokerHand=Pair}
+, PlayerResult{playerName='four', result=2, hand=[[Four♣, Four❤], [Queen♠, Five♣, Three♦]], pokerHand=Pair}
+, PlayerResult{playerName='two', result=3, hand=[[Ace♠], [King♦, Ten♦, Six♣, Four♠]], pokerHand=HighCard}
+, PlayerResult{playerName='three', result=4, hand=[[Queen♣], [Ten❤, Nine♦, Eight♠, Four♦]], pokerHand=HighCard}
+, PlayerResult{playerName='five', result=5, hand=[[Ace♣], [Queen❤, Eight♦, Five❤, Three❤]], pokerHand=HighCard}
+]
+
+6: [PlayerResult{playerName='one', result=1, hand=[[Seven♦, Seven♠], [Eight❤, Five♠, Three♦]], pokerHand=Pair}
+, PlayerResult{playerName='four', result=2, hand=[[Ten❤, Ten♦], [Nine❤, Seven❤, Five♦]], pokerHand=Pair}
+, PlayerResult{playerName='five', result=3, hand=[[Nine♠, Nine♦], [Queen♦, Jack♦, Four♣]], pokerHand=Pair}
+, PlayerResult{playerName='two', result=4, hand=[[Ace♠], [Ten♣, Eight♦, Six♠, Two♣]], pokerHand=HighCard}
+, PlayerResult{playerName='three', result=5, hand=[[Ace❤], [King❤, Nine♣, Six♣, Three❤]], pokerHand=HighCard}
+]
+
+7: [PlayerResult{playerName='five', result=1, hand=[[Nine♣, Nine♠], [Jack♦, Five❤, Two♣]], pokerHand=Pair}
+, PlayerResult{playerName='two', result=2, hand=[[Eight♣, Eight♠], [Ace♦, King♣, Seven❤]], pokerHand=Pair}
+, PlayerResult{playerName='one', result=3, hand=[[Six♠, Six♦], [Ace♣, Queen❤, Three♣]], pokerHand=Pair}
+, PlayerResult{playerName='four', result=4, hand=[[Five♣, Five♠], [Jack♣, Eight❤, Three♦]], pokerHand=Pair}
+, PlayerResult{playerName='three', result=5, hand=[[Four♠, Four♣], [Nine♦, Five♦, Three❤]], pokerHand=Pair}
+]
+
+8: [PlayerResult{playerName='two', result=1, hand=[[King♣, King♠], [Nine♠, Eight♣, Seven♣]], pokerHand=Pair}
+, PlayerResult{playerName='four', result=2, hand=[[Ten♣, Ten❤], [Ace♠, Five♠, Three♠]], pokerHand=Pair}
+, PlayerResult{playerName='one', result=3, hand=[[Queen♣], [Ten♦, Seven♠, Six♦, Four❤]], pokerHand=HighCard}
+, PlayerResult{playerName='three', result=4, hand=[[King♦], [Queen♠, Jack❤, Eight♠, Six♣]], pokerHand=HighCard}
+, PlayerResult{playerName='five', result=5, hand=[[Queen❤], [Eight❤, Six❤, Four♣, Two♦]], pokerHand=HighCard}
+]
+
+9: [PlayerResult{playerName='two', result=1, hand=[[Five♠, Five❤], [King♣, Ten♦, Nine♠]], pokerHand=Pair}
+, PlayerResult{playerName='one', result=2, hand=[[Queen♦], [Jack♠, Eight♦, Seven♣, Five♣]], pokerHand=HighCard}
+, PlayerResult{playerName='three', result=3, hand=[[Jack❤], [Seven♦, Six♦, Five♦, Two♠]], pokerHand=HighCard}
+, PlayerResult{playerName='four', result=4, hand=[[Ace♣], [Jack♦, Ten❤, Eight♣, Two♦]], pokerHand=HighCard}
+, PlayerResult{playerName='five', result=5, hand=[[King♠], [Ten♣, Eight♠, Six♣, Four♠]], pokerHand=HighCard}
+]
+
+10: [PlayerResult{playerName='one', result=1, hand=[[Ace♣], [King❤, Queen♦, Nine♠, Five♣]], pokerHand=HighCard}
+, PlayerResult{playerName='three', result=2, hand=[[Ace❤], [King♠, Jack♠, Seven♣, Two♦]], pokerHand=HighCard}
+, PlayerResult{playerName='five', result=3, hand=[[Ace♠], [Queen❤, Eight❤, Seven♠, Three♣]], pokerHand=HighCard}
+, PlayerResult{playerName='four', result=4, hand=[[Queen♠], [Ten♠, Nine♣, Six❤, Five❤]], pokerHand=HighCard}
+, PlayerResult{playerName='two', result=5, hand=[[Ten❤], [Eight♦, Six♠, Five♠, Three❤]], pokerHand=HighCard}
+]
+
+11: [PlayerResult{playerName='two', result=1, hand=[[Ten♣, Ten❤], [Eight❤, Five♣, Three♣]], pokerHand=Pair}
+, PlayerResult{playerName='three', result=2, hand=[[Ace♣, Ace♦], [Jack♠, Nine♠, Seven♠]], pokerHand=Pair}
+, PlayerResult{playerName='five', result=3, hand=[[Six♠, Six❤], [Ten♦, Eight♦, Three❤]], pokerHand=Pair}
+, PlayerResult{playerName='one', result=4, hand=[[King♣], [Queen❤, Jack♦, Nine♦, Four♣]], pokerHand=HighCard}
+, PlayerResult{playerName='four', result=5, hand=[[King❤], [Jack❤, Nine♣, Seven❤, Three♦]], pokerHand=HighCard}
+]
+
+12: [PlayerResult{playerName='two', result=1, hand=[[Nine♣, Nine❤], [Ten♠, Seven♦, Five♠]], pokerHand=Pair}
+, PlayerResult{playerName='one', result=2, hand=[[Ace❤], [King❤, Nine♠, Six♠, Four❤]], pokerHand=HighCard}
+, PlayerResult{playerName='three', result=3, hand=[[Queen♣], [Eight❤, Five♦, Four♦, Three❤]], pokerHand=HighCard}
+, PlayerResult{playerName='four', result=4, hand=[[Ace♠], [Queen❤, Eight♦, Three♠, Two♠]], pokerHand=HighCard}
+, PlayerResult{playerName='five', result=5, hand=[[King♣], [Queen♠, Jack♠, Ten❤, Five♣]], pokerHand=HighCard}
+]
+
+13: [PlayerResult{playerName='one', result=1, hand=[[Five♦, Five❤], [Queen♦, Nine♠, Eight♦]], pokerHand=Pair}
+, PlayerResult{playerName='three', result=2, hand=[[Seven♣, Seven❤], [Ace♠, Six♦, Two♣]], pokerHand=Pair}
+, PlayerResult{playerName='four', result=3, hand=[[Four♣, Four♦], [Jack❤, Nine♣, Three❤]], pokerHand=Pair}
+, PlayerResult{playerName='five', result=4, hand=[[King❤, King♣], [Nine♦, Seven♠, Three♦]], pokerHand=Pair}
+, PlayerResult{playerName='two', result=5, hand=[[Ten♦], [Eight♠, Six❤, Four❤, Three♣]], pokerHand=HighCard}
+]
+
+14: [PlayerResult{playerName='four', result=1, hand=[[Five♦, Five♠, Three♣, Three❤], [Ace♠]], pokerHand=TwoPair}
+, PlayerResult{playerName='five', result=2, hand=[[Ten♦, Ten♠, Four♣, Four♠], [Jack♣]], pokerHand=TwoPair}
+, PlayerResult{playerName='three', result=3, hand=[[King♠, King♦], [Queen♣, Jack❤, Ten♣]], pokerHand=Pair}
+, PlayerResult{playerName='one', result=4, hand=[[Nine♠], [Six♣, Four♦, Three♦, Two❤]], pokerHand=HighCard}
+, PlayerResult{playerName='two', result=5, hand=[[Ace❤], [King♣, Seven♠, Six♦, Five❤]], pokerHand=HighCard}
+]
+
+15: [PlayerResult{playerName='five', result=1, hand=[[Ten♠, Ten♣, Two❤, Two♠], [Eight♠]], pokerHand=TwoPair}
+, PlayerResult{playerName='three', result=2, hand=[[Seven♠, Seven❤], [King❤, Nine❤, Four❤]], pokerHand=Pair}
+, PlayerResult{playerName='four', result=3, hand=[[Queen♦, Queen♠], [Jack❤, Nine♠, Five♣]], pokerHand=Pair}
+, PlayerResult{playerName='one', result=4, hand=[[Queen❤], [Eight♣, Five❤, Four♠, Two♦]], pokerHand=HighCard}
+, PlayerResult{playerName='two', result=5, hand=[[Ace♣], [Ten♦, Eight❤, Five♦, Three♠]], pokerHand=HighCard}
+]
+
+16: [PlayerResult{playerName='two', result=1, hand=[[Two♦, Two❤], [Jack❤, Eight♠, Three❤]], pokerHand=Pair}
+, PlayerResult{playerName='one', result=2, hand=[[Ten♣], [Nine❤, Seven♣, Five❤, Three♣]], pokerHand=HighCard}
+, PlayerResult{playerName='three', result=3, hand=[[Ten♠], [Nine♣, Eight❤, Five♣, Four♦]], pokerHand=HighCard}
+, PlayerResult{playerName='four', result=4, hand=[[Ace♦], [King♠, Queen❤, Five♦, Four♣]], pokerHand=HighCard}
+, PlayerResult{playerName='five', result=5, hand=[[King♣], [Jack♠, Ten♦, Seven♦, Two♠]], pokerHand=HighCard}
+]
+
+17: [PlayerResult{playerName='two', result=1, hand=[[Five♣, Five♦, Two♣, Two♠], [Ace♠]], pokerHand=TwoPair}
+, PlayerResult{playerName='four', result=2, hand=[[Ten♠, Ten♣], [Jack♦, Eight♠, Five❤]], pokerHand=Pair}
+, PlayerResult{playerName='five', result=3, hand=[[Seven❤, Seven♦], [Queen♦, Four♦, Three❤]], pokerHand=Pair}
+, PlayerResult{playerName='one', result=4, hand=[[King♠], [Queen♣, Ten♦, Four♣, Three♦]], pokerHand=HighCard}
+, PlayerResult{playerName='three', result=5, hand=[[Ace♣], [King♦, Eight♣, Seven♣, Five♠]], pokerHand=HighCard}
+]
+
+18: [PlayerResult{playerName='one', result=1, hand=[[Five♣, Five❤, Three♠, Three♣], [King♣]], pokerHand=TwoPair}
+, PlayerResult{playerName='four', result=2, hand=[[Six♣, Six♠, Two♦, Two❤], [King♠]], pokerHand=TwoPair}
+, PlayerResult{playerName='three', result=3, hand=[[Jack♦, Jack❤], [Ace♣, Six❤, Two♣]], pokerHand=Pair}
+, PlayerResult{playerName='five', result=4, hand=[[Seven♦, Seven♠], [King♦, Queen♠, Eight♣]], pokerHand=Pair}
+, PlayerResult{playerName='two', result=5, hand=[[Ace♠], [King❤, Jack♠, Ten❤, Three❤]], pokerHand=HighCard}
+]
+
+19: [PlayerResult{playerName='two', result=1, hand=[[Nine♣, Nine♦], [King❤, Seven♦, Four♦]], pokerHand=Pair}
+, PlayerResult{playerName='five', result=2, hand=[[Six♣, Six♠], [Seven♣, Five♦, Three♠]], pokerHand=Pair}
+, PlayerResult{playerName='one', result=3, hand=[[Queen❤], [Jack♠, Eight♦, Three❤, Two♣]], pokerHand=HighCard}
+, PlayerResult{playerName='three', result=4, hand=[[Ace♦], [Jack❤, Nine♠, Eight❤, Four❤]], pokerHand=HighCard}
+, PlayerResult{playerName='four', result=5, hand=[[Queen♠], [Seven♠, Six♦, Three♣, Two❤]], pokerHand=HighCard}
+]
+
+20: [PlayerResult{playerName='two', result=1, hand=[[Nine♣, Nine♠], [Jack♦, Eight♦, Three❤]], pokerHand=Pair}
+, PlayerResult{playerName='three', result=2, hand=[[Ten❤, Ten♣], [King♠, Eight❤, Six♦]], pokerHand=Pair}
+, PlayerResult{playerName='one', result=3, hand=[[King♣], [Nine❤, Seven♠, Four♦, Three♦]], pokerHand=HighCard}
+, PlayerResult{playerName='four', result=4, hand=[[Ace❤], [Queen♦, Jack♠, Ten♠, Six❤]], pokerHand=HighCard}
+, PlayerResult{playerName='five', result=5, hand=[[Ace♣], [Jack❤, Nine♦, Eight♣, Six♣]], pokerHand=HighCard}
+]
+
+21: [PlayerResult{playerName='three', result=1, hand=[[Eight♣, Eight♦, Seven♣, Seven♠], [Nine♠]], pokerHand=TwoPair}
+, PlayerResult{playerName='one', result=2, hand=[[Jack♦], [Nine♦, Six❤, Four♦, Three♠]], pokerHand=HighCard}
+, PlayerResult{playerName='two', result=3, hand=[[Queen❤], [Seven♦, Six♦, Four♠, Two♣]], pokerHand=HighCard}
+, PlayerResult{playerName='four', result=4, hand=[[King❤], [Jack❤, Five♣, Four♣, Two♦]], pokerHand=HighCard}
+, PlayerResult{playerName='five', result=5, hand=[[King♦], [Nine❤, Eight♠, Five❤, Three♣]], pokerHand=HighCard}
+]
+
+22: [PlayerResult{playerName='three', result=1, hand=[[Four♠, Four❤], [Ace♠, Nine♠, Seven♦]], pokerHand=Pair}
+, PlayerResult{playerName='four', result=2, hand=[[Nine♣, Nine❤], [Jack♠, Six♣, Three♠]], pokerHand=Pair}
+, PlayerResult{playerName='one', result=3, hand=[[King♦], [Queen❤, Jack♦, Six♠, Five❤]], pokerHand=HighCard}
+, PlayerResult{playerName='two', result=4, hand=[[Ten♠], [Seven♠, Six♦, Five♣, Two♦]], pokerHand=HighCard}
+, PlayerResult{playerName='five', result=5, hand=[[Ace♦], [Ten♣, Eight♠, Six❤, Three♣]], pokerHand=HighCard}
+]
+
+23: [PlayerResult{playerName='two', result=1, hand=[[Ace♦, Ace♠], [Ten♣, Nine♦, Five❤]], pokerHand=Pair}
+, PlayerResult{playerName='five', result=2, hand=[[Four♠, Four♣], [Jack♣, Ten❤, Five♣]], pokerHand=Pair}
+, PlayerResult{playerName='one', result=3, hand=[[King♣], [Jack♦, Ten♦, Nine♠, Six♠]], pokerHand=HighCard}
+, PlayerResult{playerName='three', result=4, hand=[[Eight♦], [Seven♦, Five♦, Three♣, Two♣]], pokerHand=HighCard}
+, PlayerResult{playerName='four', result=5, hand=[[Queen❤], [Jack❤, Ten♠, Seven♣, Six♦]], pokerHand=HighCard}
+]
+
+24: [PlayerResult{playerName='two', result=1, hand=[[Eight♠, Eight♦, Six♣, Six❤], [Seven❤]], pokerHand=TwoPair}
+, PlayerResult{playerName='three', result=2, hand=[[Five♦, Five♣, Two♦, Two♣], [Four♦]], pokerHand=TwoPair}
+, PlayerResult{playerName='five', result=3, hand=[[Ten♦, Ten♣], [King♣, Five♠, Two❤]], pokerHand=Pair}
+, PlayerResult{playerName='one', result=4, hand=[[King❤], [Ten❤, Six♦, Five❤, Three❤]], pokerHand=HighCard}
+, PlayerResult{playerName='four', result=5, hand=[[Ace❤], [Jack♣, Nine♠, Seven♣, Four❤]], pokerHand=HighCard}
+]
+
+25: [PlayerResult{playerName='one', result=1, hand=[[Ace♦, Ace♠], [Eight❤, Six♦, Three♠]], pokerHand=Pair}
+, PlayerResult{playerName='three', result=2, hand=[[Seven❤, Seven♠], [Jack❤, Nine♠, Five❤]], pokerHand=Pair}
+, PlayerResult{playerName='four', result=3, hand=[[Nine♦, Nine♣], [Eight♣, Four♣, Two♣]], pokerHand=Pair}
+, PlayerResult{playerName='two', result=4, hand=[[Jack♠], [Eight♠, Five♦, Three♣, Two♦]], pokerHand=HighCard}
+, PlayerResult{playerName='five', result=5, hand=[[Ace♣], [Queen♠, Nine❤, Five♠, Two❤]], pokerHand=HighCard}
+]
+
+26: [PlayerResult{playerName='two', result=1, hand=[[Two❤, Two♦], [Ten❤, Five❤, Three♠]], pokerHand=Pair}
+, PlayerResult{playerName='three', result=2, hand=[[Nine♦, Nine♣], [King♦, Jack♠, Three♦]], pokerHand=Pair}
+, PlayerResult{playerName='four', result=3, hand=[[Six❤, Six♣], [Nine♠, Eight♦, Four❤]], pokerHand=Pair}
+, PlayerResult{playerName='one', result=4, hand=[[King♠], [Queen❤, Seven❤, Five♦, Three♣]], pokerHand=HighCard}
+, PlayerResult{playerName='five', result=5, hand=[[King♣], [Queen♠, Jack♣, Nine❤, Eight♣]], pokerHand=HighCard}
+]
+
+27: [PlayerResult{playerName='one', result=1, hand=[[Nine♦, Nine♣], [Ten❤, Seven♠, Three❤]], pokerHand=Pair}
+, PlayerResult{playerName='two', result=2, hand=[[Ace❤], [King♦, Queen♣, Eight♣, Seven♣]], pokerHand=HighCard}
+, PlayerResult{playerName='three', result=3, hand=[[King❤], [Queen♦, Jack♠, Ten♣, Five❤]], pokerHand=HighCard}
+, PlayerResult{playerName='four', result=4, hand=[[Ace♦], [King♠, Eight♦, Six❤, Five♠]], pokerHand=HighCard}
+, PlayerResult{playerName='five', result=5, hand=[[Jack❤], [Ten♦, Six♠, Three♠, Two♠]], pokerHand=HighCard}
+]
+
+28: [PlayerResult{playerName='one', result=1, hand=[[Ace♠], [Nine♠, Eight♣, Seven♣, Two♣]], pokerHand=HighCard}
+, PlayerResult{playerName='five', result=2, hand=[[King♠], [Queen♠, Jack♠, Four♣, Three♦]], pokerHand=HighCard}
+, PlayerResult{playerName='three', result=3, hand=[[Queen❤], [Eight♦, Seven♦, Four♠, Three♠]], pokerHand=HighCard}
+, PlayerResult{playerName='four', result=4, hand=[[Queen♦], [Jack❤, Ten♦, Eight♠, Five♠]], pokerHand=HighCard}
+, PlayerResult{playerName='two', result=5, hand=[[Ten❤], [Seven♠, Six♠, Five♣, Three❤]], pokerHand=HighCard}
+]
+
+29: [PlayerResult{playerName='three', result=1, hand=[[Three♦, Three♠], [Ten♣, Five♠, Four♠]], pokerHand=Pair}
+, PlayerResult{playerName='one', result=2, hand=[[King♣], [Ten❤, Five♦, Four❤, Two♣]], pokerHand=HighCard}
+, PlayerResult{playerName='two', result=3, hand=[[Ace♣], [King♦, Ten♠, Six♦, Five♣]], pokerHand=HighCard}
+, PlayerResult{playerName='four', result=4, hand=[[Jack♣], [Eight♣, Seven♠, Three♣, Two♠]], pokerHand=HighCard}
+, PlayerResult{playerName='five', result=5, hand=[[Queen♠], [Jack❤, Seven♦, Six❤, Three❤]], pokerHand=HighCard}
+]
+
+30: [PlayerResult{playerName='two', result=1, hand=[[Nine♠, Nine♦], [Jack♣, Ten❤, Four♣]], pokerHand=Pair}
+, PlayerResult{playerName='three', result=2, hand=[[Five♣, Five♦], [King♦, Four♦, Three❤]], pokerHand=Pair}
+, PlayerResult{playerName='four', result=3, hand=[[Queen❤, Queen♠], [King❤, Jack♠, Five♠]], pokerHand=Pair}
+, PlayerResult{playerName='five', result=4, hand=[[Two♣, Two❤], [Seven♦, Six♠, Three♣]], pokerHand=Pair}
+, PlayerResult{playerName='one', result=5, hand=[[King♠], [Queen♣, Nine❤, Eight♦, Two♦]], pokerHand=HighCard}
+]
+
+31: [PlayerResult{playerName='one', result=1, hand=[[Queen♠, Queen♣], [Five❤, Four❤, Two♣]], pokerHand=Pair}
+, PlayerResult{playerName='two', result=2, hand=[[Ace❤, Ace♦], [Nine♣, Seven♦, Six❤]], pokerHand=Pair}
+, PlayerResult{playerName='three', result=3, hand=[[Three❤, Three♦], [Queen❤, Jack♠, Two♦]], pokerHand=Pair}
+, PlayerResult{playerName='four', result=4, hand=[[King♠], [Jack❤, Ten♦, Five♣, Four♦]], pokerHand=HighCard}
+, PlayerResult{playerName='five', result=5, hand=[[Queen♦], [Ten♠, Eight♣, Four♣, Two❤]], pokerHand=HighCard}
+]
+
+32: [PlayerResult{playerName='one', result=1, hand=[[Five❤, Five♣], [Queen❤, Jack♣, Nine❤]], pokerHand=Pair}
+, PlayerResult{playerName='two', result=2, hand=[[Three♦, Three❤], [Ten♠, Seven♣, Two♠]], pokerHand=Pair}
+, PlayerResult{playerName='three', result=3, hand=[[King❤, King♦], [Ace♠, Seven❤, Three♠]], pokerHand=Pair}
+, PlayerResult{playerName='five', result=4, hand=[[Six♦, Six❤], [King♠, Eight♦, Seven♠]], pokerHand=Pair}
+, PlayerResult{playerName='four', result=5, hand=[[Ace♦], [Ten❤, Nine♦, Four❤, Two♦]], pokerHand=HighCard}
+]
+
+33: [PlayerResult{playerName='five', result=1, hand=[[Five♦, Five❤], [Ace♦, Queen♠, Three♠]], pokerHand=Pair}
+, PlayerResult{playerName='one', result=2, hand=[[Queen♦], [Jack♠, Eight♠, Four❤, Three♦]], pokerHand=HighCard}
+, PlayerResult{playerName='two', result=3, hand=[[Ace♠], [King♠, Nine♦, Six♠, Two❤]], pokerHand=HighCard}
+, PlayerResult{playerName='three', result=4, hand=[[Queen♣], [Jack♦, Ten♦, Eight♣, Seven♠]], pokerHand=HighCard}
+, PlayerResult{playerName='four', result=5, hand=[[Ace❤], [Eight❤, Six♣, Four♣, Two♠]], pokerHand=HighCard}
+]
+
+34: [PlayerResult{playerName='four', result=1, hand=[[Ten❤, Ten♠], [Queen♣, Eight♣, Five♣]], pokerHand=Pair}
+, PlayerResult{playerName='five', result=2, hand=[[Seven♦, Seven♠], [Queen♠, Five♦, Four♣]], pokerHand=Pair}
+, PlayerResult{playerName='one', result=3, hand=[[Ace♠], [King♣, Ten♦, Seven❤, Three♦]], pokerHand=HighCard}
+, PlayerResult{playerName='two', result=4, hand=[[Ace♦], [Nine♠, Eight❤, Six❤, Three❤]], pokerHand=HighCard}
+, PlayerResult{playerName='three', result=5, hand=[[Queen♦], [Six♠, Five♠, Four❤, Two♠]], pokerHand=HighCard}
+]
+
+35: [PlayerResult{playerName='five', result=1, hand=[[Six♦, Six❤, Six♠], [King♣, Queen♠]], pokerHand=ThreeOfAKind}
+, PlayerResult{playerName='one', result=2, hand=[[Five♦, Five♣], [Jack♣, Ten♦, Seven♠]], pokerHand=Pair}
+, PlayerResult{playerName='two', result=3, hand=[[Ace♠, Ace♣], [King♦, Queen♣, Jack❤]], pokerHand=Pair}
+, PlayerResult{playerName='three', result=4, hand=[[Ace♦], [Queen❤, Ten❤, Eight♣, Six♣]], pokerHand=HighCard}
+, PlayerResult{playerName='four', result=5, hand=[[Queen♦], [Jack♠, Nine❤, Four♠, Three♦]], pokerHand=HighCard}
+]
+
+36: [PlayerResult{playerName='one', result=1, hand=[[King♠, King♦], [Nine♠, Six❤, Three♣]], pokerHand=Pair}
+, PlayerResult{playerName='two', result=2, hand=[[King♣, King❤], [Ten♠, Four♠, Two❤]], pokerHand=Pair}
+, PlayerResult{playerName='three', result=3, hand=[[Ace♠], [Eight♠, Five♣, Four♣, Three❤]], pokerHand=HighCard}
+, PlayerResult{playerName='four', result=4, hand=[[Ace♦], [Queen❤, Seven♦, Four♦, Two♠]], pokerHand=HighCard}
+, PlayerResult{playerName='five', result=5, hand=[[Queen♦], [Nine♣, Seven❤, Six♣, Five❤]], pokerHand=HighCard}
+]
+
+37: [PlayerResult{playerName='three', result=1, hand=[[Queen❤, Queen♣, Eight♠, Eight❤], [Two♦]], pokerHand=TwoPair}
+, PlayerResult{playerName='two', result=2, hand=[[Seven❤, Seven♣], [Ace♦, Jack❤, Two❤]], pokerHand=Pair}
+, PlayerResult{playerName='one', result=3, hand=[[Ace❤], [Jack♦, Ten♣, Nine♣, Four♠]], pokerHand=HighCard}
+, PlayerResult{playerName='four', result=4, hand=[[Queen♦], [Nine♠, Six♦, Five♠, Two♠]], pokerHand=HighCard}
+, PlayerResult{playerName='five', result=5, hand=[[Ace♣], [King❤, Ten♠, Six❤, Three❤]], pokerHand=HighCard}
+]
+
+38: [PlayerResult{playerName='three', result=1, hand=[[Four♠, Four♣, Four♦, Eight♦, Eight♠], []], pokerHand=FullHouse}
+, PlayerResult{playerName='one', result=2, hand=[[Six♠, Six❤, Six♣], [King❤, Two♦]], pokerHand=ThreeOfAKind}
+, PlayerResult{playerName='two', result=3, hand=[[Jack♠, Jack♦], [King♣, Ten♠, Four❤]], pokerHand=Pair}
+, PlayerResult{playerName='four', result=4, hand=[[Ace♣], [Ten♣, Nine♠, Seven♦, Six♦]], pokerHand=HighCard}
+, PlayerResult{playerName='five', result=5, hand=[[King♠], [Queen♣, Ten❤, Three♣, Two♣]], pokerHand=HighCard}
+]
+
+39: [PlayerResult{playerName='one', result=1, hand=[[Eight♠, Eight♣], [King♦, Jack❤, Seven❤]], pokerHand=Pair}
+, PlayerResult{playerName='two', result=2, hand=[[Queen♣, Queen❤], [King♠, Jack♦, Four❤]], pokerHand=Pair}
+, PlayerResult{playerName='three', result=3, hand=[[Nine♠, Nine♣], [Ten❤, Eight♦, Three♣]], pokerHand=Pair}
+, PlayerResult{playerName='four', result=4, hand=[[Two❤, Two♠], [Nine♦, Seven♠, Six❤]], pokerHand=Pair}
+, PlayerResult{playerName='five', result=5, hand=[[Ace♠], [Jack♠, Eight❤, Seven♣, Three♠]], pokerHand=HighCard}
+]
+
+40: [PlayerResult{playerName='one', result=1, hand=[[Five♠, Five❤], [Ace♦, Queen♦, Four♦]], pokerHand=Pair}
+, PlayerResult{playerName='two', result=2, hand=[[King♣], [Queen♠, Jack❤, Eight♣, Six♠]], pokerHand=HighCard}
+, PlayerResult{playerName='three', result=3, hand=[[Ace♣], [Queen♣, Jack♠, Seven♠, Six♣]], pokerHand=HighCard}
+, PlayerResult{playerName='four', result=4, hand=[[Jack♦], [Ten♦, Nine♠, Eight♠, Five♦]], pokerHand=HighCard}
+, PlayerResult{playerName='five', result=5, hand=[[Ace♠], [Jack♣, Five♣, Four♣, Three❤]], pokerHand=HighCard}
+]
+
+41: [PlayerResult{playerName='three', result=1, hand=[[Seven❤, Seven♣, Seven♠], [Six♦, Three♦]], pokerHand=ThreeOfAKind}
+, PlayerResult{playerName='five', result=2, hand=[[Jack❤, Jack♣], [Ace♦, Five♦, Three❤]], pokerHand=Pair}
+, PlayerResult{playerName='one', result=3, hand=[[Ace❤], [King♠, Ten♦, Nine♠, Four♣]], pokerHand=HighCard}
+, PlayerResult{playerName='two', result=4, hand=[[Ace♣], [King❤, Eight♣, Five♠, Three♣]], pokerHand=HighCard}
+, PlayerResult{playerName='four', result=5, hand=[[Nine♣], [Eight❤, Seven♦, Four❤, Two❤]], pokerHand=HighCard}
+]
+
+42: [PlayerResult{playerName='three', result=1, hand=[[King❤, King♦, Five♠, Five♣], [Two♦]], pokerHand=TwoPair}
+, PlayerResult{playerName='two', result=2, hand=[[Jack♦, Jack❤], [Queen♠, Seven❤, Two♣]], pokerHand=Pair}
+, PlayerResult{playerName='four', result=3, hand=[[Eight❤, Eight♠], [Queen❤, Nine♠, Seven♦]], pokerHand=Pair}
+, PlayerResult{playerName='one', result=4, hand=[[Ace❤], [Ten♦, Nine❤, Six♦, Three♦]], pokerHand=HighCard}
+, PlayerResult{playerName='five', result=5, hand=[[Ace♠], [King♣, Nine♣, Six❤, Five❤]], pokerHand=HighCard}
+]
+
+43: [PlayerResult{playerName='two', result=1, hand=[[Five♣, Five♠], [Queen♦, Six♦, Four♠]], pokerHand=Pair}
+, PlayerResult{playerName='three', result=2, hand=[[Seven❤, Seven♣], [King♠, Queen♣, Three♠]], pokerHand=Pair}
+, PlayerResult{playerName='four', result=3, hand=[[Eight♠, Eight❤], [Ten♣, Seven♦, Four❤]], pokerHand=Pair}
+, PlayerResult{playerName='five', result=4, hand=[[Jack♦, Jack❤], [Nine♠, Six❤, Four♦]], pokerHand=Pair}
+, PlayerResult{playerName='one', result=5, hand=[[King♦], [Eight♣, Six♣, Three♣, Two♠]], pokerHand=HighCard}
+]
+
+44: [PlayerResult{playerName='two', result=1, hand=[[King♠, King♣], [Ace❤, Queen♣, Seven♦]], pokerHand=Pair}
+, PlayerResult{playerName='three', result=2, hand=[[Queen♦, Queen❤], [Six♠, Five♣, Four❤]], pokerHand=Pair}
+, PlayerResult{playerName='one', result=3, hand=[[King❤], [Ten❤, Nine♣, Three♦, Two♣]], pokerHand=HighCard}
+, PlayerResult{playerName='four', result=4, hand=[[King♦], [Queen♠, Ten♠, Five❤, Three❤]], pokerHand=HighCard}
+, PlayerResult{playerName='five', result=5, hand=[[Ace♠], [Nine♦, Seven❤, Four♠, Three♠]], pokerHand=HighCard}
+]
+
+45: [PlayerResult{playerName='three', result=1, hand=[[Six❤, Six♠], [Ace♠, Seven♣, Three♠]], pokerHand=Pair}
+, PlayerResult{playerName='one', result=2, hand=[[King♠], [Eight♠, Seven♦, Three♦, Two♦]], pokerHand=HighCard}
+, PlayerResult{playerName='two', result=3, hand=[[Ace❤], [King♣, Ten❤, Five♣, Four♣]], pokerHand=HighCard}
+, PlayerResult{playerName='four', result=4, hand=[[King♦], [Queen♦, Ten♦, Five♠, Three❤]], pokerHand=HighCard}
+, PlayerResult{playerName='five', result=5, hand=[[Ace♣], [Queen♠, Nine♣, Three♣, Two♣]], pokerHand=HighCard}
+]
+
+46: [PlayerResult{playerName='four', result=1, hand=[[Nine♠, Nine♦], [Ace♠, King❤, Queen♣]], pokerHand=Pair}
+, PlayerResult{playerName='one', result=2, hand=[[King♦], [Queen❤, Eight♣, Six❤, Two❤]], pokerHand=HighCard}
+, PlayerResult{playerName='two', result=3, hand=[[Jack❤], [Ten❤, Seven♦, Six♠, Three♣]], pokerHand=HighCard}
+, PlayerResult{playerName='three', result=4, hand=[[Ace♦], [Queen♦, Eight♠, Five♠, Four♣]], pokerHand=HighCard}
+, PlayerResult{playerName='five', result=5, hand=[[Jack♠], [Ten♠, Eight♦, Five❤, Three❤]], pokerHand=HighCard}
+]
+
+47: [PlayerResult{playerName='three', result=1, hand=[[Ten♣, Ten♦], [Nine♠, Six♦, Three♠]], pokerHand=Pair}
+, PlayerResult{playerName='one', result=2, hand=[[Ace♠], [Ten❤, Eight❤, Six♠, Three♣]], pokerHand=HighCard}
+, PlayerResult{playerName='two', result=3, hand=[[Ace♣], [Queen♣, Eight♠, Four♠, Two♦]], pokerHand=HighCard}
+, PlayerResult{playerName='four', result=4, hand=[[Ace❤], [King♣, Queen❤, Jack♠, Two❤]], pokerHand=HighCard}
+, PlayerResult{playerName='five', result=5, hand=[[Queen♠], [Jack❤, Nine♦, Eight♣, Two♣]], pokerHand=HighCard}
+]
+
+48: [PlayerResult{playerName='one', result=1, hand=[[Four♣, Four♠], [Ten❤, Seven♣, Two❤]], pokerHand=Pair}
+, PlayerResult{playerName='four', result=2, hand=[[Jack♦, Jack♣], [Ace♠, Three♦, Two♣]], pokerHand=Pair}
+, PlayerResult{playerName='two', result=3, hand=[[Ten♠], [Six♠, Five♣, Four❤, Three❤]], pokerHand=HighCard}
+, PlayerResult{playerName='three', result=4, hand=[[Jack♠], [Ace❤, Ten♣, Nine♠, Eight♣]], pokerHand=HighCard}
+, PlayerResult{playerName='five', result=5, hand=[[Ace♣], [Queen♦, Nine♣, Seven♠, Six♣]], pokerHand=HighCard}
+]
+
+49: [PlayerResult{playerName='three', result=1, hand=[[Seven♦, Seven♠], [Nine♣, Four♣, Three♠]], pokerHand=Pair}
+, PlayerResult{playerName='four', result=2, hand=[[Jack♣, Jack❤], [King♣, Six❤, Three❤]], pokerHand=Pair}
+, PlayerResult{playerName='one', result=3, hand=[[Jack♠], [Ten♣, Seven♣, Six♠, Two❤]], pokerHand=HighCard}
+, PlayerResult{playerName='two', result=4, hand=[[Ace❤], [King♦, Queen❤, Eight♦, Six♦]], pokerHand=HighCard}
+, PlayerResult{playerName='five', result=5, hand=[[Ace♠], [Queen♠, Nine❤, Seven❤, Six♣]], pokerHand=HighCard}
+]
+
+50: [PlayerResult{playerName='one', result=1, hand=[[Six♠, Six♦, Six♣], [Queen♠, Eight❤]], pokerHand=ThreeOfAKind}
+, PlayerResult{playerName='five', result=2, hand=[[Three♦, Three❤], [Ten♦, Nine♠, Four♣]], pokerHand=Pair}
+, PlayerResult{playerName='two', result=3, hand=[[Ace❤], [Ten♠, Nine♦, Five♠, Three♣]], pokerHand=HighCard}
+, PlayerResult{playerName='three', result=4, hand=[[Ace♦], [Queen♦, Jack♦, Eight♠, Seven♠]], pokerHand=HighCard}
+, PlayerResult{playerName='four', result=5, hand=[[King♦], [Jack❤, Eight♣, Five♣, Three♠]], pokerHand=HighCard}
+]
+
+51: [PlayerResult{playerName='one', result=1, hand=[[Ace♠, Ace♦], [Jack♠, Three♣, Two♠]], pokerHand=Pair}
+, PlayerResult{playerName='three', result=2, hand=[[Jack❤, Jack♦], [Eight♠, Seven♠, Five♠]], pokerHand=Pair}
+, PlayerResult{playerName='four', result=3, hand=[[Queen♣, Queen♦], [Ace♣, King♣, Nine❤]], pokerHand=Pair}
+, PlayerResult{playerName='two', result=4, hand=[[King♦], [Eight❤, Seven♣, Five❤, Four❤]], pokerHand=HighCard}
+, PlayerResult{playerName='five', result=5, hand=[[King♠], [Jack♣, Ten♣, Five♦, Three♦]], pokerHand=HighCard}
+]
+
+52: [PlayerResult{playerName='two', result=1, hand=[[Seven♣, Seven♦], [Ace❤, Six❤, Four♠]], pokerHand=Pair}
+, PlayerResult{playerName='three', result=2, hand=[[Seven❤, Seven♠], [Queen♠, Five❤, Two❤]], pokerHand=Pair}
+, PlayerResult{playerName='five', result=3, hand=[[Queen♦, Queen♣], [King♣, Ten♦, Two♣]], pokerHand=Pair}
+, PlayerResult{playerName='one', result=4, hand=[[Ace♦], [King♦, Ten♣, Five♠, Three♠]], pokerHand=HighCard}
+, PlayerResult{playerName='four', result=5, hand=[[King❤], [Queen❤, Nine❤, Eight♦, Four❤]], pokerHand=HighCard}
+]
+
+53: [PlayerResult{playerName='one', result=1, hand=[[Nine❤, Nine♠, Five♦, Five♠], [Four♦]], pokerHand=TwoPair}
+, PlayerResult{playerName='five', result=2, hand=[[Ten♣, Ten♦], [Queen♦, Seven❤, Two♦]], pokerHand=Pair}
+, PlayerResult{playerName='two', result=3, hand=[[Ace♠], [Queen❤, Jack♦, Nine♦, Eight♦]], pokerHand=HighCard}
+, PlayerResult{playerName='three', result=4, hand=[[Queen♠], [Nine♣, Six♣, Four❤, Three♣]], pokerHand=HighCard}
+, PlayerResult{playerName='four', result=5, hand=[[Ace❤], [King❤, Jack❤, Eight♣, Six♦]], pokerHand=HighCard}
+]
+
+54: [PlayerResult{playerName='one', result=1, hand=[[Jack♠, Jack♣], [Seven❤, Six♣, Two❤]], pokerHand=Pair}
+, PlayerResult{playerName='two', result=2, hand=[[Five♣, Five♦], [Ace♣, Queen♠, Ten♠]], pokerHand=Pair}
+, PlayerResult{playerName='three', result=3, hand=[[King♠], [Jack❤, Eight❤, Seven♠, Four♦]], pokerHand=HighCard}
+, PlayerResult{playerName='four', result=4, hand=[[Ace❤], [King❤, Ten♣, Seven♦, Five❤]], pokerHand=HighCard}
+, PlayerResult{playerName='five', result=5, hand=[[Ace♦], [King♦, Queen♦, Four♣, Three♠]], pokerHand=HighCard}
+]
+
+55: [PlayerResult{playerName='two', result=1, hand=[[Two♣, Two❤, Two♦], [Eight❤, Five♦]], pokerHand=ThreeOfAKind}
+, PlayerResult{playerName='one', result=2, hand=[[Ace❤], [King❤, Ten♦, Six♠, Four♦]], pokerHand=HighCard}
+, PlayerResult{playerName='three', result=3, hand=[[Ace♦], [Jack♣, Ten♣, Eight♦, Six♣]], pokerHand=HighCard}
+, PlayerResult{playerName='four', result=4, hand=[[Queen♦], [Eight♠, Seven♦, Four❤, Three♦]], pokerHand=HighCard}
+, PlayerResult{playerName='five', result=5, hand=[[Queen♣], [Jack♠, Nine♠, Eight♣, Five♣]], pokerHand=HighCard}
+]
+
+56: [PlayerResult{playerName='three', result=1, hand=[[Eight❤, Eight♣, Seven♦, Seven♣], [Six❤]], pokerHand=TwoPair}
+, PlayerResult{playerName='four', result=2, hand=[[Four♠, Four♣], [King❤, Nine❤, Two♦]], pokerHand=Pair}
+, PlayerResult{playerName='one', result=3, hand=[[Ace❤], [King♣, Jack♣, Five♠, Four♦]], pokerHand=HighCard}
+, PlayerResult{playerName='two', result=4, hand=[[Ace♦], [Queen♣, Ten♦, Nine♠, Four❤]], pokerHand=HighCard}
+, PlayerResult{playerName='five', result=5, hand=[[Jack♠], [Eight♦, Six♣, Three♣, Two♠]], pokerHand=HighCard}
+]
+
+57: [PlayerResult{playerName='four', result=1, hand=[[Nine♣, Nine❤, Eight❤, Eight♦], [Four❤]], pokerHand=TwoPair}
+, PlayerResult{playerName='three', result=2, hand=[[Ace❤, Ace♠], [King❤, Seven♠, Six♦]], pokerHand=Pair}
+, PlayerResult{playerName='five', result=3, hand=[[King♣, King♦], [Queen♦, Jack♠, Ten♠]], pokerHand=Pair}
+, PlayerResult{playerName='one', result=4, hand=[[Seven♣], [Five❤, Four♦, Three♣, Two♣]], pokerHand=HighCard}
+, PlayerResult{playerName='two', result=5, hand=[[Queen❤], [Ten❤, Seven♦, Six♣, Three♠]], pokerHand=HighCard}
+]
+
+58: [PlayerResult{playerName='one', result=1, hand=[[Nine♦, Nine♣], [Ace♠, Queen♦, Four♦]], pokerHand=Pair}
+, PlayerResult{playerName='two', result=2, hand=[[Seven❤, Seven♣], [Nine❤, Three♠, Two♦]], pokerHand=Pair}
+, PlayerResult{playerName='three', result=3, hand=[[Jack♦, Jack♠], [Queen♣, Five❤, Three♦]], pokerHand=Pair}
+, PlayerResult{playerName='five', result=4, hand=[[Five♣, Five♠], [Ten♦, Nine♠, Six♠]], pokerHand=Pair}
+, PlayerResult{playerName='four', result=5, hand=[[Queen❤], [Ten♠, Eight❤, Seven♠, Six♣]], pokerHand=HighCard}
+]
+
+59: [PlayerResult{playerName='four', result=1, hand=[[Eight♦, Eight♣], [Ace♦, Jack❤, Ten♣]], pokerHand=Pair}
+, PlayerResult{playerName='five', result=2, hand=[[Nine♦, Nine♣], [Queen♠, Four♦, Two♦]], pokerHand=Pair}
+, PlayerResult{playerName='one', result=3, hand=[[Queen♣], [Jack♦, Ten♦, Three♦, Two♠]], pokerHand=HighCard}
+, PlayerResult{playerName='two', result=4, hand=[[King♣], [Ten❤, Nine❤, Seven♣, Three♠]], pokerHand=HighCard}
+, PlayerResult{playerName='three', result=5, hand=[[Ace♣], [Queen♦, Jack♠, Eight❤, Seven♦]], pokerHand=HighCard}
+]
+
+60: [PlayerResult{playerName='three', result=1, hand=[[Queen♦, Queen♠], [Jack♣, Nine❤, Four♠]], pokerHand=Pair}
+, PlayerResult{playerName='four', result=2, hand=[[Seven♣, Seven♠], [Ace♠, Ten♠, Five♦]], pokerHand=Pair}
+, PlayerResult{playerName='five', result=3, hand=[[Six❤, Six♣], [Jack♦, Nine♦, Four♦]], pokerHand=Pair}
+, PlayerResult{playerName='one', result=4, hand=[[Ace♣], [Queen❤, Ten❤, Eight♦, Seven♦]], pokerHand=HighCard}
+, PlayerResult{playerName='two', result=5, hand=[[King❤], [Queen♣, Six♦, Four♣, Three♦]], pokerHand=HighCard}
+]
+
+61: [PlayerResult{playerName='one', result=1, hand=[[Two♦, Two♣], [King♠, Jack♠, Seven♣]], pokerHand=Pair}
+, PlayerResult{playerName='two', result=2, hand=[[Nine♣, Nine♠], [King♦, Queen❤, Five❤]], pokerHand=Pair}
+, PlayerResult{playerName='four', result=3, hand=[[Five♦, Five♣], [Queen♦, Eight❤, Four♦]], pokerHand=Pair}
+, PlayerResult{playerName='five', result=4, hand=[[Three♣, Three♠], [Jack❤, Ten♦, Eight♠]], pokerHand=Pair}
+, PlayerResult{playerName='three', result=5, hand=[[Ace♦], [Jack♣, Six❤, Five♠, Two♠]], pokerHand=HighCard}
+]
+
+62: [PlayerResult{playerName='four', result=1, hand=[[Four♣, Four❤, Four♦], [Jack♦, Ten❤]], pokerHand=ThreeOfAKind}
+, PlayerResult{playerName='five', result=2, hand=[[King♠, King♣, Queen♠, Queen♣], [Ten♣]], pokerHand=TwoPair}
+, PlayerResult{playerName='one', result=3, hand=[[Six♠, Six♦], [Ace❤, Seven♦, Five♠]], pokerHand=Pair}
+, PlayerResult{playerName='two', result=4, hand=[[Ace♣], [Jack♣, Ten♦, Seven♣, Five♣]], pokerHand=HighCard}
+, PlayerResult{playerName='three', result=5, hand=[[Jack♠], [Ten♠, Nine❤, Eight♠, Six❤]], pokerHand=HighCard}
+]
+
+63: [PlayerResult{playerName='four', result=1, hand=[[Jack♦, Jack❤, Four♠, Four❤], [Ten♣]], pokerHand=TwoPair}
+, PlayerResult{playerName='two', result=2, hand=[[Nine♦, Nine♣], [Eight❤, Seven♣, Two❤]], pokerHand=Pair}
+, PlayerResult{playerName='three', result=3, hand=[[Six♦, Six♠], [King♠, Ten❤, Five♦]], pokerHand=Pair}
+, PlayerResult{playerName='one', result=4, hand=[[Queen♣], [Jack♠, Seven❤, Four♣, Two♠]], pokerHand=HighCard}
+, PlayerResult{playerName='five', result=5, hand=[[King♦], [Queen♦, Eight♦, Six♣, Five♣]], pokerHand=HighCard}
+]
+
+64: [PlayerResult{playerName='two', result=1, hand=[[Six♦, Six♠], [Ten♠, Nine♠, Three❤]], pokerHand=Pair}
+, PlayerResult{playerName='four', result=2, hand=[[Three♣, Three♦], [Ace♣, Five♦, Two♠]], pokerHand=Pair}
+, PlayerResult{playerName='five', result=3, hand=[[Queen♦, Queen♣], [Ten♦, Eight❤, Four❤]], pokerHand=Pair}
+, PlayerResult{playerName='one', result=4, hand=[[Ace❤], [Jack♠, Nine❤, Six❤, Three♠]], pokerHand=HighCard}
+, PlayerResult{playerName='three', result=5, hand=[[Ace♦], [King❤, Ten♣, Seven♦, Four♣]], pokerHand=HighCard}
+]
+
+65: [PlayerResult{playerName='three', result=1, hand=[[Six♣, Six❤, Three♦, Three♠], [Nine❤]], pokerHand=TwoPair}
+, PlayerResult{playerName='one', result=2, hand=[[King♣, King♦], [Jack♠, Ten♠, Two♠]], pokerHand=Pair}
+, PlayerResult{playerName='two', result=3, hand=[[Queen♠, Queen♦], [Jack❤, Ten❤, Four❤]], pokerHand=Pair}
+, PlayerResult{playerName='four', result=4, hand=[[Ace♦], [Queen♣, Ten♣, Seven❤, Two♦]], pokerHand=HighCard}
+, PlayerResult{playerName='five', result=5, hand=[[Jack♦], [Seven♦, Five♦, Four♠, Two♣]], pokerHand=HighCard}
+]
+
+66: [PlayerResult{playerName='one', result=1, hand=[[Six♠, Six♣], [Eight♠, Seven♣, Five♦]], pokerHand=Pair}
+, PlayerResult{playerName='five', result=2, hand=[[Nine♣, Nine❤], [Jack♠, Ten♣, Three♦]], pokerHand=Pair}
+, PlayerResult{playerName='two', result=3, hand=[[Ace♦], [Queen♣, Ten♠, Five♣, Four❤]], pokerHand=HighCard}
+, PlayerResult{playerName='three', result=4, hand=[[King♦], [Seven♠, Four♣, Three♣, Two♣]], pokerHand=HighCard}
+, PlayerResult{playerName='four', result=5, hand=[[Queen♦], [Jack♦, Nine♦, Five♠, Three❤]], pokerHand=HighCard}
+]
+
+67: [PlayerResult{playerName='three', result=1, hand=[[Six♠, Six❤], [King❤, Nine♠, Seven♠]], pokerHand=Pair}
+, PlayerResult{playerName='four', result=2, hand=[[Seven♣, Seven❤], [Ten❤, Four❤, Two♦]], pokerHand=Pair}
+, PlayerResult{playerName='one', result=3, hand=[[Queen♦], [Nine❤, Six♣, Five♦, Two❤]], pokerHand=HighCard}
+, PlayerResult{playerName='two', result=4, hand=[[Ace♠], [Jack♠, Ten♣, Eight♦, Three♦]], pokerHand=HighCard}
+, PlayerResult{playerName='five', result=5, hand=[[Ace♣], [King♠, Eight♣, Seven♦, Five♣]], pokerHand=HighCard}
+]
+
+68: [PlayerResult{playerName='two', result=1, hand=[[Six♦, Five❤, Four♦, Three♦, Two♣], []], pokerHand=Straight}
+, PlayerResult{playerName='three', result=2, hand=[[Nine❤, Nine♦], [Eight♣, Six❤, Five♦]], pokerHand=Pair}
+, PlayerResult{playerName='one', result=3, hand=[[King♦], [Jack♠, Nine♣, Five♣, Four♠]], pokerHand=HighCard}
+, PlayerResult{playerName='four', result=4, hand=[[Queen♦], [Jack❤, Ten♣, Three♠, Two♠]], pokerHand=HighCard}
+, PlayerResult{playerName='five', result=5, hand=[[Ace♣], [Eight❤, Seven♠, Five♠, Three❤]], pokerHand=HighCard}
+]
+
+69: [PlayerResult{playerName='five', result=1, hand=[[Ace❤, Queen❤, Nine❤, Six❤, Four❤], []], pokerHand=Flush}
+, PlayerResult{playerName='two', result=2, hand=[[Seven♦, Seven♠], [Queen♠, Nine♦, Three♦]], pokerHand=Pair}
+, PlayerResult{playerName='four', result=3, hand=[[Five♠, Five❤], [Six♦, Three♣, Two❤]], pokerHand=Pair}
+, PlayerResult{playerName='one', result=4, hand=[[Ace♠], [Jack♦, Seven❤, Four♠, Three❤]], pokerHand=HighCard}
+, PlayerResult{playerName='three', result=5, hand=[[King♣], [Ten♦, Nine♠, Three♠, Two♣]], pokerHand=HighCard}
+]
+
+70: [PlayerResult{playerName='one', result=1, hand=[[Three♠, Three♣], [Queen♣, Nine❤, Seven♦]], pokerHand=Pair}
+, PlayerResult{playerName='two', result=2, hand=[[Ten♣], [Eight❤, Seven♣, Five♣, Two♦]], pokerHand=HighCard}
+, PlayerResult{playerName='three', result=3, hand=[[Ace♦], [King♣, Ten❤, Six♣, Four♣]], pokerHand=HighCard}
+, PlayerResult{playerName='four', result=4, hand=[[Jack♣], [Ten♠, Eight♣, Four♦, Three♦]], pokerHand=HighCard}
+, PlayerResult{playerName='five', result=5, hand=[[Jack♦], [Ten♦, Nine♦, Five❤, Four♠]], pokerHand=HighCard}
+]
+
+71: [PlayerResult{playerName='one', result=1, hand=[[Six♠, Six♦, Two♣, Two♠], [King♦]], pokerHand=TwoPair}
+, PlayerResult{playerName='two', result=2, hand=[[Ace❤, Ace♣], [Eight♠, Five❤, Three♦]], pokerHand=Pair}
+, PlayerResult{playerName='three', result=3, hand=[[King♣, King❤], [Queen♦, Ten♠, Seven♣]], pokerHand=Pair}
+, PlayerResult{playerName='four', result=4, hand=[[Ace♦], [King♠, Queen❤, Jack♠, Two♦]], pokerHand=HighCard}
+, PlayerResult{playerName='five', result=5, hand=[[Nine❤], [Eight♦, Seven♦, Four♠, Three❤]], pokerHand=HighCard}
+]
+
+72: [PlayerResult{playerName='one', result=1, hand=[[Jack❤, Jack♣, Six♦, Six♣], [Queen♦]], pokerHand=TwoPair}
+, PlayerResult{playerName='two', result=2, hand=[[Ten♠, Ten♣], [King❤, Jack♠, Three❤]], pokerHand=Pair}
+, PlayerResult{playerName='three', result=3, hand=[[Eight♠, Eight♣], [Ace❤, Five♦, Three♠]], pokerHand=Pair}
+, PlayerResult{playerName='four', result=4, hand=[[Queen❤], [Ten♦, Nine♦, Seven❤, Three♦]], pokerHand=HighCard}
+, PlayerResult{playerName='five', result=5, hand=[[Nine♠], [Seven♣, Five♠, Four♦, Two♣]], pokerHand=HighCard}
+]
+
+73: [PlayerResult{playerName='four', result=1, hand=[[Ace❤, Ace♣, Ace♠], [King♠, Eight♠]], pokerHand=ThreeOfAKind}
+, PlayerResult{playerName='one', result=2, hand=[[Four♦, Four♣], [King♦, Queen♣, Jack♣]], pokerHand=Pair}
+, PlayerResult{playerName='two', result=3, hand=[[Jack♠], [Ten❤, Eight♣, Six♣, Five♣]], pokerHand=HighCard}
+, PlayerResult{playerName='three', result=4, hand=[[Queen♠], [Ten♦, Eight❤, Seven♣, Six♦]], pokerHand=HighCard}
+, PlayerResult{playerName='five', result=5, hand=[[Nine♦], [Eight♦, Five❤, Three♠, Two♣]], pokerHand=HighCard}
+]
+
+74: [PlayerResult{playerName='one', result=1, hand=[[Nine♦, Nine♣], [King♣, Four♣, Three♣]], pokerHand=Pair}
+, PlayerResult{playerName='two', result=2, hand=[[Eight❤, Eight♠], [King♠, Ten♠, Five❤]], pokerHand=Pair}
+, PlayerResult{playerName='three', result=3, hand=[[Six♦, Six♣], [Queen♠, Seven♣, Four❤]], pokerHand=Pair}
+, PlayerResult{playerName='five', result=4, hand=[[Two♠, Two♣], [King♦, Seven♦, Six♠]], pokerHand=Pair}
+, PlayerResult{playerName='four', result=5, hand=[[Jack♦], [Nine♠, Seven♠, Four♠, Two♦]], pokerHand=HighCard}
+]
+
+75: [PlayerResult{playerName='one', result=1, hand=[[King❤, King♠], [Jack❤, Ten❤, Four♦]], pokerHand=Pair}
+, PlayerResult{playerName='four', result=2, hand=[[Jack♠, Jack♦], [King♣, Queen♠, Nine❤]], pokerHand=Pair}
+, PlayerResult{playerName='five', result=3, hand=[[Two♠, Two♦], [Queen❤, Seven♦, Three♦]], pokerHand=Pair}
+, PlayerResult{playerName='two', result=4, hand=[[Queen♦], [Eight❤, Four❤, Three♣, Two♣]], pokerHand=HighCard}
+, PlayerResult{playerName='three', result=5, hand=[[Ten♣], [Nine♠, Seven♠, Six❤, Five♣]], pokerHand=HighCard}
+]
+
+76: [PlayerResult{playerName='one', result=1, hand=[[Ace♦], [Queen♣, Ten♠, Nine♣, Four♦]], pokerHand=HighCard}
+, PlayerResult{playerName='three', result=2, hand=[[Ace♣], [Jack♠, Ten❤, Five❤, Four♠]], pokerHand=HighCard}
+, PlayerResult{playerName='two', result=3, hand=[[King♣], [Queen♠, Jack♦, Seven♦, Six❤]], pokerHand=HighCard}
+, PlayerResult{playerName='four', result=4, hand=[[King♠], [Queen♦, Nine♠, Seven♣, Three♦]], pokerHand=HighCard}
+, PlayerResult{playerName='five', result=5, hand=[[Jack❤], [Nine♦, Seven♠, Five♠, Three❤]], pokerHand=HighCard}
+]
+
+77: [PlayerResult{playerName='three', result=1, hand=[[Four♣, Four♠], [Nine♠, Three❤, Two♦]], pokerHand=Pair}
+, PlayerResult{playerName='five', result=2, hand=[[Nine♦, Nine❤], [Queen❤, Eight♣, Four❤]], pokerHand=Pair}
+, PlayerResult{playerName='one', result=3, hand=[[Seven♦], [Six♦, Five♣, Three♣, Two♠]], pokerHand=HighCard}
+, PlayerResult{playerName='two', result=4, hand=[[Ace❤], [King♠, Queen♣, Eight♦, Six♠]], pokerHand=HighCard}
+, PlayerResult{playerName='four', result=5, hand=[[Ace♣], [King♣, Ten♣, Nine♣, Seven❤]], pokerHand=HighCard}
+]
+
+78: [PlayerResult{playerName='four', result=1, hand=[[Eight♠, Eight♦, Two♣, Two♠], [Jack♣]], pokerHand=TwoPair}
+, PlayerResult{playerName='three', result=2, hand=[[Queen♦, Queen♠], [Ace♣, Nine❤, Six♠]], pokerHand=Pair}
+, PlayerResult{playerName='one', result=3, hand=[[Ace❤], [Six❤, Five♠, Three❤, Two❤]], pokerHand=HighCard}
+, PlayerResult{playerName='two', result=4, hand=[[Ace♦], [King♠, Ten♦, Nine♣, Two♦]], pokerHand=HighCard}
+, PlayerResult{playerName='five', result=5, hand=[[King♦], [Eight❤, Six♦, Five♣, Three♦]], pokerHand=HighCard}
+]
+
+79: [PlayerResult{playerName='one', result=1, hand=[[King♠, King❤], [Queen♣, Ten❤, Two♦]], pokerHand=Pair}
+, PlayerResult{playerName='three', result=2, hand=[[King♣, King♦], [Ten♠, Eight♦, Seven♦]], pokerHand=Pair}
+, PlayerResult{playerName='four', result=3, hand=[[Seven♣, Seven❤], [Ace♦, Four♠, Three♦]], pokerHand=Pair}
+, PlayerResult{playerName='two', result=4, hand=[[Nine♦], [Eight❤, Six♠, Five♣, Two♣]], pokerHand=HighCard}
+, PlayerResult{playerName='five', result=5, hand=[[Jack♠], [Ten♦, Six❤, Five❤, Two♠]], pokerHand=HighCard}
+]
+
+80: [PlayerResult{playerName='one', result=1, hand=[[Seven❤, Seven♣], [Jack♠, Nine❤, Six♣]], pokerHand=Pair}
+, PlayerResult{playerName='three', result=2, hand=[[Three❤, Three♣], [Ace♣, Queen♠, Jack♦]], pokerHand=Pair}
+, PlayerResult{playerName='two', result=3, hand=[[King❤], [Queen♦, Jack❤, Ten♠, Eight♣]], pokerHand=HighCard}
+, PlayerResult{playerName='four', result=4, hand=[[Ace❤], [Nine♦, Seven♠, Five♠, Two♣]], pokerHand=HighCard}
+, PlayerResult{playerName='five', result=5, hand=[[King♠], [Jack♣, Eight♠, Six❤, Five❤]], pokerHand=HighCard}
+]
+
+81: [PlayerResult{playerName='one', result=1, hand=[[King❤, King♦], [Ace♣, Queen♠, Four♣]], pokerHand=Pair}
+, PlayerResult{playerName='two', result=2, hand=[[Two♠, Two♦], [Ten♦, Nine❤, Six❤]], pokerHand=Pair}
+, PlayerResult{playerName='five', result=3, hand=[[Four❤, Four♦], [Jack❤, Five♣, Three❤]], pokerHand=Pair}
+, PlayerResult{playerName='three', result=4, hand=[[Ace♠], [Nine♠, Seven♠, Six♦, Three♦]], pokerHand=HighCard}
+, PlayerResult{playerName='four', result=5, hand=[[Queen❤], [Nine♦, Six♠, Five♠, Two♣]], pokerHand=HighCard}
+]
+
+82: [PlayerResult{playerName='two', result=1, hand=[[King❤, Ten❤, Seven❤, Six❤, Three❤], []], pokerHand=Flush}
+, PlayerResult{playerName='three', result=2, hand=[[King♣, Jack♣, Ten♣, Six♣, Five♣], []], pokerHand=Flush}
+, PlayerResult{playerName='four', result=3, hand=[[Two♦, Two♣], [Queen❤, Five♠, Four♠]], pokerHand=Pair}
+, PlayerResult{playerName='one', result=4, hand=[[Ace♦], [Jack❤, Ten♠, Eight♦, Five❤]], pokerHand=HighCard}
+, PlayerResult{playerName='five', result=5, hand=[[Ace♠], [Jack♠, Nine♣, Four❤, Three♦]], pokerHand=HighCard}
+]
+
+83: [PlayerResult{playerName='three', result=1, hand=[[Ace♠, Ace❤, King♦, King♣], [Nine♦]], pokerHand=TwoPair}
+, PlayerResult{playerName='one', result=2, hand=[[Seven♦, Seven♣], [Eight❤, Three♣, Two♦]], pokerHand=Pair}
+, PlayerResult{playerName='five', result=3, hand=[[Four♠, Four❤], [Ace♣, Nine❤, Seven♠]], pokerHand=Pair}
+, PlayerResult{playerName='two', result=4, hand=[[Queen♣], [Nine♣, Six♦, Five♠, Four♦]], pokerHand=HighCard}
+, PlayerResult{playerName='four', result=5, hand=[[Ace♦], [Jack❤, Ten♦, Six♣, Three♦]], pokerHand=HighCard}
+]
+
+84: [PlayerResult{playerName='one', result=1, hand=[[Jack❤, Jack♠], [Ten♣, Seven♠, Five♦]], pokerHand=Pair}
+, PlayerResult{playerName='five', result=2, hand=[[Three♠, Three♦], [Nine♦, Eight♣, Two♣]], pokerHand=Pair}
+, PlayerResult{playerName='two', result=3, hand=[[King♣], [Queen♣, Ten❤, Eight❤, Three♣]], pokerHand=HighCard}
+, PlayerResult{playerName='three', result=4, hand=[[King❤], [Nine❤, Seven♣, Four♦, Two♠]], pokerHand=HighCard}
+, PlayerResult{playerName='four', result=5, hand=[[Ace♣], [Jack♦, Eight♦, Seven♦, Two♦]], pokerHand=HighCard}
+]
+
+85: [PlayerResult{playerName='two', result=1, hand=[[Six♦, Six♣], [Ace❤, King♦, Five❤]], pokerHand=Pair}
+, PlayerResult{playerName='three', result=2, hand=[[King♣, King♠], [Ten❤, Nine♠, Three♦]], pokerHand=Pair}
+, PlayerResult{playerName='five', result=3, hand=[[Nine♦, Nine♣], [Six♠, Three♠, Two❤]], pokerHand=Pair}
+, PlayerResult{playerName='one', result=4, hand=[[Queen♠], [Ten♣, Six❤, Five♠, Two♣]], pokerHand=HighCard}
+, PlayerResult{playerName='four', result=5, hand=[[Queen♦], [Seven♦, Four♦, Three❤, Two♠]], pokerHand=HighCard}
+]
+
+86: [PlayerResult{playerName='two', result=1, hand=[[Jack♠, Jack❤, Jack♦], [Ten♣, Two♦]], pokerHand=ThreeOfAKind}
+, PlayerResult{playerName='one', result=2, hand=[[Eight♦, Eight♣], [Queen♦, Seven♠, Three♠]], pokerHand=Pair}
+, PlayerResult{playerName='three', result=3, hand=[[Nine♣, Nine❤], [Ace♣, King❤, Five♣]], pokerHand=Pair}
+, PlayerResult{playerName='five', result=4, hand=[[King♣, King♦], [Ace♦, Six♠, Three♦]], pokerHand=Pair}
+, PlayerResult{playerName='four', result=5, hand=[[Queen♣], [Jack♣, Nine♠, Four♠, Two❤]], pokerHand=HighCard}
+]
+
+87: [PlayerResult{playerName='three', result=1, hand=[[Queen♠, Queen❤, Six❤, Six♦], [Ace♦]], pokerHand=TwoPair}
+, PlayerResult{playerName='four', result=2, hand=[[Three♦, Three❤], [Nine♦, Eight❤, Seven♠]], pokerHand=Pair}
+, PlayerResult{playerName='five', result=3, hand=[[Seven♦, Seven❤], [Jack♠, Four♠, Two❤]], pokerHand=Pair}
+, PlayerResult{playerName='one', result=4, hand=[[King❤], [Queen♣, Nine♠, Four♣, Two♦]], pokerHand=HighCard}
+, PlayerResult{playerName='two', result=5, hand=[[Ace❤], [Eight♦, Six♠, Five❤, Four♦]], pokerHand=HighCard}
+]
+
+88: [PlayerResult{playerName='two', result=1, hand=[[Nine♠, Nine♣], [Ace❤, King♦, Seven❤]], pokerHand=Pair}
+, PlayerResult{playerName='four', result=2, hand=[[Ten❤, Ten♠], [Jack♠, Three♦, Two❤]], pokerHand=Pair}
+, PlayerResult{playerName='one', result=3, hand=[[Eight❤], [Seven♣, Six♣, Five♠, Two♠]], pokerHand=HighCard}
+, PlayerResult{playerName='three', result=4, hand=[[Queen❤], [Jack♣, Ten♦, Nine❤, Six❤]], pokerHand=HighCard}
+, PlayerResult{playerName='five', result=5, hand=[[Queen♦], [Nine♦, Six♠, Five♣, Four❤]], pokerHand=HighCard}
+]
+
+89: [PlayerResult{playerName='one', result=1, hand=[[Three❤, Three♦], [Eight❤, Six♦, Four❤]], pokerHand=Pair}
+, PlayerResult{playerName='two', result=2, hand=[[Ten♠, Ten❤], [Jack♣, Seven♦, Five♠]], pokerHand=Pair}
+, PlayerResult{playerName='four', result=3, hand=[[Nine♣, Nine♦], [Seven❤, Five♦, Three♣]], pokerHand=Pair}
+, PlayerResult{playerName='five', result=4, hand=[[Four♠, Four♦], [King♠, Seven♣, Two♦]], pokerHand=Pair}
+, PlayerResult{playerName='three', result=5, hand=[[Ace♦], [King♣, Nine❤, Eight♦, Six❤]], pokerHand=HighCard}
+]
+
+90: [PlayerResult{playerName='one', result=1, hand=[[Six♠, Six♦], [King❤, Eight♣, Two❤]], pokerHand=Pair}
+, PlayerResult{playerName='five', result=2, hand=[[Four♠, Four♦], [Nine♠, Seven❤, Three♦]], pokerHand=Pair}
+, PlayerResult{playerName='two', result=3, hand=[[Ace❤], [Ten♦, Eight♠, Six♣, Two♦]], pokerHand=HighCard}
+, PlayerResult{playerName='three', result=4, hand=[[Ace♣], [Jack♠, Ten❤, Five♦, Four❤]], pokerHand=HighCard}
+, PlayerResult{playerName='four', result=5, hand=[[King♠], [Queen❤, Nine♦, Four♣, Three♠]], pokerHand=HighCard}
+]
+
+91: [PlayerResult{playerName='three', result=1, hand=[[Eight❤, Eight♣], [Ace♣, Jack♠, Five♠]], pokerHand=Pair}
+, PlayerResult{playerName='one', result=2, hand=[[Ace❤], [Jack♦, Nine♦, Seven♦, Five♦]], pokerHand=HighCard}
+, PlayerResult{playerName='two', result=3, hand=[[Queen❤], [Ten♠, Five♣, Three♠, Two♣]], pokerHand=HighCard}
+, PlayerResult{playerName='four', result=4, hand=[[Ace♠], [Ten♦, Eight♠, Seven♣, Two♦]], pokerHand=HighCard}
+, PlayerResult{playerName='five', result=5, hand=[[King♦], [Jack♣, Five❤, Four♦, Three❤]], pokerHand=HighCard}
+]
+
+92: [PlayerResult{playerName='two', result=1, hand=[[Three♦, Three❤], [Ace♠, Nine❤, Eight♣]], pokerHand=Pair}
+, PlayerResult{playerName='four', result=2, hand=[[Four♣, Four❤], [Jack♣, Seven♣, Five♦]], pokerHand=Pair}
+, PlayerResult{playerName='one', result=3, hand=[[Ten♣], [Nine♠, Eight♠, Six♣, Four♠]], pokerHand=HighCard}
+, PlayerResult{playerName='three', result=4, hand=[[King❤], [Queen♦, Jack♦, Eight❤, Five❤]], pokerHand=HighCard}
+, PlayerResult{playerName='five', result=5, hand=[[King♣], [Eight♦, Seven♠, Six♦, Three♠]], pokerHand=HighCard}
+]
+
+93: [PlayerResult{playerName='one', result=1, hand=[[Eight❤, Eight♦, Eight♣], [Nine♣, Seven♦]], pokerHand=ThreeOfAKind}
+, PlayerResult{playerName='two', result=2, hand=[[King♣, King♦], [Five♠, Four♣, Three❤]], pokerHand=Pair}
+, PlayerResult{playerName='three', result=3, hand=[[Six♠, Six❤], [Five♣, Three♣, Two♦]], pokerHand=Pair}
+, PlayerResult{playerName='four', result=4, hand=[[Ace♣, Ace❤], [Queen♦, Four♦, Three♠]], pokerHand=Pair}
+, PlayerResult{playerName='five', result=5, hand=[[Queen♣], [Jack♦, Seven♠, Four♠, Two♣]], pokerHand=HighCard}
+]
+
+94: [PlayerResult{playerName='four', result=1, hand=[[Nine♦, Nine♠, Nine♣], [Jack♣, Six♠]], pokerHand=ThreeOfAKind}
+, PlayerResult{playerName='two', result=2, hand=[[King❤, King♣], [Ace♣, Five♠, Two❤]], pokerHand=Pair}
+, PlayerResult{playerName='five', result=3, hand=[[Seven♣, Seven♦], [Queen♣, Ten❤, Three♣]], pokerHand=Pair}
+, PlayerResult{playerName='one', result=4, hand=[[Ace❤], [Queen❤, Jack♠, Ten♠, Six❤]], pokerHand=HighCard}
+, PlayerResult{playerName='three', result=5, hand=[[Jack❤], [Eight♣, Seven❤, Six♦, Three♠]], pokerHand=HighCard}
+]
+
+95: [PlayerResult{playerName='two', result=1, hand=[[Ace♠], [King♠, Queen♦, Ten♦, Three♦]], pokerHand=HighCard}
+, PlayerResult{playerName='four', result=2, hand=[[Ace♦], [King♦, Jack❤, Seven♣, Two♠]], pokerHand=HighCard}
+, PlayerResult{playerName='one', result=3, hand=[[King❤], [Seven♠, Six♦, Five❤, Three♠]], pokerHand=HighCard}
+, PlayerResult{playerName='three', result=4, hand=[[King♣], [Nine❤, Six♠, Five♦, Four♠]], pokerHand=HighCard}
+, PlayerResult{playerName='five', result=5, hand=[[Queen♣], [Nine♠, Eight♦, Seven❤, Four♣]], pokerHand=HighCard}
+]
+
+96: [PlayerResult{playerName='three', result=1, hand=[[Ace♠, Ace♦, Two❤, Two♣], [Ten♦]], pokerHand=TwoPair}
+, PlayerResult{playerName='one', result=2, hand=[[Seven❤, Seven♦], [Nine♣, Eight♦, Two♠]], pokerHand=Pair}
+, PlayerResult{playerName='two', result=3, hand=[[Ten❤, Ten♠], [Nine♦, Eight♠, Five♠]], pokerHand=Pair}
+, PlayerResult{playerName='four', result=4, hand=[[Six♣, Six❤], [Ace♣, Queen♦, Three❤]], pokerHand=Pair}
+, PlayerResult{playerName='five', result=5, hand=[[Four❤, Four♦], [King❤, Eight❤, Five♦]], pokerHand=Pair}
+]
+
+97: [PlayerResult{playerName='four', result=1, hand=[[King♠, King❤], [Ten♣, Six♣, Five❤]], pokerHand=Pair}
+, PlayerResult{playerName='one', result=2, hand=[[Jack♦], [Nine♠, Eight♠, Six❤, Two♠]], pokerHand=HighCard}
+, PlayerResult{playerName='two', result=3, hand=[[Ace♣], [Queen❤, Seven♠, Five♠, Two❤]], pokerHand=HighCard}
+, PlayerResult{playerName='three', result=4, hand=[[Nine❤], [Ace❤, Eight♦, Seven❤, Six♦]], pokerHand=HighCard}
+, PlayerResult{playerName='five', result=5, hand=[[Queen♣], [Ten♠, Eight❤, Four♦, Three❤]], pokerHand=HighCard}
+]
+
+98: [PlayerResult{playerName='four', result=1, hand=[[Jack❤, Jack♣], [Queen♣, Ten♦, Six❤]], pokerHand=Pair}
+, PlayerResult{playerName='one', result=2, hand=[[King♦], [Queen❤, Jack♠, Four♦, Three♠]], pokerHand=HighCard}
+, PlayerResult{playerName='two', result=3, hand=[[King♣], [Queen♦, Nine♦, Eight♦, Three❤]], pokerHand=HighCard}
+, PlayerResult{playerName='three', result=4, hand=[[Ace♦], [Jack♦, Six♣, Five♠, Four♠]], pokerHand=HighCard}
+, PlayerResult{playerName='five', result=5, hand=[[Ace♣], [King♠, Six♠, Three♣, Two♣]], pokerHand=HighCard}
+]
+
+99: [PlayerResult{playerName='four', result=1, hand=[[Five❤, Five♦], [Eight♠, Six♠, Four♠]], pokerHand=Pair}
+, PlayerResult{playerName='five', result=2, hand=[[Queen♠, Queen❤], [Ten♣, Seven♣, Three❤]], pokerHand=Pair}
+, PlayerResult{playerName='one', result=3, hand=[[Ace♠], [Nine♦, Seven❤, Three♣, Two❤]], pokerHand=HighCard}
+, PlayerResult{playerName='two', result=4, hand=[[King♣], [Jack❤, Ten♠, Six❤, Three♠]], pokerHand=HighCard}
+, PlayerResult{playerName='three', result=5, hand=[[Ace❤], [Queen♣, Jack♣, Nine♣, Five♠]], pokerHand=HighCard}
+]
+

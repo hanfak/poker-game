@@ -26,4 +26,12 @@ public class Player {
     public static Player player(String playerName) {
         return new Player(playerName, new ArrayList<>(), null);
     }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                "playerName='" + playerName + '\'' +
+                ", pokerHand=" + pokerHand +
+                '}';
+    }
 }
