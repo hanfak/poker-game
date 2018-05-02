@@ -20,7 +20,7 @@ public class Card /*implements Comparable<Card>*/ {
 
         Card card = (Card) o;
 
-        return this.rank == card.rank && this.suit == card.suit;
+        return this.rank == card.rank;
     }
 
     @Override
