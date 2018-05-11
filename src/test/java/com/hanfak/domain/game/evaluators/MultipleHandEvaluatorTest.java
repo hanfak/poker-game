@@ -20,7 +20,7 @@ import static testinfrastructure.HandsExamples.PLAYER_WITH_STRAIGHT_FLUSH_FOUR;
 public class MultipleHandEvaluatorTest implements WithAssertions {
     @Test
     public void evaluateTwoHandsWithDifferentPokerHandRankingsWhere1stHandWins() throws Exception {
-        MultipleHandEvaluator multipleHandEvaluator = new MultipleHandEvaluator();
+        MultipleHandEvaluator multipleHandEvaluator = new MultipleHandEvaluator(new ResultSetter()); // tODO use mock
         StraightFlush straightFlush = new StraightFlush(new PokerHandsCards(Arrays.asList(QUEEN_OF_SPADES, JACK_OF_SPADES, TEN_OF_SPADES, NINE_OF_SPADES, EIGHT_OF_SPADES)), new KickerCards(new ArrayList<>()));
         Player player1 = Player.player("Player One", PLAYER_WITH_STRAIGHT_FLUSH_FOUR, straightFlush);
         Flush flush = new Flush(new PokerHandsCards(Arrays.asList(FIVE_OF_DIAMONDS, JACK_OF_DIAMONDS, FOUR_OF_DIAMONDS, ACE_OF_DIAMONDS, NINE_OF_DIAMONDS)), new KickerCards(new ArrayList<>()));

@@ -66,7 +66,7 @@ public class MultiplePlayersTest extends TestState implements WithAssertions {
     @Test
     public void twoPlayersWithSameHandsWithOnlyPokerHandGetSameRankingAndOnePlayerWithBetterHandGetsHighestRanking() throws Exception {
         givenADeckDealsOutASetOfRandomCardsWithAStraightToPlayerOne();
-        andADeckDealsOutASetOfRandomCardsWithAFullHouseToPlayerTwo();
+        andADeckDealsOutASetOfRandomCardsWithAHighCardToPlayerTwo();
         andADeckDealsOutASetOfRandomCardsWithASameStraightToPlayerThree();
 
         whenAGameOfOneHandWithFiveCardsIsPlayedBetweenThreePlayers();
@@ -80,7 +80,7 @@ public class MultiplePlayersTest extends TestState implements WithAssertions {
     @Test
     public void twoPlayersWithSameHandsWithOnlyPokerHandGetSameRankingAndOnePlayerWithLowerHandGetsHighestRanking() throws Exception {
         givenADeckDealsOutASetOfRandomCardsWithAFlushtToPlayerOne();
-        andADeckDealsOutASetOfRandomCardsWithAFullHouseToPlayerTwo();
+        andADeckDealsOutASetOfRandomCardsWithAHighCardToPlayerTwo();
         andADeckDealsOutASetOfRandomCardsWithASameFullHouseToPlayerThree();
 
         whenAGameOfOneHandWithFiveCardsIsPlayedBetweenThreePlayers();
@@ -94,7 +94,7 @@ public class MultiplePlayersTest extends TestState implements WithAssertions {
     @Test
     public void threePlayersWithSameHandsWithOnlyPokerHandGetSameRankingAndOnePlayerWithLowerHandGetsLowestRanking() throws Exception {
         givenADeckDealsOutASetOfRandomCardsWithAFlushtToPlayerOne();
-        andADeckDealsOutASetOfRandomCardsWithAFullHouseToPlayerTwo();
+        andADeckDealsOutASetOfRandomCardsWithAHighCardToPlayerTwo();
         andADeckDealsOutASetOfRandomCardsWithASameFullHouseToPlayerThree();
         andADeckDealsOutASetOfRandomCardsWithASameFullHouseToPlayerFour();
 
@@ -110,7 +110,7 @@ public class MultiplePlayersTest extends TestState implements WithAssertions {
     @Test
     public void twoPlayersWithSameHandsWithOnlyPokerHandGetSameRankingAndOnePlayerWithLowerHandGetsHighestRankingAndAnotherGetsTheLowerRanking() throws Exception {
         givenADeckDealsOutASetOfRandomCardsWithAStraightFlushtToPlayerOne();
-        andADeckDealsOutASetOfRandomCardsWithAFullHouseToPlayerTwo();
+        andADeckDealsOutASetOfRandomCardsWithAHighCardToPlayerTwo();
         andADeckDealsOutASetOfRandomCardsWithASameFullHouseToPlayerThree();
         andADeckDealsOutASetOfRandomCardsWithAHighCardToPlayerFour();
 
@@ -120,6 +120,58 @@ public class MultiplePlayersTest extends TestState implements WithAssertions {
         andPlayerTwoIsInSecondPositon();
         andPlayerThreeIsInSecondPositon();
         andPlayerFourIsInFirstPositon();
+    }
+    // WHen all tests are run individual or own it will fail or debug with all in tests
+    // When in debug on own it will pass
+    @Test
+    public void blah() throws Exception {
+        givenADeckDealsOutASetOfRandomCardsWithAAnotherStraightFlushtToPlayerOne();
+        andADeckDealsOutASetOfRandomCardsWithAHighCardToPlayerTwo();
+        andADeckDealsOutASetOfRandomCardsWithAdiffHighCardToPlayerThree();
+        andADeckDealsOutASetOfRandomCardsWithdiffHighCardToPlayerFour();
+        andADeckDealsOutASetOfRandomCardsWithdiffHighCardToPlayerFive();
+
+        whenAGameOfOneHandWithFiveCardsIsPlayedBetweenFivePlayers();
+
+        andPlayerOneIsFirstPositon();
+        andPlayerTwoIsInSecondPositon();
+        andPlayerThreeIsInThirdPositon();
+        andPlayerFourIsInFourthPositon();
+        andPlayerFiveIsInFifthPositon();
+    }
+
+    private void andADeckDealsOutASetOfRandomCardsWithdiffHighCardToPlayerFive() {
+    }
+
+    private void whenAGameOfOneHandWithFiveCardsIsPlayedBetweenFivePlayers() {
+        play = pokerGame.play(cardDealer, playerOne, playerTwo, playerThree, playerFour, playerFive);
+    }
+
+    private void andPlayerFiveIsInFifthPositon() {
+        assertResultMatchesForPlayer(5, "Player Five");
+    }
+
+    private void andPlayerFourIsInFourthPositon() {
+        assertResultMatchesForPlayer(4, "Player Four");
+    }
+
+    private void andPlayerThreeIsInThirdPositon() {
+        assertResultMatchesForPlayer(3, "Player Three");
+    }
+
+    private void andADeckDealsOutASetOfRandomCardsWithdiffHighCardToPlayerFour() {
+    }
+
+    private void andADeckDealsOutASetOfRandomCardsWithAdiffHighCardToPlayerThree() {
+    }
+
+    private void givenADeckDealsOutASetOfRandomCardsWithAAnotherStraightFlushtToPlayerOne() {
+        Mockito.when(cardDealer.dealHand(5)).
+                thenReturn(new DealtCards(PLAYER_WITH_STRAIGHT_FLUSH_ONE)).
+                thenReturn(new DealtCards(PLAYER_WITH_HIGH_CARD_CARDS_FOUR)).
+                thenReturn(new DealtCards(PLAYER_ONE_HIGH_CARD_CARDS_ONE)).
+                thenReturn(new DealtCards(PLAYER_WITH_HIGH_CARD_CARDS_TWO)).
+                thenReturn(new DealtCards(PLAYER_WITH_HIGH_CARD_CARDS_EIGHT));
     }
 
     //Test 1,1,3,4,4
@@ -173,7 +225,7 @@ public class MultiplePlayersTest extends TestState implements WithAssertions {
 
     }
 
-    private void andADeckDealsOutASetOfRandomCardsWithAFullHouseToPlayerTwo() {
+    private void andADeckDealsOutASetOfRandomCardsWithAHighCardToPlayerTwo() {
     }
 
     private void givenADeckDealsOutASetOfRandomCardsWithAStraightToPlayerOne() {
@@ -197,6 +249,7 @@ public class MultiplePlayersTest extends TestState implements WithAssertions {
                 filter(playerResult -> playerResult.playerName.equals(playerName)).
                 collect(Collectors.toList());
         assertThat(collect).isNotEmpty();
+        //tODO but a descirbe for
     }
 
     private void givenADeckDealsOutASetOfRandomCardsWithATwoPairToPlayerOne() {
@@ -277,6 +330,7 @@ public class MultiplePlayersTest extends TestState implements WithAssertions {
     private static final Player playerTwo = player("Player Two");
     private static final Player playerThree = player("Player Three");
     private static final Player playerFour = player("Player Four");
+    private static final Player playerFive = player("Player Five");
     private static final Player playerOne = player("Player One");
     private final CardDealer cardDealer = Mockito.mock(CardDealer.class); // TODO use a stub
 

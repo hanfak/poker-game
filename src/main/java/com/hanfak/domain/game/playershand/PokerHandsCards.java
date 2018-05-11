@@ -36,6 +36,10 @@ public class PokerHandsCards implements Comparable<PokerHandsCards> {
         return cards;
     }
 
+    public List<Rank> getRankOfCards() {
+        return cards.stream().map(card -> card.rank).collect(Collectors.toList());
+    }
+
     @Override
     public int compareTo(PokerHandsCards otherPokerHandCards) {
         return COMPARATOR.compare(this, otherPokerHandCards);

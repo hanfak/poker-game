@@ -17,7 +17,6 @@ public class CardDealer {
     @SuppressWarnings("SameParameterValue")
     public DealtCards dealHand(int numberOfCards) {
         List<Card> shuffledDeck = cardShuffler.shuffle(deck.getCardsInDeck());
-
         List<Card> dealtCards = getHand(shuffledDeck, numberOfCards);
 
         deck.removeCards(dealtCards);

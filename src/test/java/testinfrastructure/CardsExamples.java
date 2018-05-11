@@ -42,6 +42,7 @@ public class CardsExamples {
 
     public static final Card SIX_OF_HEARTS = card(SIX, HEART);
     public static final Card SIX_OF_SPADES = card(SIX, SPADE);
+    public static final Card SIX_OF_CLUBS = card(SIX, CLUB);
 
 
     public static final Card FIVE_OF_SPADES = card(FIVE, SPADE);
@@ -56,7 +57,9 @@ public class CardsExamples {
 
     public static final Card THREE_OF_SPADES = card(THREE, SPADE);
     public static final Card THREE_OF_DIAMONDS = card(THREE, DIAMOND);
+    public static final Card THREE_OF_CLUBS = card(THREE, CLUB);
 
     public static final Card TWO_OF_HEARTS = card(TWO, HEART);
     public static final Card TWO_OF_SPADES = card(TWO, SPADE);
+    public static final Card TWO_OF_DIAMONDS = card(TWO, DIAMOND);
 }
