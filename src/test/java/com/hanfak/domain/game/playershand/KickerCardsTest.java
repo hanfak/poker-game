@@ -30,7 +30,7 @@ public class KickerCardsTest implements WithAssertions {
     public void equalkickerCardsReturn0() throws Exception {
         KickerCards kickerCards = new KickerCards(this.kickerCards);
 
-        assertThat(kickerCards.compareTo(new KickerCards(kickerCards1))).isEqualTo(0);
+        assertThat(kickerCards.compareTo(new KickerCards(this.kickerCards))).isEqualTo(0);
     }
 
     @Test

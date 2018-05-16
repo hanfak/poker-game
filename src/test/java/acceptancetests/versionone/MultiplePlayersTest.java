@@ -121,10 +121,9 @@ public class MultiplePlayersTest extends TestState implements WithAssertions {
         andPlayerThreeIsInSecondPositon();
         andPlayerFourIsInFirstPositon();
     }
-    // WHen all tests are run individual or own it will fail or debug with all in tests
-    // When in debug on own it will pass
+
     @Test
-    public void blah() throws Exception {
+    public void multiplePlayersWithSamePokerRankingHand() throws Exception {
         givenADeckDealsOutASetOfRandomCardsWithAAnotherStraightFlushtToPlayerOne();
         andADeckDealsOutASetOfRandomCardsWithAHighCardToPlayerTwo();
         andADeckDealsOutASetOfRandomCardsWithAdiffHighCardToPlayerThree();

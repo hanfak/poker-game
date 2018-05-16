@@ -26,7 +26,7 @@ public class PlayerResult {
         return "PlayerResult{" +
                 "playerName='" + playerName + '\'' +
                 ", result=" + result +
-                ", hand=" + Arrays.asList(hand.getPokerHandsCards().getCards(), hand.getKickerCards().getCards()) +
+                ", hand=" + Arrays.asList(hand.getListOFPokerHandsCards(), hand.getListOFPokerHandsCards()) +
                 ", pokerHand=" + hand.getClass().getSimpleName() +
                 "}\n";
     }

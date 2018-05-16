@@ -1,17 +1,12 @@
 # TODO
 
 1. -Acceptance test for all possible hands-
-Still issues look at results.txt
-    - same poker hands not comparing properly 
-    
-1.a. get rid of ordinal method calls
-1.b. use enum map when groupby Item37 effective java
+
+    1. get rid of ordinal method calls
+    2. use enum map when groupby Item37 effective java
+    3. Sort pom, for failsafe plugin, fabric8, jar,
 2. Unit tests for in TODOs
-3. Acceptance test for multiple hands to evaluate
-    - Deal with multiple players and Draws
-        - What will be the ordering 1,2,3,3,4,5?
-        - Multiple draws for different positions ie 1,1,2,3,4,4,5
-    - Add JavaFx interface
+3. Add JavaFx interface
         - test this (https://github.com/TestFX/TestFX)
 4. New version: Best hand for multiple cards dealt, and multiple players
     - playing with two dealt, then flop, then turn, then river

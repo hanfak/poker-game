@@ -1,5 +1,10 @@
 package com.hanfak.domain.game.playershand;
 
+import com.hanfak.domain.cards.Card;
+import com.hanfak.domain.cards.Rank;
+
+import java.util.List;
+
 // TODO comparable??
 public abstract class PokerHand {
     private final int ranking;
@@ -20,8 +25,23 @@ public abstract class PokerHand {
         return pokerHandCards;
     }
 
+    //TODO test
+    public List<Rank> getPokerHandCardsAsRanks() {
+        return pokerHandCards.getRankOfCards();
+    }
+    //TODO test
+    public List<Card> getListOFPokerHandsCards() {
+        return pokerHandCards.getCards();
+    }
+
+
     public KickerCards getKickerCards() {
         return kickerCards;
+    }
+
+    //TODO test
+    public List<Card> getListOFKickCards() {
+        return kickerCards.getCards();
     }
 
     @Override
