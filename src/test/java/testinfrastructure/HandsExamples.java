@@ -8,7 +8,7 @@ import java.util.List;
 import static testinfrastructure.CardsExamples.*;
 
 // TODO use interface???
-public class FiveCardHandsExamples {
+public class HandsExamples {
     public static final List<Card> PLAYER_ONE_HIGH_CARD_CARDS_ONE = Arrays.asList(ACE_OF_SPADES, SIX_OF_HEARTS, FOUR_OF_DIAMONDS, THREE_OF_SPADES, TWO_OF_SPADES);
     public static final List<Card> PLAYER_WITH_HIGH_CARD_CARDS_TWO = Arrays.asList(KING_OF_SPADES, JACK_OF_DIAMONDS, NINE_OF_DIAMONDS, EIGHT_OF_SPADES, THREE_OF_DIAMONDS);
     public static final List<Card> PLAYER_WITH_HIGH_CARD_CARDS_THREE = Arrays.asList(ACE_OF_HEARTS, SIX_OF_HEARTS, FOUR_OF_DIAMONDS, THREE_OF_SPADES, TWO_OF_SPADES);

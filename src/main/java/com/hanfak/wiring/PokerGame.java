@@ -9,7 +9,11 @@ import com.hanfak.domain.game.evaluators.MultipleHandEvaluator;
 import com.hanfak.domain.game.evaluators.PokerHandChecker;
 import com.hanfak.domain.game.evaluators.ResultSetter;
 import com.hanfak.infrastructure.CollectionsCardShuffler;
-import com.hanfak.usecases.VersionOneGame;
+import com.hanfak.usecases.versionone.VersionOneGame;
+import com.hanfak.usecases.versiontwo.FlopHandUseCase;
+import com.hanfak.usecases.versiontwo.InitialHandUseCase;
+import com.hanfak.usecases.versiontwo.RiverHandUseCase;
+import com.hanfak.usecases.versiontwo.TurnHandUseCase;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -71,10 +75,27 @@ public class PokerGame {
     // TODO change to hashmap better for multiple players???
     // TODO Wiring
     public List<PlayerResult> play(CardDealer cardDealer, Player... player) {
+        if (version.equals("1.0"))
+            return playerPokerGameVersionOne(cardDealer, player);
+        else
+            return playerPokerGameVersionTwo(cardDealer, player);
+    }
+
+    private List<PlayerResult> playerPokerGameVersionTwo(CardDealer cardDealer, Player[] players) {
+        HandEvaluator handEvaluator = new HandEvaluator(new PokerHandChecker());
+        MultipleHandEvaluator multipleHandEvaluator = new MultipleHandEvaluator(new ResultSetter());
+        List<Player> playersAfterInitialCardsDealt =  new InitialHandUseCase(cardDealer).dealCards(players);
+        List<PlayerResult> playerResultsAfterFlopCardsDealt =  new FlopHandUseCase().dealCards(playersAfterInitialCardsDealt);
+        List<PlayerResult> playerResultsAfterTurnCardsDealt =  new TurnHandUseCase().dealCards(playerResultsAfterFlopCardsDealt);
+        List<PlayerResult> playerResultsAfterRiverCardsDealt =  new RiverHandUseCase().dealCards(playerResultsAfterTurnCardsDealt);
+
+        return playerResultsAfterRiverCardsDealt;
+    }
+
+    private List<PlayerResult> playerPokerGameVersionOne(CardDealer cardDealer, Player[] player) {
         HandEvaluator handEvaluator = new HandEvaluator(new PokerHandChecker());
         MultipleHandEvaluator multipleHandEvaluator = new MultipleHandEvaluator(new ResultSetter());
         VersionOneGame versionOneGame = new VersionOneGame(cardDealer, handEvaluator, multipleHandEvaluator);
         return versionOneGame.playGame(player);
-        // TODO formatter
     }
 }

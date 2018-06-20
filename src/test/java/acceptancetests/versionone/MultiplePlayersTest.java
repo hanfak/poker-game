@@ -1,5 +1,6 @@
 package acceptancetests.versionone;
 
+import com.googlecode.yatspec.junit.SpecRunner;
 import com.googlecode.yatspec.state.givenwhenthen.TestState;
 import com.hanfak.domain.deck.CardDealer;
 import com.hanfak.domain.deck.DealtCards;
@@ -9,6 +10,7 @@ import com.hanfak.wiring.PokerGame;
 import org.assertj.core.api.WithAssertions;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 
 import java.util.List;
@@ -18,6 +20,7 @@ import static com.hanfak.domain.game.Player.player;
 import static testinfrastructure.HandsExamples.*;
 
 // TODO move some to unit test for MultipleHand
+@RunWith(SpecRunner.class)
 public class MultiplePlayersTest extends TestState implements WithAssertions {
 
     // all ordered uniquely 1,2,3

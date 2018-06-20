@@ -1,5 +1,6 @@
 package acceptancetests.versionone;
 
+import com.googlecode.yatspec.junit.SpecRunner;
 import com.googlecode.yatspec.state.givenwhenthen.TestState;
 import com.hanfak.domain.deck.CardDealer;
 import com.hanfak.domain.deck.DealtCards;
@@ -9,6 +10,7 @@ import com.hanfak.wiring.PokerGame;
 import org.assertj.core.api.WithAssertions;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.mockito.stubbing.OngoingStubbing;
 
@@ -21,6 +23,7 @@ import static testinfrastructure.HandsExamples.PLAYER_WITH_FLUSH_THREE;
 import static testinfrastructure.HandsExamples.PLAYER_WITH_FLUSH_TWO;
 import static testinfrastructure.HandsExamples.PLAYER_WITH_TWO_PAIR_CARDS_TWO;
 
+@RunWith(SpecRunner.class)
 public class BestHandIsAFlushInFiveCardHandTest extends TestState implements WithAssertions {
     @Test
     public void playerWinsWithABetterHand() throws Exception {

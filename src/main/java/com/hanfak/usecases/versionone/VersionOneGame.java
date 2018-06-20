@@ -1,4 +1,4 @@
-package com.hanfak.usecases;
+package com.hanfak.usecases.versionone;
 
 import com.hanfak.domain.deck.CardDealer;
 import com.hanfak.domain.deck.DealtCards;
