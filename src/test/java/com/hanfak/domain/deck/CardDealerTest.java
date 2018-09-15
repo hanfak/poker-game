@@ -3,22 +3,14 @@ package com.hanfak.domain.deck;
 import com.hanfak.domain.cards.Card;
 import com.hanfak.infrastructure.CollectionsCardShuffler;
 import org.assertj.core.api.WithAssertions;
-import org.junit.After;
 import org.junit.Test;
 
 import java.util.stream.IntStream;
 
 public class CardDealerTest implements WithAssertions {
 
-    // Could test using mocks for dependecies but shuffle makes it harder and lots of setup
-
-    @After
-    public void teardown() {
-        Deck.resetDeck();
-    }
-
     @Test
-    public void dealsAShuffledDistinctHand() throws Exception {
+    public void dealsAShuffledDistinctHand() {
         CollectionsCardShuffler collectionsCardShuffler = new CollectionsCardShuffler();
         CardDealer cardDealer = new CardDealer(collectionsCardShuffler);
 
@@ -29,7 +21,7 @@ public class CardDealerTest implements WithAssertions {
     }
 
     @Test
-    public void twoHandsDealtMustBeUnique() throws Exception {
+    public void twoHandsDealtMustBeUnique() {
         CollectionsCardShuffler collectionsCardShuffler = new CollectionsCardShuffler();
         CardDealer cardDealer = new CardDealer(collectionsCardShuffler);
 
@@ -40,7 +32,7 @@ public class CardDealerTest implements WithAssertions {
     }
 
     @Test
-    public void throwsErrorIfNotEnoughCardsToDealAHand()  {
+    public void throwsErrorIfNotEnoughCardsToDealAHand() {
         CollectionsCardShuffler collectionsCardShuffler = new CollectionsCardShuffler();
         CardDealer cardDealer = new CardDealer(collectionsCardShuffler);
 

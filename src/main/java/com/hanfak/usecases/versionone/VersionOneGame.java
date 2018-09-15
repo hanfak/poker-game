@@ -30,7 +30,6 @@ public class VersionOneGame {
         List<Player> playersWithAHandOfCards = dealHandToAllPlayers(players);
         List<PlayerResult> playerResults = evaluateGame(playersWithAHandOfCards);
         System.out.println(playerResults);
-        cardDealer.endGame();
 
         return playerResults;
     }
