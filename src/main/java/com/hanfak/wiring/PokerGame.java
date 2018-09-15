@@ -1,7 +1,6 @@
 package com.hanfak.wiring;
 
 import com.hanfak.domain.deck.CardDealer;
-import com.hanfak.domain.deck.Deck;
 import com.hanfak.domain.game.Player;
 import com.hanfak.domain.game.PlayerResult;
 import com.hanfak.domain.game.evaluators.HandEvaluator;
@@ -10,10 +9,6 @@ import com.hanfak.domain.game.evaluators.PokerHandChecker;
 import com.hanfak.domain.game.evaluators.ResultSetter;
 import com.hanfak.infrastructure.CollectionsCardShuffler;
 import com.hanfak.usecases.versionone.VersionOneGame;
-import com.hanfak.usecases.versiontwo.FlopHandUseCase;
-import com.hanfak.usecases.versiontwo.InitialHandUseCase;
-import com.hanfak.usecases.versiontwo.RiverHandUseCase;
-import com.hanfak.usecases.versiontwo.TurnHandUseCase;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -37,7 +32,7 @@ public class PokerGame {
 //        System.out.println(playerTwoName);
 //
 //        PokerGame pokerGame = new PokerGame(args[0]);
-        PokerGame pokerGame = new PokerGame("one");
+        PokerGame pokerGame = new PokerGame("1.0");
 
         // TODO for multple games have a do while loop, with exit on typing exit
 //        List<PlayerResult> results = pokerGame.play(new Deck(), player(playerOneName, null),
@@ -52,7 +47,7 @@ public class PokerGame {
         String s = "";
         StringBuilder a = new StringBuilder();
         IntStream.range(1,100).forEach(x -> {
-            List<PlayerResult> result = pokerGame.play(new CardDealer(new Deck(), new CollectionsCardShuffler()), player("one"),
+            List<PlayerResult> result = pokerGame.play(new CardDealer(new CollectionsCardShuffler()), player("one"),
                     player("two"), player("three"), player("four"), player("five"));
             String blah = result.toString() + "\n\n";
             System.out.println("ind result " + blah);
@@ -82,14 +77,15 @@ public class PokerGame {
     }
 
     private List<PlayerResult> playerPokerGameVersionTwo(CardDealer cardDealer, Player[] players) {
-        HandEvaluator handEvaluator = new HandEvaluator(new PokerHandChecker());
-        MultipleHandEvaluator multipleHandEvaluator = new MultipleHandEvaluator(new ResultSetter());
-        List<Player> playersAfterInitialCardsDealt =  new InitialHandUseCase(cardDealer).dealCards(players);
-        List<PlayerResult> playerResultsAfterFlopCardsDealt =  new FlopHandUseCase().dealCards(playersAfterInitialCardsDealt);
-        List<PlayerResult> playerResultsAfterTurnCardsDealt =  new TurnHandUseCase().dealCards(playerResultsAfterFlopCardsDealt);
-        List<PlayerResult> playerResultsAfterRiverCardsDealt =  new RiverHandUseCase().dealCards(playerResultsAfterTurnCardsDealt);
-
-        return playerResultsAfterRiverCardsDealt;
+//        HandEvaluator handEvaluator = new HandEvaluator(new PokerHandChecker());
+//        MultipleHandEvaluator multipleHandEvaluator = new MultipleHandEvaluator(new ResultSetter());
+//        List<Player> playersAfterInitialCardsDealt =  new InitialHandUseCase(cardDealer).dealCards(players);
+//        List<Player> playerResultsAfterFlopCardsDealt =  new FlopHandUseCase(cardDealer, handEvaluator).dealCards(playersAfterInitialCardsDealt);
+//        List<PlayerResult> playerResultsAfterTurnCardsDealt =  new TurnHandUseCase(cardDealer, handEvaluator).dealCards(playerResultsAfterFlopCardsDealt);
+//        List<PlayerResult> playerResultsAfterRiverCardsDealt =  new RiverHandUseCase().dealCards(playerResultsAfterTurnCardsDealt);
+//
+//        return playerResultsAfterRiverCardsDealt;
+        return null;
     }
 
     private List<PlayerResult> playerPokerGameVersionOne(CardDealer cardDealer, Player[] player) {

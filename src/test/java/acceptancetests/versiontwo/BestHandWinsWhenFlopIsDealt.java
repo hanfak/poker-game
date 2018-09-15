@@ -9,6 +9,7 @@ import com.hanfak.domain.game.PlayerResult;
 import com.hanfak.wiring.PokerGame;
 import org.assertj.core.api.WithAssertions;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -27,6 +28,7 @@ import static testinfrastructure.DrawnCardsHandExamples.PLAYER_WITH_TEN_OF_SPADE
 public class BestHandWinsWhenFlopIsDealt implements WithAssertions {
     
     @Test
+    @Ignore
     public void playerWinsWithBetterHandAfterAllCardsHaveBeenPlayed() throws Exception {
         givenADeckDealsOutASetOfRandomCardsToTwoPlayers();
 

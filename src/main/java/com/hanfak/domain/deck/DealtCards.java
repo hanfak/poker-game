@@ -20,9 +20,11 @@ public class DealtCards {
     }
 
     public List<Card> getCards() {
-        return cards;
+        return Collections.unmodifiableList(cards);
     }
+
     private List<Card> orderCards(List<Card> cards) {
+        System.out.println(cards);
         List<Card> collect = cards.stream().
                 sorted(Comparator.comparingInt(card -> card.rank.getLevelCode())). // TODO use ordinal instead
                 collect(Collectors.toList());
